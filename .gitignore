@@ -1,0 +1,12 @@
+__pycache__/
+*.pyc
+*.log
+.env
+*.pem
+*.key
+*.crt
+*.db
+.vscode/
+.idea/
+.docker/
+*.swp
