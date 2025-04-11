@@ -3,4 +3,4 @@ app = Flask(__name__)
 
 @app.route('/')
 def hello():
-    return "!App Flask corriendo con Gunicorn detrás de Nginx - PRODUCCIÓN!"
+    return "App Flask corriendo con Gunicorn detrás de Nginx - PRODUCCIÓN!"
