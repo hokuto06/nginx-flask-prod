@@ -3,4 +3,4 @@ app = Flask(__name__)
 
 @app.route('/')
 def hello():
-    return "SITIO EN CONSTRUCCION!"
+    return render_template("index.html")
