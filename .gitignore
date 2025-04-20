@@ -10,3 +10,5 @@ __pycache__/
 .idea/
 .docker/
 *.swp
+nginx/default.dev.conf
+docker-compose.override.yml
