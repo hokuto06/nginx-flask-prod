@@ -5,6 +5,12 @@ services:
     build: ./app
     container_name: flask-prod
 
+  php:
+    build: ./php
+    container_name: php-fpm
+    volumes:
+      - ./php:/var/www/html
+
   nginx:
     image: nginx:latest
     container_name: nginx-proxy
