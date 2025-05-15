@@ -62,13 +62,22 @@
         throw new Error(`${response.status} ${response.statusText} ${response.url}`); 
       }
     })
-    .then(data => {
+    .then(rawData => {
       thisForm.querySelector('.loading').classList.remove('d-block');
-      if (data.trim() == 'OK') {
+
+      let data;
+      try {
+        data = JSON.parse(rawData);
+      } catch (e) {
+        throw new Error('Invalid JSON response: ' + rawData);
+      }
+
+      if (data.success) {
+        thisForm.querySelector('.sent-message').innerHTML = data.success;
         thisForm.querySelector('.sent-message').classList.add('d-block');
-        thisForm.reset(); 
+        thisForm.reset();
       } else {
-        throw new Error(data ? data : 'Form submission failed and no error message returned from: ' + action); 
+        throw new Error(data.error || 'Unknown error');
       }
     })
     .catch((error) => {
