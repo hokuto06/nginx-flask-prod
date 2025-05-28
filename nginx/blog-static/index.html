@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Blog</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+  <header class="py-5 bg-light border-bottom mb-4">
+    <div class="container">
+      <div class="text-center my-5">
+        <h1 class="fw-bolder">Mi Blog</h1>
+        <p class="lead mb-0">Últimos posts publicados</p>
+      </div>
+    </div>
+  </header>
+
+  <div class="container px-4 px-lg-5">
+    <div class="row gx-4 gx-lg-5 justify-content-center">
+      <div class="col-md-10 col-lg-8 col-xl-7" id="post-list">
+        <p>Cargando publicaciones...</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    fetch('http://localhost:8000/api/posts/')
+      .then(response => response.json())
+      .then(data => {
+        const list = document.getElementById('post-list');
+        list.innerHTML = '';
+        data.forEach(post => {
+          const item = document.createElement('div');
+          item.className = 'post-preview';
+          item.innerHTML = `
+            <a href="post.html?slug=${post.slug}">
+              <h2 class="post-title">${post.title}</h2>
+              <h3 class="post-subtitle">${post.excerpt || ''}</h3>
+            </a>
+            <p class="post-meta">
+              Publicado por <strong>${post.author}</strong> el ${new Date(post.created_at).toLocaleDateString()}
+            </p>
+            <hr class="my-4" />
+          `;
+          list.appendChild(item);
+        });
+      })
+      .catch(error => {
+        console.error('Error al cargar los posts:', error);
+        document.getElementById('post-list').innerHTML = '<p>Error al cargar los posts</p>';
+      });
+  </script>
+</body>
+</html>
