@@ -40,8 +40,8 @@
               <div class="col-md-10 col-lg-8 col-xl-7">
                   <div class="post-heading">
                       <!-- <h1>Man must explore, and this is exploration at its greatest</h1> -->
-                      <h1 id="post-title"></h1>
-                      <h2 class="subheading" id="post-content"></h2>
+                      <h1 id="title"></h1>
+                      <h2 class="subheading" id="content"></h2>
                       <span class="meta">
                           Posted by
                           <a href="#!">Start Bootstrap</a>
@@ -56,7 +56,7 @@
   <article>
     <div class="container">
       <div class="row">
-        <div class="col-md-10 mx-auto" id="post-content"></div>
+        <div class="col-md-10 mx-auto" id="content"></div>
       </div>
     </div>
   </article>
@@ -74,60 +74,94 @@
   </div>
 
   <script>
-    const slug = new URLSearchParams(window.location.search).get('slug');
-    let postId = null;
+const params = new URLSearchParams(window.location.search);
+const slug = params.get('slug');
 
-    function loadPost() {
-      fetch(`/api/posts/${slug}/`)
-        .then(response => response.json())
-        .then(post => {
-          postId = post.id;
-          document.getElementById('post-title').textContent = post.title;
-          document.getElementById('post-excerpt').textContent = post.excerpt || '';
-          document.getElementById('post-meta').innerHTML = `Publicado por <strong>${post.author}</strong> el ${new Date(post.created_at).toLocaleDateString()}`;
-          document.getElementById('post-content').innerHTML = post.content;
-          loadComments();
-        })
-        .catch(err => {
-          document.getElementById('post-title').textContent = "Error cargando el post";
-          console.error(err);
-        });
+fetch(`/api/posts/?slug=${slug}`)
+  .then(response => response.json())
+  .then(data => {
+    if (!data.length) {
+      document.getElementById("title").textContent = "Post no encontrado.";
+      return;
     }
+    const post = data[0];
+    document.title = post.title;
+    document.getElementById("title").textContent = post.title;
+    document.getElementById("miniature").src = post.miniature;
+    document.getElementById("content").textContent = post.content;
 
-    function loadComments() {
-      fetch(`/api/comments/?post=${postId}`)
-        .then(res => res.json())
-        .then(comments => {
-          const container = document.getElementById('comments-container');
-          container.innerHTML = '';
-          comments.forEach(comment => {
-            const p = document.createElement('p');
-            p.innerHTML = `<strong>${comment.author_name}</strong>: ${comment.content}`;
-            container.appendChild(p);
-          });
-        });
-    }
-
-    document.getElementById('comment-form').addEventListener('submit', function(e) {
-      e.preventDefault();
-      const author = document.getElementById('author').value;
-      const content = document.getElementById('comment-content').value;
-
-      fetch('/api/comments/', {
-        method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({ post: postId, author_name: author, content: content })
-      }).then(res => {
-        if (res.ok) {
-          loadComments();
-          document.getElementById('comment-form').reset();
-        } else {
-          alert('Error al enviar comentario');
+    // 🔽 Obtener comentarios usando el ID del post
+    fetch(`/api/comments/?post=${post.id}`)
+      .then(res => res.json())
+      .then(comments => {
+        const container = document.getElementById("comments");
+        if (!comments.length) {
+          container.innerHTML = "<p>No hay comentarios aún.</p>";
+          return;
         }
+        comments.forEach(c => {
+          const div = document.createElement("div");
+          div.innerHTML = `<strong>${c.user.username}</strong>: ${c.content}`;
+          container.appendChild(div);
+        });
       });
-    });
+  })
+  .catch(error => console.error("Error al cargar el post o los comentarios:", error));
 
-    loadPost();
+// const slug = new URLSearchParams(window.location.search).get('slug');
+    // let postId = null;
+
+    // function loadPost() {
+    //   fetch(`/api/posts/${slug}/`)
+    //     .then(response => response.json())
+    //     .then(post => {
+    //       postId = post.id;
+    //       document.getElementById('post-title').textContent = post.title;
+    //       document.getElementById('post-excerpt').textContent = post.excerpt || '';
+    //       document.getElementById('post-meta').innerHTML = `Publicado por <strong>${post.author}</strong> el ${new Date(post.created_at).toLocaleDateString()}`;
+    //       document.getElementById('post-content').innerHTML = post.content;
+    //       loadComments();
+    //     })
+    //     .catch(err => {
+    //       document.getElementById('post-title').textContent = "Error cargando el post";
+    //       console.error(err);
+    //     });
+    // }
+
+    // function loadComments() {
+    //   fetch(`/api/comments/?post=${postId}`)
+    //     .then(res => res.json())
+    //     .then(comments => {
+    //       const container = document.getElementById('comments-container');
+    //       container.innerHTML = '';
+    //       comments.forEach(comment => {
+    //         const p = document.createElement('p');
+    //         p.innerHTML = `<strong>${comment.author_name}</strong>: ${comment.content}`;
+    //         container.appendChild(p);
+    //       });
+    //     });
+    // }
+
+    // document.getElementById('comment-form').addEventListener('submit', function(e) {
+    //   e.preventDefault();
+    //   const author = document.getElementById('author').value;
+    //   const content = document.getElementById('comment-content').value;
+
+    //   fetch('/api/comments/', {
+    //     method: 'POST',
+    //     headers: {'Content-Type': 'application/json'},
+    //     body: JSON.stringify({ post: postId, author_name: author, content: content })
+    //   }).then(res => {
+    //     if (res.ok) {
+    //       loadComments();
+    //       document.getElementById('comment-form').reset();
+    //     } else {
+    //       alert('Error al enviar comentario');
+    //     }
+    //   });
+    // });
+
+    // loadPost();
   </script>
 </body>
 </html>
