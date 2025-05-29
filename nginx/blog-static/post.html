@@ -94,7 +94,7 @@
     }
 
     function loadComments() {
-      fetch(`http://localhost:8000/api/comments/?post=${postId}`)
+      fetch(`/api/comments/?post=${postId}`)
         .then(res => res.json())
         .then(comments => {
           const container = document.getElementById('comments-container');
@@ -112,7 +112,7 @@
       const author = document.getElementById('author').value;
       const content = document.getElementById('comment-content').value;
 
-      fetch('http://localhost:8000/api/comments/', {
+      fetch('/api/comments/', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({ post: postId, author_name: author, content: content })
