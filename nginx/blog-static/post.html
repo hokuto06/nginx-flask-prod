@@ -43,9 +43,10 @@
                       <h1 id="title"></h1>
                       <h2 class="subheading" id="content"></h2>
                       <span class="meta">
-                          Posted by
-                          <a href="#!">Start Bootstrap</a>
-                          on August 24, 2023
+                          Posted by 
+                          <!-- <a href="#!">Start Bootstrap</a> -->
+                          <a id="user_id"></a>
+                          <p id="created_at"></p>
                       </span>
                   </div>
               </div>
@@ -87,6 +88,8 @@ fetch(`/api/posts/?slug=${slug}`)
     const post = data[0];
     document.title = post.title;
     document.getElementById("title").textContent = post.title;
+    document.getElementById("created_at").textContent = post.created_at;
+    document.getElementById("user_id").textContent = post.user.id;
     document.getElementById("miniature").src = post.miniature;
     document.getElementById("content").textContent = post.content;
 
