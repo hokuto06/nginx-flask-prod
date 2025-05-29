@@ -86,8 +86,14 @@ WSGI_APPLICATION = 'django_api_blog.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        # 'ENGINE': 'django.db.backends.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        # 'NAME': BASE_DIR / 'db.sqlite3',
+        'USER': 'postgres',
+        'NAME': 'postgres',
+        'PASSWORD': 'eMGDycGRla4OD0YaNJce',
+        'HOST': 'database-2.ct6qy8mq6iob.us-east-1.rds.amazonaws.com',
+        'PORT': '5432'
     }
 }
 
