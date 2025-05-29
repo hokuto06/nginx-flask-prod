@@ -89,7 +89,7 @@ fetch(`/api/posts/?slug=${slug}`)
     document.title = post.title;
     document.getElementById("title").textContent = post.title;
     document.getElementById("created_at").textContent = post.created_at;
-    document.getElementById("user_id").textContent = post.user.id;
+    document.getElementById("user_id").textContent = post.user.username;
     document.getElementById("miniature").src = post.miniature;
     document.getElementById("content").textContent = post.content;
 
