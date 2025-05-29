@@ -41,7 +41,7 @@
     let postId = null;
 
     function loadPost() {
-      fetch(`http://52.201.37.75:8000/api/posts/${slug}/`)
+      fetch(`/api/posts/${slug}/`)
         .then(response => response.json())
         .then(post => {
           postId = post.id;
