@@ -116,6 +116,22 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+SWAGGER_SETTINGS = {
+    'USE_SESSION_AUTH': False,
+    'DOC_EXPANSION': 'none',
+    'DEFAULT_MODEL_RENDERING': 'example',
+    'VALIDATOR_URL': None,
+    'LOGIN_URL': '/admin/login/',
+    'LOGOUT_URL': '/admin/logout/',
+    'DEFAULT_API_URL': None,
+    'SECURITY_DEFINITIONS': None,
+    'PERSIST_AUTH': True,
+    'OPERATIONS_SORTER': 'alpha',
+    'DEEP_LINKING': True,
+    'DEFAULT_GENERATOR_CLASS': 'drf_yasg.generators.OpenAPISchemaGenerator',
+    'ROOT_URLCONF': 'tu_app.urls',
+    'STATIC_URL': '/docs/static/',  # 👈 clave para que Swagger genere URLs relativas a /docs/
+}
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
