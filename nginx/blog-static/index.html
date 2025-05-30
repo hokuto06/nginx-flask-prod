@@ -15,6 +15,7 @@
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="css/styles.css" rel="stylesheet" />
 </head>
+
 <body>
   <!-- Navigation-->
   <nav class="navbar navbar-expand-lg navbar-light" id="mainNav">
@@ -30,6 +31,7 @@
                   <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="about.html">Acerca de</a></li>
                   <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="post.html">Nuevo Post</a></li>
                   <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="contact.html">Contacto</a></li>
+                  <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="#" data-bs-toggle="modal" data-bs-target="#loginModal">Login</a></li>
               </ul>
           </div>
       </div>
@@ -98,10 +100,49 @@
           </div>
       </div>
   </footer>
+  <!-- Modal de Login -->
+  <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="loginModalLabel">Iniciar Sesión</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+        </div>
+        <div class="modal-body">
+          <form id="login-form">
+            <div class="mb-3">
+              <label for="login-email" class="form-label">Email</label>
+              <input type="email" class="form-control" id="login-email" required>
+            </div>
+            <div class="mb-3">
+              <label for="login-password" class="form-label">Contraseña</label>
+              <input type="password" class="form-control" id="login-password" required>
+            </div>
+            <div class="text-end">
+              <button type="submit" class="btn btn-primary">Ingresar</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
   <!-- Bootstrap core JS-->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
   <!-- Core theme JS-->
   <script src="js/scripts.js"></script>
+  <script type="module">
+    import { login } from './js/auth.js';
+
+    document.getElementById('login-form').addEventListener('submit', async function (e) {
+      e.preventDefault();
+      const email = document.getElementById('login-email').value;
+      const password = document.getElementById('login-password').value;
+      await login(email, password);
+      const modal = bootstrap.Modal.getInstance(document.getElementById('loginModal'));
+      modal.hide();
+    });
+  </script>
+
   <script>
     fetch('/api/posts/')
       .then(response => response.json())
@@ -114,10 +155,10 @@
           item.innerHTML = `
             <a href="post.html?slug=${post.slug}">
               <h2 class="post-title">${post.title}</h2>
-              <h3 class="post-subtitle">${post.excerpt || ''}</h3>
+              <h3 class="post-subtitle">${post.content || ''}</h3>
             </a>
             <p class="post-meta">
-              Publicado por <strong>${post.username}</strong> el ${new Date(post.created_at).toLocaleDateString()}
+              Publicado por <strong>${post.user.username}</strong> el ${new Date(post.created_at).toLocaleDateString()}
             </p>
             <hr class="my-4" />
           `;
@@ -128,6 +169,6 @@
         console.error('Error al cargar los posts:', error);
         document.getElementById('post-list').innerHTML = '<p>Error al cargar los posts</p>';
       });
-  </script>
+  </script>  
 </body>
 </html>
