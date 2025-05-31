@@ -11,5 +11,5 @@ class PostApiViewSet(ModelViewSet):
     queryset = Post.objects.filter(published=True)
     lookup_field = 'slug'
     filter_backends = [DjangoFilterBackend]
-    filterset_fields = ['category','category__slug']
+    filterset_fields = ['slug','category','category__slug']
     # filterset_fields = ['category']
