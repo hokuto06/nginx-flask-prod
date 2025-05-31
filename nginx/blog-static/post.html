@@ -34,8 +34,8 @@
           </div>
       </div>
   </nav>  
-  <header class="masthead" style="background-image: url('assets/img/post-bg.jpg')">
-  <!-- <header class="masthead"> -->
+  <!-- <header class="masthead" style="background-image: url('assets/img/post-bg.jpg')"> -->
+  <header class="masthead" id="miniature">
       <div class="container position-relative px-4 px-lg-5">
           <div class="row gx-4 gx-lg-5 justify-content-center">
               <div class="col-md-10 col-lg-8 col-xl-7">
@@ -54,7 +54,6 @@
           </div>
       </div>
   </header>
-<img id="miniature" class="img-fluid mb-4" alt="Imagen del post">
 
   <article>
     <div class="container">
@@ -75,8 +74,18 @@
       <button type="submit" class="btn btn-primary">Enviar</button>
     </form>
   </div>
-
+    <!-- Preloader -->
+  <div id="preloader"></div>
   <script>
+    /**
+     * Preloader
+     */
+    const preloader = document.querySelector('#preloader');
+    if (preloader) {
+      window.addEventListener('load', () => {
+        preloader.remove();
+      });
+    }    
 const params = new URLSearchParams(window.location.search);
 const slug = params.get('slug');
 
@@ -99,12 +108,12 @@ fetch(`/api/posts/?slug=${slug}`)
     document.getElementById("title").textContent = post.title;
     document.getElementById("created_at").textContent = post.created_at;
     document.getElementById("user_id").textContent = post.user.username;
-    // document.getElementById("miniature").src = post.miniature;
+    document.getElementById("miniature").style.backgroundImage = `url(${post.miniature})`;
     document.getElementById("post-content").innerHTML = post.content;
-    // document.getElementById("title-content").textContent = post.content;
+    document.getElementById("title-content").textContent = post.description;
     // 🔽 Obtener comentarios usando el ID del post
     console.log(post.id)
-    fetch(`/api/comments/?post=2`)
+    fetch(`/api/comments/?${post.user.id}`)
       .then(res => res.json())
       .then(comments => {
         console.log(comments);
@@ -119,8 +128,7 @@ fetch(`/api/posts/?slug=${slug}`)
           container.appendChild(div);
         });
       });
-  })
-  .catch(error => console.error("Error al cargar el post o los comentarios:", error));
+  }).catch(error => console.error("Error al cargar el post o los comentarios:", error));
 
 // const slug = new URLSearchParams(window.location.search).get('slug');
     // let postId = null;
