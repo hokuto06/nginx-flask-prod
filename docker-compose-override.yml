@@ -23,6 +23,14 @@ services:
     # depends_on:
     #   - nginx
 
+  django-emails:
+    build:
+      context: ./django-emails
+    container_name: django_emails
+    env_file:
+      - ./django-emails/.env
+    restart: always
+
   nginx:
     image: nginx:latest
     container_name: nginx-proxy

@@ -100,8 +100,8 @@ fetch(`/api/posts/?slug=${slug}`)
     document.getElementById("created_at").textContent = post.created_at;
     document.getElementById("user_id").textContent = post.user.username;
     // document.getElementById("miniature").src = post.miniature;
-    document.getElementById("post-content").textContent = post.content;
-    document.getElementById("title-content").textContent = post.content;
+    document.getElementById("post-content").innerHTML = post.content;
+    // document.getElementById("title-content").textContent = post.content;
     // 🔽 Obtener comentarios usando el ID del post
     console.log(post.id)
     fetch(`/api/comments/?post=2`)
