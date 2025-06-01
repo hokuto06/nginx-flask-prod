@@ -2,6 +2,8 @@ from django.contrib import admin
 from django.urls import path, include
 from drf_yasg import openapi
 from drf_yasg.views import get_schema_view
+from django.conf import settings
+from django.conf.urls.static import static
 
 from categories.api.router import router_categories
 from posts.api.router import router_posts
@@ -27,4 +29,4 @@ urlpatterns = [
     path('api/', include(router_categories.urls)),
     path('api/', include(router_posts.urls)),
     path('api/', include(router_comments.urls))
-]
+]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
