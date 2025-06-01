@@ -30,6 +30,7 @@ services:
       - "443:443"
     volumes:
       - ./nginx/conf.d:/etc/nginx/conf.d
+      - ./nginx/snippets:/etc/nginx/snippets
       - ./nginx/logs:/var/log/nginx
       - static_volume:/static/
       - ./nginx/default.conf:/etc/nginx/conf.d/default.conf

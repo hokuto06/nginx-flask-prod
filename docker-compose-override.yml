@@ -17,19 +17,21 @@ services:
     command: bash -c "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
     volumes:
       - ./django-api:/app
+      - static_volume:/app/static/
+      - media_volume:/app/media/
       # - ./django-api/db.sqlite3:/app/db.sqlite3
     ports:
       - "8000:8000"
     # depends_on:
     #   - nginx
 
-  django-emails:
-    build:
-      context: ./django-emails
-    container_name: django_emails
-    env_file:
-      - ./django-emails/.env
-    restart: always
+  # django-emails:
+  #   build:
+  #     context: ./django-emails
+  #   container_name: django_emails
+  #   env_file:
+  #     - ./django-emails/.env
+  #   restart: always
 
   nginx:
     image: nginx:latest
@@ -48,3 +50,6 @@ services:
       - flask
       - php
       # - api
+volumes:
+  static_volume:
+  media_volume:
