@@ -466,7 +466,7 @@ section,
 }
 
 /*--------------------------------------------------------------
-# Global Section Titles
+# Global Section Titles and Subtitles
 --------------------------------------------------------------*/
 .section-title {
   text-align: center;
@@ -474,8 +474,22 @@ section,
   position: relative;
 }
 
+.section-subtitle {
+  text-align: center;
+  padding-top: 60px;
+  position: relative;
+}
+
 .section-title h2 {
   font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  position: relative;
+}
+
+.section-subtitle h3 {
+  font-size: 16px;
   font-weight: 700;
   margin-bottom: 20px;
   padding-bottom: 20px;
