@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: /contact.php
+Allow: /
+Sitemap: https://www.estebanmartins.com.ar/sitemap.xml
