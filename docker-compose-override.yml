@@ -19,7 +19,8 @@ services:
       - ./django-api:/app
       - static_volume:/app/static/
       - media_volume:/app/media/
-      # - ./django-api/db.sqlite3:/app/db.sqlite3
+    env_file:
+      - ./django-api/.env
     ports:
       - "8000:8000"
     # depends_on:
@@ -41,7 +42,9 @@ services:
       - "8081:81"   # portfolio
       - "8082:82"   # globosaz
       - "8083:83"   # Blog
+      - "8084:84"   # Test portfolio
     volumes:
+      - ./nginx/Lonely:/usr/share/nginx/Lonely
       - ./nginx/default.dev.conf:/etc/nginx/conf.d/default.conf
       - ./nginx/frontend-static:/usr/share/nginx/frontend-static
       - ./nginx/blog-static:/usr/share/nginx/blog-static

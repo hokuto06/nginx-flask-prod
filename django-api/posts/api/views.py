@@ -12,7 +12,6 @@ class PostApiViewSet(ModelViewSet):
     lookup_field = 'slug'
     filter_backends = [DjangoFilterBackend]
     filterset_fields = ['slug','category','category__slug']
-    # filterset_fields = ['category']
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
