@@ -8,7 +8,7 @@ class Post(models.Model):
     content = models.TextField()
     description = models.CharField(max_length=500, blank=True, null=True)
     slug = models.SlugField(max_length=255, unique=True)
-    miniature = models.ImageField(upload_to='posts/img/')
+    miniature = models.ImageField(upload_to='IMAGES/', blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     published = models.BooleanField(default=False)
     user = models.ForeignKey(User, on_delete=SET_NULL, null=True)

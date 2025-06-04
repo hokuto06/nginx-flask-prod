@@ -24,8 +24,8 @@ export async function login(email, password) {
   });
   const data = await response.json();
   if (response.ok) {
-    accessToken = data.access;
-    refreshToken = data.refresh;
+    localStorage.setItem('access_token', data.access);
+    localStorage.setItem('refresh_token', data.refresh);
     alert('Login exitoso');
   } else {
     alert('Login inválido: ' + JSON.stringify(data));
@@ -33,7 +33,17 @@ export async function login(email, password) {
 }
 
 export function getAccessToken() {
-  return accessToken;
+  return localStorage.getItem('access_token');
+}
+
+export function getEmailFromToken() {
+  const token = localStorage.getItem("access_token");
+  if (!token) return null;
+
+  const payload = token.split(".")[1];
+  const decoded = atob(payload.replace(/-/g, "+").replace(/_/g, "/"));
+  const parsed = JSON.parse(decoded);
+  return parsed.user || null;
 }
 
 export async function refreshAccessToken() {
