@@ -18,6 +18,7 @@ services:
     volumes:
       - ./django-api:/app
       - static_volume:/app/static/
+      - media_volume:/app/media/
       # - ./django-api/db.sqlite3:/app/db.sqlite3
     ports:
       - "8000:8000"
@@ -43,3 +44,4 @@ services:
       - php
 volumes:
   static_volume:
+  media_volume:
