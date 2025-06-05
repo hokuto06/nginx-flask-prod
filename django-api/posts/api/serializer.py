@@ -2,9 +2,11 @@ from rest_framework import serializers
 from posts.models import Post
 from categories.models import Category
 from posts.api.s3 import get_presigned_url
+from users.api.serializer import UserSerializer
 
 class PostSerializer(serializers.ModelSerializer):
-    user = serializers.PrimaryKeyRelatedField(read_only=True)
+    # user = serializers.PrimaryKeyRelatedField(read_only=True)
+    user = UserSerializer(read_only=True)
     category = serializers.PrimaryKeyRelatedField(queryset=Category.objects.all())
     miniature_url = serializers.SerializerMethodField()
 
