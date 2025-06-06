@@ -1,0 +1,184 @@
+from django.shortcuts import render, redirect
+import requests
+from .forms import LoginForm
+from django.views.decorators.csrf import csrf_exempt
+from datetime import datetime
+from django.utils.timezone import make_aware
+import dateutil.parser
+
+
+API_LOGIN_URL = "http://django-api:8000/api/auth/login"
+API_USER_ME_URL = "http://django-api:8000/api/auth/me"
+
+API_CATEGORIES_URL = "http://django-api:8000/api/categories/"
+API_CREATE_POST_URL = "http://django-api:8000/api/posts/"
+
+def home(request):
+    try:
+        response = requests.get("http://django-api:8000/api/posts/")
+        posts = response.json() if response.status_code == 200 else []
+    except Exception as e:
+        print("Error al conectarse con la API:", e)
+        posts = []
+
+    return render(request, "index.html", {"posts": posts})
+
+def about(request):
+    return render(request, "about.html")
+
+def contact(request):
+    return render(request, "contact.html")
+
+def post_detail(request, slug):
+    try:
+        response = requests.get(f"http://django-api:8000/api/posts/{slug}/")
+        post = response.json() if response.status_code == 200 else None
+        if post and post.get("created_at"):
+            dt = dateutil.parser.parse(post["created_at"])
+            post["created_at"] = dateutil.parser.parse(post["created_at"])
+    except Exception as e:
+        print("Error al conectarse con la API:", e)
+        post = None
+
+    return render(request, "post.html", {"post": post})
+
+def delete_post(request, slug):
+    token = request.session.get("token")
+    if not token:
+        return redirect("login")
+
+    headers = {"Authorization": f"Bearer {token}"}
+
+    if request.method == "POST":
+        delete_url = f"http://django-api:8000/api/posts/{slug}/"
+        response = requests.delete(delete_url, headers=headers)
+
+        if response.status_code == 204:
+            return redirect("Home")
+        else:
+            print("Error al eliminar post:", response.status_code, response.text)
+            return redirect("Post", slug=slug)
+
+    return redirect("Home")
+
+
+
+@csrf_exempt
+def create_post(request):
+    token = request.session.get("token")
+    # print(token)
+    if not token:
+        return redirect("login")
+    # print("Token actual:", request.session.get("token"))
+
+    headers = {"Authorization": f"Bearer {token}",
+    "Content-Type": "application/json"
+    }
+    # print(headers)
+
+    if request.method == "POST":
+        data = {
+            "title": request.POST.get("title"),
+            "description": request.POST.get("description"),
+            "content": request.POST.get("content"),
+            "slug": request.POST.get("slug"),
+            "published": request.POST.get("published") == "on",
+            "category": request.POST.get("category"),
+        }
+
+        files = {"miniature": request.FILES.get("miniature")}
+        print(files)
+        headers = {
+            "Authorization": f"Bearer {token}"
+            # NO pongas "Content-Type", requests lo agrega automáticamente para multipart
+        }
+
+        response = requests.post(API_CREATE_POST_URL, data=data, files=files, headers=headers)
+        print("Respuesta POST:", response.status_code, response.text)
+
+        if response.status_code == 201:
+            post_data = response.json()
+            return redirect(f"/post/{post_data['slug']}")
+
+        else:
+            return render(request, "create-post.html", {
+                "error": "No se pudo crear el post.",
+                "form_data": data,
+                "categories": [],
+            })
+
+    # print("Respuesta POST:", response.status_code, response.text)
+    categories_response = requests.get(API_CATEGORIES_URL)
+    categories = categories_response.json() if categories_response.status_code == 200 else []
+    print(categories)
+    return render(request, "create-post.html", {
+        "categories": categories,
+    })
+
+
+def logout_view(request):
+    request.session.flush()
+    return redirect("Home")
+
+def login_view(request):
+    error = None
+    if request.method == "POST":
+        form = LoginForm(request.POST)
+        if form.is_valid():
+            data = form.cleaned_data
+            try:
+                response = requests.post(API_LOGIN_URL, json=data)
+                if response.status_code == 200:
+                    token = response.json().get("access")
+                    if token:
+                        request.session["token"] = token
+                        request.session["email"] = data["email"]
+                        return redirect("index")
+                error = "Credenciales inválidas"
+            except Exception:
+                error = "No se pudo conectar con la API"
+    else:
+        form = LoginForm()
+
+    return render(request, "login.html", {"form": form, "error": error})
+
+def login_modal(request):
+    if request.method == "POST":
+        form = LoginForm(request.POST)
+        next_url = request.POST.get("next", "/")
+        if form.is_valid():
+            data = form.cleaned_data
+            try:
+                response = requests.post(API_LOGIN_URL, json=data)
+                if response.status_code == 200:
+                    token = response.json().get("access")
+                    if token:
+                        request.session["token"] = token
+                        headers = {"Authorization": f"Bearer {token}"}
+                        me_response = requests.get(API_USER_ME_URL, headers=headers)
+                        if me_response.status_code == 200:
+                            user = me_response.json()
+                            print(user)
+                            request.session["email"] = user.get("email")
+                            request.session["user_name"] = user.get("username") or user.get("email")
+                        return redirect(next_url)
+            except Exception as e:
+                print("Error al intentar loguear:", e)
+        return redirect(f"{next_url}?login_error=1")
+    return redirect("/")
+
+def perfil_view(request):
+    token = request.session.get("token")
+    if not token:
+        return redirect("login")
+
+    headers = {"Authorization": f"Bearer {token}"}
+    try:
+        response = requests.get(API_USER_ME_URL, headers=headers)
+        if response.status_code == 200:
+            user_data = response.json()
+            return render(request, "perfil.html", {"user": user_data})
+    except Exception:
+        pass
+
+    return redirect("login")

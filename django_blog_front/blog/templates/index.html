@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% load static %}
+{% block header %}
+<header class="masthead"
+        style="background-image: url('{% if post.miniature_url %}{{ post.miniature_url }}{% else %}{% static "assets/img/home_bg_library.jpg" %}{% endif %}');">
+
+      <div class="container position-relative px-4 px-lg-5">
+          <div class="row gx-4 gx-lg-5 justify-content-center">
+              <div class="col-md-10 col-lg-8 col-xl-7">
+                  <div class="site-heading">
+                      <h1>EAM Blog</h1>
+                      <span class="subheading">Un simple Blog personal</span>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </header>
+{% endblock%}
+
+{% block content %}
+    {% comment %} <div class="container"> {% endcomment %}
+        {% for post in posts %}
+        <div class="post-preview">
+            <a href="{% url  'Post' post.slug %}">
+                <h2 class="post-title">{{ post.title }}</h2>
+                <h3 class="post-subtitle">{{ post.description }}</h3>
+            </a>
+            <p class="post-meta">
+                Publicado por <strong>{{ post.user.username }} </strong> el {{ post.created_at|date:"d/m/Y H:i" }}
+            </p>
+            <hr class="my-4" />
+        {% empty %}
+            <p>No hay posts disponibles.</p>
+        {% endfor %}
+        </div>
+    {% comment %} </div> {% endcomment %}
+{% endblock %}
