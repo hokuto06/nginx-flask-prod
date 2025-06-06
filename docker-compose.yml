@@ -23,6 +23,18 @@ services:
     ports:
       - "8000:8000"
 
+  blog-front:
+    build: 
+      context: ./django_blog_front
+    container_name: blog-front
+    # command: bash -c "python manage.py migrate && python manage.py runserver 0.0.0.0:8500"
+    volumes:
+      - ./django_blog_front:/app
+    ports:
+      - "8500:8500"
+    depends_on:
+      - api
+
   nginx:
     image: nginx:latest
     container_name: nginx-proxy
