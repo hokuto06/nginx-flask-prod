@@ -2,7 +2,7 @@
 {% load static %}
 {% block header %}
 <header class="masthead"
-        style="background-image: url('{% if post.miniature_url %}{{ post.miniature_url }}{% else %}{% static "assets/img/home_bg_library.jpg" %}{% endif %}');">
+        style="background-image: url('{% if post.miniature_url %}{{ post.miniature_url }}{% else %}{% static "assets/img/home_bg_library2.jpg" %}{% endif %}');">
 
       <div class="container position-relative px-4 px-lg-5">
           <div class="row gx-4 gx-lg-5 justify-content-center">
@@ -26,7 +26,7 @@
                 <h3 class="post-subtitle">{{ post.description }}</h3>
             </a>
             <p class="post-meta">
-                Publicado por <strong>{{ post.user.username }} </strong> el {{ post.created_at|date:"d/m/Y H:i" }}
+                Publicado por <strong>{{ post.user.username }} </strong> el {{ post.created_at|slice:":16"|cut:"T"|cut:"Z"|slice:"10"  }}
             </p>
             <hr class="my-4" />
         {% empty %}
