@@ -40,6 +40,10 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'django_blog_front.urls'
 
+CSRF_TRUSTED_ORIGINS = [
+    "https://blog.estebanmartins.com.ar",
+]
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
