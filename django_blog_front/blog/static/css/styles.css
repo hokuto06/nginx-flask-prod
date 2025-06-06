@@ -10710,7 +10710,6 @@ footer {
   padding-bottom: 3rem;
 }
 
-
 header.masthead {
   position: relative;
   margin-bottom: 3rem;
@@ -10721,7 +10720,8 @@ header.masthead {
   background-size: cover;
   background-attachment: scroll;
 }
-header.masthead:before {
+/* se comenta para probar estilo nuevo en portada */
+/* header.masthead:before {
   content: "";
   position: absolute;
   top: 0;
@@ -10730,7 +10730,23 @@ header.masthead:before {
   bottom: 0;
   background-color: #212529;
   opacity: 0.5;
+} */
+/* continuar editando */
+header.masthead::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-color: rgba(0,0,0,0.5); /* Ajustá opacidad a gusto */
+  z-index: 1;
+  opacity: 0.5;
+  background: color-mix(in srgb, var(--background-color), transparent 75%);
 }
+header.masthead .site-heading {
+  position: relative;
+  z-index: 2;
+}
+
+
 header.masthead .page-heading,
 header.masthead .post-heading,
 header.masthead .site-heading {
@@ -10745,8 +10761,10 @@ header.masthead .site-heading h1,
 header.masthead .site-heading .h1 {
   font-size: 3rem;
 }
+
 header.masthead .page-heading .subheading,
 header.masthead .site-heading .subheading {
+  letter-spacing: 0.5px;
   font-size: 1.5rem;
   font-weight: 300;
   line-height: 1.1;
