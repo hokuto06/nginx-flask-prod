@@ -1,12 +1,12 @@
 from rest_framework.viewsets import ModelViewSet
 from posts.models import Post
 from posts.api.serializer import PostSerializer
-from posts.api.permissions import IsAdminOrReadOnly
+from posts.api.permissions import IsAuthenticatedOrReadOnly
 from django_filters.rest_framework import DjangoFilterBackend
 
 
 class PostApiViewSet(ModelViewSet):
-    permission_classes = [IsAdminOrReadOnly]
+    permission_classes = [IsAuthenticatedOrReadOnly]
     serializer_class = PostSerializer
     queryset = Post.objects.filter(published=True)
     lookup_field = 'slug'
