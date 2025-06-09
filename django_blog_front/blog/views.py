@@ -58,9 +58,6 @@ def post_detail(request, slug):
     })
 
 
-
-
-
 def edit_post(request, slug):
     API_EDIT_POST_URL = f"http://django-api:8000/api/posts/{slug}/"
     token = request.session.get("token")

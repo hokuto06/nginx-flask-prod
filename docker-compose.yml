@@ -14,20 +14,21 @@ services:
   api:
     build: ./django-api
     container_name: django-api
-    command: bash -c "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
+    environment:
+      - APP_PORT=8000
     volumes:
       - ./django-api:/app
       - static_volume:/app/static/
       - media_volume:/app/media/
-      # - ./django-api/db.sqlite3:/app/db.sqlite3
     ports:
       - "8000:8000"
 
   blog-front:
-    build: 
+    build:
       context: ./django_blog_front
     container_name: blog-front
-    # command: bash -c "python manage.py migrate && python manage.py runserver 0.0.0.0:8500"
+    environment:
+      - APP_PORT=8500
     volumes:
       - ./django_blog_front:/app
     ports:
