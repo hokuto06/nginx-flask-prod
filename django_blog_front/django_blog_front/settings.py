@@ -40,9 +40,9 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'django_blog_front.urls'
 
-CSRF_TRUSTED_ORIGINS = [
-    "https://blog.estebanmartins.com.ar",
-]
+# CSRF_TRUSTED_ORIGINS = [
+#     "https://blog.estebanmartins.com.ar",
+# ]
 
 TEMPLATES = [
     {
@@ -114,3 +114,6 @@ STATIC_URL = '/static/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+SESSION_COOKIE_AGE = 3600
+SESSION_SAVE_EVERY_REQUEST = True
