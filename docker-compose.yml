@@ -1,5 +1,10 @@
 version: '3.8'
 
+volumes:
+  static_blog_volume:
+  static_volume:
+  media_volume:
+
 services:
   flask:
     build: ./app
@@ -27,6 +32,7 @@ services:
     build:
       context: ./django_blog_front
     container_name: blog-front
+    entrypoint: ["/app/entrypoint.sh"]
     environment:
       - APP_PORT=8500
     volumes:
@@ -47,17 +53,12 @@ services:
       - ./nginx/conf.d:/etc/nginx/conf.d
       - ./nginx/snippets:/etc/nginx/snippets
       - ./nginx/logs:/var/log/nginx
-      - ./django_blog_front/static:/static/blog:ro
-      # - static_volume:/static/api/
+      - static_blog_volume:/static:ro  # Nginx accede a estáticos del blog
       - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
       - ./nginx/frontend-static:/usr/share/nginx/frontend-static
-      # - ./nginx/blog-static:/usr/share/nginx/blog-static:ro
-      - ./nginx/static-root:/usr/share/nginx/html:ro      
+      - ./nginx/static-root:/usr/share/nginx/html:ro
       - /etc/letsencrypt:/etc/letsencrypt:ro
     depends_on:
       - flask
       - php
-volumes:
-  static_blog_volume:
-  static_volume:
-  media_volume:
+      - blog-front
