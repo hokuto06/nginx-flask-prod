@@ -47,12 +47,11 @@ services:
       - ./nginx/conf.d:/etc/nginx/conf.d
       - ./nginx/snippets:/etc/nginx/snippets
       - ./nginx/logs:/var/log/nginx
-      # - static_blog_volume:/static/blog/
       - ./django_blog_front/static:/static/blog:ro
-      - static_volume:/static/api/
+      # - static_volume:/static/api/
       - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
       - ./nginx/frontend-static:/usr/share/nginx/frontend-static
-      - ./nginx/blog-static:/usr/share/nginx/blog-static:ro
+      # - ./nginx/blog-static:/usr/share/nginx/blog-static:ro
       - ./nginx/static-root:/usr/share/nginx/html:ro      
       - /etc/letsencrypt:/etc/letsencrypt:ro
     depends_on:
