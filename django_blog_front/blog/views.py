@@ -5,6 +5,7 @@ from django.views.decorators.csrf import csrf_exempt
 from datetime import datetime
 from django.utils.timezone import make_aware
 import dateutil.parser
+from pprint import pprint
 
 
 API_LOGIN_URL = "http://django-api:8000/api/auth/login"
@@ -12,6 +13,9 @@ API_USER_ME_URL = "http://django-api:8000/api/auth/me"
 
 API_CATEGORIES_URL = "http://django-api:8000/api/categories/"
 API_CREATE_POST_URL = "http://django-api:8000/api/posts/"
+
+COMMENTS_URL = "http://django-api:8000/api/comments/"
+
 
 def home(request):
     try:
@@ -23,24 +27,87 @@ def home(request):
 
     return render(request, "index.html", {"posts": posts})
 
+
 def about(request):
     return render(request, "about.html")
+
 
 def contact(request):
     return render(request, "contact.html")
 
-def post_detail(request, slug):
-    try:
-        response = requests.get(f"http://django-api:8000/api/posts/{slug}/")
-        post = response.json() if response.status_code == 200 else None
-        if post and post.get("created_at"):
-            dt = dateutil.parser.parse(post["created_at"])
-            post["created_at"] = dateutil.parser.parse(post["created_at"])
-    except Exception as e:
-        print("Error al conectarse con la API:", e)
-        post = None
 
-    return render(request, "post.html", {"post": post})
+def post_detail(request, slug):
+    token = request.session.get("token")
+    headers = {"Authorization": f"Bearer {token}"} if token else {}
+
+    response = requests.get(f"http://django-api:8000/api/posts/{slug}/", headers=headers)
+    post = response.json() if response.status_code == 200 else None
+
+    if request.method == "POST" and token:
+        comment_data = {
+            "content": request.POST.get("content"),
+            "post": post["slug"], 
+        }
+        requests.post(COMMENTS_URL, json=comment_data, headers=headers)
+    print(post)
+    comments_response = requests.get(f"{COMMENTS_URL}?post={post['id']}", headers=headers)
+    comments = comments_response.json() if comments_response.status_code == 200 else []
+    return render(request, "post.html", {
+        "post": post,
+        "comments": comments,
+    })
+
+
+
+
+
+def edit_post(request, slug):
+    API_EDIT_POST_URL = f"http://django-api:8000/api/posts/{slug}/"
+    token = request.session.get("token")
+    if not token:
+        return redirect("login")
+
+    headers = {"Authorization": f"Bearer {token}"}
+    
+    post_response = requests.get(API_EDIT_POST_URL, headers=headers)
+    print(post_response)
+    if post_response.status_code != 200:
+        return redirect("Home")
+    post = post_response.json()
+
+    if post["user"]["email"] != request.session.get("email"):
+        return redirect("Home")
+
+    categories = requests.get(API_CATEGORIES_URL).json()
+    if request.method == "POST":
+        data = {
+            "title": request.POST.get("title"),
+            "description": request.POST.get("description"),
+            "content": request.POST.get("content"),
+            "published": request.POST.get("published") == "on",
+            "category": request.POST.get("category"),
+            "slug": request.POST.get("slug"),
+        }
+        files = {}
+        new_file = request.FILES.get("miniature")
+        if new_file:
+            files["miniature"] = new_file        
+
+        if files:
+            response = requests.put(API_EDIT_POST_URL, data=data, files=files, headers=headers)
+            print("miniatureeeeeeeeeeeeeeeeeeeeee")
+        else:
+            response = requests.put(API_EDIT_POST_URL, json=data, headers=headers)
+            print("Nooo miniatureeeeeeeeeeeeeeeeeeeeee")
+
+        print("PUT status:", response.status_code)
+        print("PUT test:", response.text)
+
+        if response.status_code == 200:
+            return redirect("Post", slug=slug)
+
+    return render(request, "edit-post.html", {"post": post, "categories": categories})
+
 
 def delete_post(request, slug):
     token = request.session.get("token")
@@ -60,7 +127,6 @@ def delete_post(request, slug):
             return redirect("Post", slug=slug)
 
     return redirect("Home")
-
 
 
 @csrf_exempt
@@ -120,6 +186,7 @@ def logout_view(request):
     request.session.flush()
     return redirect("Home")
 
+
 def login_view(request):
     error = None
     if request.method == "POST":
@@ -133,7 +200,16 @@ def login_view(request):
                     if token:
                         request.session["token"] = token
                         request.session["email"] = data["email"]
-                        return redirect("index")
+############################# probando redirección con datos de usuario
+                        headers = {"Authorization": f"Bearer {token}"}
+                        me_response = requests.get(API_USER_ME_URL, headers=headers)
+                        if me_response.status_code == 200:
+                            user = me_response.json()
+                            print(user)
+                            request.session["email"] = user.get("email")
+                            request.session["user_name"] = user.get("username") or user.get("email")
+##################################################
+                        return redirect("Home")
                 error = "Credenciales inválidas"
             except Exception:
                 error = "No se pudo conectar con la API"
@@ -141,6 +217,7 @@ def login_view(request):
         form = LoginForm()
 
     return render(request, "login.html", {"form": form, "error": error})
+
 
 def login_modal(request):
     if request.method == "POST":
@@ -166,6 +243,35 @@ def login_modal(request):
                 print("Error al intentar loguear:", e)
         return redirect(f"{next_url}?login_error=1")
     return redirect("/")
+
+
+def register_view(request):
+    API_REGISTER_URL = "http://django-api:8000/api/auth/register"
+    error = None
+
+    if request.method == "POST":
+        data = {
+            "email": request.POST.get("email"),
+            "username": request.POST.get("username"),
+            "password": request.POST.get("password"),
+            "password2": request.POST.get("password2"),
+        }
+
+        try:
+            response = requests.post(API_REGISTER_URL, json=data)
+            print("Registro:", response.status_code, response.text)
+
+            if response.status_code == 201:
+                return redirect("login")
+            else:
+                error = response.json()
+                if isinstance(error, dict):
+                    error = "; ".join([f"{k}: {v[0]}" for k, v in error.items()])
+        except Exception as e:
+            error = "Error al conectar con la API"
+
+    return render(request, "register.html", {"error": error})
+
 
 def perfil_view(request):
     token = request.session.get("token")

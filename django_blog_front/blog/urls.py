@@ -14,5 +14,7 @@ urlpatterns = [
     path("about/", views.about, name="about"),
     path("contact/", views.contact, name="contact"),
     path("post/<slug:slug>/eliminar/", views.delete_post, name="delete_post"),
+    path("registro/", views.register_view, name="register"),
+    path("post/<slug:slug>/editar/", views.edit_post, name="edit_post"),
 ]
 
