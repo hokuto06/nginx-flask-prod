@@ -1,58 +1,47 @@
 {% extends "base.html" %}
 {% load static %}
 {% block header %}
-<header class="masthead"
-        style="background-image: url('{% if post.miniature_url %}{{ post.miniature_url }}{% else %}{% static "assets/img/home_bg_library.jpg" %}{% endif %}');">
 
+{% include "includes/header.html" with title=post.title created_at=post.created_at text_user_field="Publicado por " user=post.user.username bg_image=post.miniature_url description=post.description %}
 
-      <div class="container position-relative px-4 px-lg-5">
-          <div class="row gx-4 gx-lg-5 justify-content-center">
-              <div class="col-md-10 col-lg-8 col-xl-7">
-                  <div class="site-heading">
-                      <h1>
-                       {{ post.title }}
-                      </h1>
-                      <h2 class="subheading">{{ post.description }}</h2>
-                      <span class="meta">
-                          Publicado por 
-                          <!-- <a href="#!">Start Bootstrap</a> -->
-                          <a >{{ post.user.username }}</a>
-                          {{ post.created_at|date:"d/m/Y H:i" }}
-                          {% comment %} <p>{{ post.created_at | date:"d/m/Y H:i" }}</p> {% endcomment %}
-                      </span>
-                  </div>
-              </div>
-          </div>
-      </div>
-  </header>
 {% endblock%}
 
 {% block content %}
+<div class="col-md-10 col-lg-8 col-xl-10" id="post-list">
   <article>
     <div class="container">
       <div class="row">
         <div class="col-md-10 mx-auto">
-      {{ post.content | safe }}
+          {{ post.content | safe }}
+          {% if request.session.token and post.user.email == request.session.email %}
+          <br>
+          <a type="button" class="btn  btn-warning" href="{% url 'edit_post' post.slug %}" >Editar</a>
+          <form action="{% url 'delete_post' post.slug %}" method="post" style="display:inline;">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger" onclick="return confirm('Eliminar este post?');">
+              Eliminar
+            </button>
+          </form>  
+          {% endif %}
+          <br>
+          <h3>Comentarios</h3>
+         {% for comment in comments %}
+          <div class="mb-3 border-bottom pb-2">
+            <strong>{{ comment.user.username }}</strong>
+            <small class="text-muted"> — {{ comment.created_at|date:"d/m/Y H:i" }}</small>
+            <p>{{ comment.content }}</p>
+          </div>
+          {% empty %}
+          <p>No hay comentarios aún.</p>
+          {% endfor %}
+          <br>
+          <form id="comment-form">
+            <textarea id="comment-content" class="form-control mb-2" rows="3" placeholder="Comentar..." required></textarea>
+            <button type="submit" class="btn btn-primary">Enviar</button>
+          </form>
         </div>
       </div>
     </div>
   </article>
-    {% if request.session.token and post.user.email == request.session.email %}
-      <form action="{% url 'delete_post' post.slug %}" method="post" style="display:inline;">
-        {% csrf_token %}
-        <button type="submit" class="btn btn-danger" onclick="return confirm('¿Eliminar este post?');">
-          Eliminar post
-        </button>
-      </form>
-    {% endif %}
-  <div class="container mt-5">
-    <h3>Comentarios</h3>
-    <div id="comments"></div>
-    <br>
-
-    <form id="comment-form">
-      <textarea id="comment-content" class="form-control mb-2" rows="3" placeholder="Comentar..." required></textarea>
-      <button type="submit" class="btn btn-primary">Enviar</button>
-    </form>
-  </div>  
+</div>
 {% endblock %}

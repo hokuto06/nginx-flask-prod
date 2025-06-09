@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Mi Blog personal</title>
-    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <title>un Blog más..</title>
+    <link rel="icon" type="image/x-icon" href="{% static 'assets/favicon.ico' %}" />
     <!-- Font Awesome icons (free version)-->
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
     <!-- Google fonts-->
@@ -30,42 +30,31 @@
               <ul class="navbar-nav ms-auto py-4 py-lg-0">
                   {% comment %} <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="index.html">Inicio</a></li> {% endcomment %}
                   <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'about' %}">Acerca de</a></li>
-                  <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'create_post' %}">Nuevo Post</a></li>
+                  <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'create_post' %}">Publicar</a></li>
                   <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'contact' %}">Contacto</a></li>
                   {% if request.session.token %}
                   <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" data-bs-toggle="modal" data-bs-target="#logoutModal" href="{% url 'logout' %}">Logout</a></li>
                   <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4">{{ request.session.user_name }}</a></li>
                   {% else %}
                   <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" data-bs-toggle="modal" data-bs-target="#loginModal" href="{% url 'login' %}">Login</a></li>
-                  <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" data-bs-toggle="modal" data-bs-target="#loginModal" href="{% url 'login' %}">Registrarse</a></li>
+                  <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4"  href="{% url 'register' %}">Registrarse</a></li>
                   {% endif %}
               </ul>
           </div>
       </div>
   </nav>
-  {% comment %} <header class="masthead" style="background-image: url('{% static "assets/img/home_bg_library.jpg" %}');"> {% endcomment %}
     {% block header %}
 
     {% endblock %}
-  {% comment %} </header> {% endcomment %}
-  <!-- <header class="py-5 bg-light border-bottom mb-4">
-    <div class="container">
-      <div class="text-center my-5">
-        <h1 class="fw-bolder">Mi Blog</h1>
-        <p class="lead mb-0">Últimos posts publicados</p>
-      </div>
-    </div>
-  </header> -->
-<main class="mb-4">
-  <div class="container px-4 px-lg-5">
-    <div class="row gx-4 gx-lg-5 justify-content-center">
-      <div class="col-md-10 col-lg-8 col-xl-7" id="post-list">
+
+  <main class="mb-4">
+    <div class="container px-4 px-lg-5">
+      <div class="row gx-4 gx-lg-5 justify-content-center">
         {% block content %}
 
-        {% endblock %}        
+        {% endblock %}
       </div>
     </div>
-  </div>
   </main>
   <!-- Footer-->
   <footer class="border-top">

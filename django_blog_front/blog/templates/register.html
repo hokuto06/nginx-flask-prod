@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% block header %}
+
+{% include "includes/header.html" with title="Registrate" created_at=None text_user_field=none user=none bg_image=None description=none %}
+
+{% endblock%}
+{% block content %}
+<div class="container mt-4">
+  <h2>Registrarse</h2>
+
+  {% if error %}
+    <div class="alert alert-danger">{{ error }}</div>
+  {% endif %}
+
+  <form method="post">
+    {% csrf_token %}
+    <div class="mb-3">
+      <label>Email</label>
+      <input type="email" name="email" class="form-control" required>
+    </div>
+
+    <div class="mb-3">
+      <label>Nombre de usuario</label>
+      <input type="text" name="username" class="form-control" required>
+    </div>
+
+    <div class="mb-3">
+      <label>Contraseña</label>
+      <input type="password" name="password" class="form-control" required>
+    </div>
+
+    <div class="mb-3">
+      <label>Repetir Contraseña</label>
+      <input type="password" name="password2" class="form-control" required>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Registrarse</button>
+  </form>
+</div>
+{% endblock %}

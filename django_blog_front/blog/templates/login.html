@@ -1,9 +1,16 @@
 {% extends "base.html" %}
+{% load static %}
+{% block header %}
+
+{% include "includes/header.html" with title="Iniciar sesión" created_at=None text_user_field=none user=none bg_image=None description=none %}
+
+{% endblock%}
+
 {% block content %}
 <div class="container mt-4">
   <h2>Iniciar sesión</h2>
   {% if error %}<div class="alert alert-danger">{{ error }}</div>{% endif %}
-    <form id="login-form" method="post" action="{% url 'login_modal' %}">
+    <form id="login-form" method="post" action="{% url 'login' %}">
     {% csrf_token %}
     <input type="hidden" name="next" value="{{ request.path }}">
       <div class="mb-3">

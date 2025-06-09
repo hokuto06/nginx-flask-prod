@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container mt-4">
+  <h2>Editar Post</h2>
+
+  {% if error %}
+    <div class="alert alert-danger">{{ error }}</div>
+  {% endif %}
+
+  <form method="post"  enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="mb-3">
+      <label>Título</label>
+      <input type="text" name="title" value="{{ post.title }}" class="form-control" required>
+    </div>
+
+    <div class="mb-3">
+      <label>Descripción</label>
+      <textarea name="description" class="form-control" required>{{ post.description }}</textarea>
+    </div>
+
+    <div class="mb-3">
+      <label>Contenido</label>
+      <textarea name="content" class="form-control" required>{{ post.content }}</textarea>
+    </div>
+
+    <div class="mb-3">
+      <label>Imagen (URL)</label>
+      <input type="file" name="miniature" class="form-control" accept="image/*">
+      {% comment %} <input type="url" name="miniature" value="{{ post.miniature }}" class="form-control"> {% endcomment %}
+    </div>
+
+    <div class="mb-3">
+      <label>Categoría</label>
+      <select name="category" class="form-select">
+        {% for cat in categories %}
+          <option value="{{ cat.id }}" {% if post.category.id == cat.id %}selected{% endif %}>{{ cat.title }}</option>
+        {% endfor %}
+      </select>
+    </div>
+
+    <input type="hidden" name="slug" value="{{ post.slug }}" class="form-control">
+
+    <div class="form-check mb-3">
+      <input type="checkbox" name="published" class="form-check-input" {% if post.published %}checked{% endif %}>
+      <label class="form-check-label">Publicado</label>
+    </div>
+
+    <button type="submit" class="btn btn-success">Guardar cambios</button>
+  </form>
+</div>
+{% endblock %}
