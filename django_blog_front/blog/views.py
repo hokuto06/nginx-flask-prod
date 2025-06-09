@@ -41,6 +41,8 @@ def post_detail(request, slug):
     headers = {"Authorization": f"Bearer {token}"} if token else {}
 
     response = requests.get(f"http://django-api:8000/api/posts/{slug}/", headers=headers)
+    print("POST DETAIL RESPONSE:", response.status_code, response.text)
+    
     post = response.json() if response.status_code == 200 else None
 
     if request.method == "POST" and token:
