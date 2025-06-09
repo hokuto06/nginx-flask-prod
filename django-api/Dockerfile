@@ -10,7 +10,7 @@ RUN pip install --upgrade pip && pip install -r requirements.txt
 
 COPY . /app/
 
-COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
+COPY entrypoint.sh /entrypoint.sh
 
 ENTRYPOINT ["/entrypoint.sh"]
