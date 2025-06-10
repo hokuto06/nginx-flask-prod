@@ -45,6 +45,7 @@ docker compose --profile prod up -d --build
 | **Deploy-to-EC2** | `.github/workflows/deploy.yml` | Build en GitHub, push a ECR y despliegue vía SSH a mi EC2. |
 
 
+
 ## Variables .env más usadas
 
 env
