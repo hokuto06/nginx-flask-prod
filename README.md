@@ -12,7 +12,7 @@ Docker Compose stack que levanta **todos mis sitios en producción**
 
 > **Nota**: la antigua carpeta `php/` quedó fuera del repositorio (solo vive en mi server).
 
----
+<!-- ---
 
 ## Cómo arrancar 🍺
 
@@ -25,7 +25,7 @@ cd nginx-flask-prod
 cp .env.example .env
 
 # build & up con perfiles (nginx + todo el stack)
-docker compose --profile prod up -d --build
+docker compose --profile prod up -d --build -->
 
 
 
