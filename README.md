@@ -38,26 +38,33 @@ docker compose --profile prod up -d --build
 | 5000     | flask-app             | [http://localhost:5000](http://localhost:5000)               |
 
 
+# Flujos de CI/CD ⚙️
 
 | Workflow          | Archivo                        | Qué hace                                                   |
 | ----------------- | ------------------------------ | ---------------------------------------------------------- |
 | **Deploy-to-EC2** | `.github/workflows/deploy.yml` | Build en GitHub, push a ECR y despliegue vía SSH a mi EC2. |
 
 
-Variables .env más usadas
+## Variables .env más usadas
+
 env
-Copiar
+
+```bash
 DJANGO_SECRET=…
 ALLOWED_HOSTS=estebanmartins.com.ar,portfolio.estebanmartins.com.ar,blog.estebanmartins.com.ar
 POSTGRES_URL=postgres://user:pass@db:5432/app
-Roadmap
+```
+
+
+## Roadmap
  Terminar página Flask → pasar a React.
 
  Pipeline de tests (pytest + coverage).
 
  CDN S3 para media estáticos vía CloudFront + WAF (en progreso).
 
-Autor
+# Autor
+
 Esteban Martins – estebanmartins.com.ar
 Si algo rompe, abre un issue o sígueme en LinkedIn ✌️
 
