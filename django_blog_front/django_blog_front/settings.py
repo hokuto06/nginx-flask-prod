@@ -10,7 +10,7 @@ SECRET_KEY = 'django-insecure-vx*^$h9#fbg3a_fg=p+^*+)*zamsn_6%wqg+-k-g@5cqmss@94
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = ["blog.estebanmartins.com.ar"]
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -34,9 +34,6 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'django_blog_front.urls'
 
-# CSRF_TRUSTED_ORIGINS = [
-#     "https://blog.estebanmartins.com.ar",
-# ]
 
 TEMPLATES = [
     {
@@ -111,6 +108,12 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CSRF_COOKIE_SECURE = True
+
+
+CSRF_TRUSTED_ORIGINS = [
+    "https://blog.estebanmartins.com.ar",
+]
+
 
 SESSION_COOKIE_AGE = 3600
 SESSION_SAVE_EVERY_REQUEST = True
