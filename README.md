@@ -12,7 +12,7 @@ Docker Compose stack que levanta **todos mis sitios en producción**
 
 > **Nota**: la antigua carpeta `php/` quedó fuera del repositorio (solo vive en mi server).
 
-<!-- ---
+---
 
 ## Cómo arrancar 🍺
 
@@ -25,7 +25,7 @@ cd nginx-flask-prod
 cp .env.example .env
 
 # build & up con perfiles (nginx + todo el stack)
-docker compose --profile prod up -d --build -->
+docker compose --profile prod up -d --build
 
 
 
@@ -42,3 +42,23 @@ docker compose --profile prod up -d --build -->
 | Workflow          | Archivo                        | Qué hace                                                   |
 | ----------------- | ------------------------------ | ---------------------------------------------------------- |
 | **Deploy-to-EC2** | `.github/workflows/deploy.yml` | Build en GitHub, push a ECR y despliegue vía SSH a mi EC2. |
+
+
+Variables .env más usadas
+env
+Copiar
+DJANGO_SECRET=…
+ALLOWED_HOSTS=estebanmartins.com.ar,portfolio.estebanmartins.com.ar,blog.estebanmartins.com.ar
+POSTGRES_URL=postgres://user:pass@db:5432/app
+Roadmap
+ Terminar página Flask → pasar a React.
+
+ Pipeline de tests (pytest + coverage).
+
+ CDN S3 para media estáticos vía CloudFront + WAF (en progreso).
+
+Autor
+Esteban Martins – estebanmartins.com.ar
+Si algo rompe, abre un issue o sígueme en LinkedIn ✌️
+
+Copiar
