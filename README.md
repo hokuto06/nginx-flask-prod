@@ -26,7 +26,7 @@ cp .env.example .env
 
 # build & up con perfiles (nginx + todo el stack)
 docker compose --profile prod up -d --build
-
+```
 
 
 
