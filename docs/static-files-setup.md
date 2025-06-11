@@ -11,13 +11,13 @@ Nginx accede a ese volumen en modo lectura (ro) y los sirve directamente
 ## 1. settings.py de Django:
 
 
-```bash
+```python
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 ```
 2. Docker Compose:
 
-```bash
+```yml
 services:
   blog-front:
     volumes:
@@ -29,7 +29,7 @@ services:
 ```
 ## 3. Config Nginx (ej: default.conf o default.dev.conf):
 
-```bash
+```yml
 location /static/ {
     alias /static/;
     access_log off;
