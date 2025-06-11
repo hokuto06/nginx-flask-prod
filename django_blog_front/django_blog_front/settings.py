@@ -11,6 +11,7 @@ SECRET_KEY = 'django-insecure-vx*^$h9#fbg3a_fg=p+^*+)*zamsn_6%wqg+-k-g@5cqmss@94
 DEBUG = False
 
 ALLOWED_HOSTS = ["blog.estebanmartins.com.ar"]
+# ALLOWED_HOSTS = ["*"]
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -120,3 +121,14 @@ SESSION_SAVE_EVERY_REQUEST = True
 
 USE_X_FORWARDED_HOST = True
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+
+
+SESSION_COOKIE_DOMAIN = ".estebanmartins.com.ar"
+CSRF_COOKIE_DOMAIN    = ".estebanmartins.com.ar"
+
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE    = True
+
+SESSION_COOKIE_SAMESITE = "Lax"   # o "None" si haces fetch/AJAX cross-site
+CSRF_COOKIE_SAMESITE    = "Lax"
