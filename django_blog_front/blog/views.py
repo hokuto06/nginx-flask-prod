@@ -128,7 +128,7 @@ def delete_post(request, slug):
     return redirect("Home")
 
 
-@csrf_exempt
+# @csrf_exempt
 def create_post(request):
     token = request.session.get("token")
     # print(token)
