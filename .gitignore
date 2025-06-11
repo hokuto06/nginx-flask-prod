@@ -10,5 +10,7 @@ __pycache__/
 .idea/
 .docker/
 *.swp
-# nginx/default.dev.conf
 docker-compose.override.yml
+php/
+django-api/entrypoint.dev.sh
+django_blog_front/entrypoint.dev.sh
