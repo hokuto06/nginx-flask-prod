@@ -1,0 +1,1 @@
+# Un server nginx con función proxy para mis apis y web server para mis estáticos

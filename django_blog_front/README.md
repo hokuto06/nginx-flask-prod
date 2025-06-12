@@ -1,0 +1,1 @@
+# Frontend hecho en django para manejar mejor la jerarquia de htmls
