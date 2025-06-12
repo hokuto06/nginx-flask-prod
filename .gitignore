@@ -14,3 +14,5 @@ docker-compose.override.yml
 php/
 django-api/entrypoint.dev.sh
 django_blog_front/entrypoint.dev.sh
+app/Dockerfile.dev
+app/id_ansible.pub
