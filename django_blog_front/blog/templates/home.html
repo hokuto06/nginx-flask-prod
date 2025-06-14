@@ -3,7 +3,11 @@
 
 {% block header %}
 
-{% include "includes/header.html" with bg_image="assets/img/image_home.jpg" title="Bienvenido!" description=request.session.user_name created_at=none text_user_field=none user=none%}
+    {% if request.session.token %}
+        {% include "includes/header.html" with bg_image="assets/img/image_home.jpg" title="Bienvenido!" description=request.session.user_name created_at=none text_user_field=none user=none%}
+    {% else %}
+        {% include "includes/header.html" with bg_image="assets/img/image_home.jpg" title="Bienvenido!" description="Usuario Anónimo" created_at=none text_user_field=none user=none%}
+    {% endif %}
 
 {% endblock %}
 
