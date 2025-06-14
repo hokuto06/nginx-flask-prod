@@ -4,19 +4,24 @@
         style="background-image: url('{% if post.miniature_url %}{{ post.miniature_url }}{% else %}{% static "assets/img/home_bg_library2.jpg" %}{% endif %}');"> {% endcomment %}
 
 <style rel="stylesheet" type="text/css">
+/* Tuve que harcodear el h1 y bg por problemas de cache con cloudfront*/
 
 header.masthead .page-heading h1, header.masthead .page-heading .h1,
 header.masthead .site-heading h1,
 header.masthead .site-heading .h1 {
     font-size: 64px;
     font-weight: 700 !important;
+    color: var(--surface-color);
 }
-/*
-.site-heading span {
-    margin: 0;
-    font-weight: 700 !important;
-    font-family: "Open Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-}*/
+header.masthead::before
+ {
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+    opacity: 0.5;
+    background: 
+ color-mix(in srgb, var(--background-color), transparent 45%);
+}
+
 </style>
 
 <header class="masthead"
