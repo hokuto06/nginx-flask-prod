@@ -114,6 +114,7 @@ CSRF_COOKIE_SECURE = True
 
 CSRF_TRUSTED_ORIGINS = [
     "https://blog.estebanmartins.com.ar",
+    "https://estebanmartins.com.ar",
     "http://127.0.0.1:8083",
     "http://127.0.0.1:8500",
 ]
