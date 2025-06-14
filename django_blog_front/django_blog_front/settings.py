@@ -11,7 +11,7 @@ SECRET_KEY = 'django-insecure-vx*^$h9#fbg3a_fg=p+^*+)*zamsn_6%wqg+-k-g@5cqmss@94
 DEBUG = False
 
 # ALLOWED_HOSTS = ["blog.estebanmartins.com.ar"]
-ALLOWED_HOSTS = ["blog.estebanmartins.com.ar","*"]
+ALLOWED_HOSTS = ["blog.estebanmartins.com.ar","estebanmartins.com.ar","*"]
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -122,16 +122,16 @@ CSRF_TRUSTED_ORIGINS = [
 SESSION_COOKIE_AGE = 3600
 SESSION_SAVE_EVERY_REQUEST = True
 
-# USE_X_FORWARDED_HOST = True
-# SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+USE_X_FORWARDED_HOST = True
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 
 
-# SESSION_COOKIE_DOMAIN = ".estebanmartins.com.ar"
-# CSRF_COOKIE_DOMAIN    = ".estebanmartins.com.ar"
+SESSION_COOKIE_DOMAIN = ".estebanmartins.com.ar"
+CSRF_COOKIE_DOMAIN    = ".estebanmartins.com.ar"
 
-# SESSION_COOKIE_SECURE = True
-# CSRF_COOKIE_SECURE    = True
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE    = True
 
-# SESSION_COOKIE_SAMESITE = "Lax"  
-# CSRF_COOKIE_SAMESITE    = "Lax"
+SESSION_COOKIE_SAMESITE = "Lax"  
+CSRF_COOKIE_SAMESITE    = "Lax"
