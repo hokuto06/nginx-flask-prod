@@ -19,9 +19,9 @@
                 Publicado por <strong>{{ post.user.username }} </strong> el {{ post.created_at|slice:":16"|cut:"T"|cut:"Z"|slice:"10"  }}
             </p>
             <hr class="my-4" />
+        </div>
         {% empty %}
             <p>No hay posts disponibles.</p>
-        </div>
     {% endfor %}
   </div>
     {% comment %} </div> {% endcomment %}

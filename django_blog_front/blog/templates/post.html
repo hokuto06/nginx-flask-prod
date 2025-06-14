@@ -7,11 +7,11 @@
 {% endblock%}
 
 {% block content %}
-<div class="col-md-10 col-lg-8 col-xl-10" id="post-list">
+<div class="col-md-10 col-lg-8 col-xl-7" id="post-list">
   <article>
     <div class="container">
       <div class="row">
-        <div class="col-md-10 mx-auto">
+        {% comment %} <div class="col-md-10 mx-auto"> {% endcomment %}
           {{ post.content | safe }}
           {% if request.session.token and post.user.email == request.session.email %}
           <br>
@@ -39,7 +39,7 @@
             <textarea id="comment-content" class="form-control mb-2" rows="3" placeholder="Comentar..." required></textarea>
             <button type="submit" class="btn btn-primary">Enviar</button>
           </form>
-        </div>
+        {% comment %} </div> {% endcomment %}
       </div>
     </div>
   </article>

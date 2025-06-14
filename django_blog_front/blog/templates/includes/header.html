@@ -1,6 +1,11 @@
 {% load static %}
+{% comment %} <header class="masthead"
+
+        style="background-image: url('{% if post.miniature_url %}{{ post.miniature_url }}{% else %}{% static "assets/img/home_bg_library2.jpg" %}{% endif %}');"> {% endcomment %}
+
 <header class="masthead"
-        style="background-image: url('{% if post.miniature_url %}{{ post.miniature_url }}{% else %}{% static "assets/img/home_bg_library2.jpg" %}{% endif %}');">
+style="background-image: url('{% if post.miniature_url %}{{ post.miniature_url }}{% elif bg_image %}{% static bg_image %}{% else %}{% static "assets/img/home_bg_library2.jpg" %}{% endif %}');">
+
       <div class="container position-relative px-4 px-lg-5">
           <div class="row gx-4 gx-lg-5 justify-content-center">
               <div class="col-md-10 col-lg-8 col-xl-7">
