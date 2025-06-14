@@ -18,6 +18,9 @@ COMMENTS_URL = "http://django-api:8000/api/comments/"
 
 
 def home(request):
+    return render(request, "home.html")
+
+def blog(request):
     try:
         response = requests.get("http://django-api:8000/api/posts/")
         posts = response.json() if response.status_code == 200 else []

@@ -10,8 +10,8 @@ SECRET_KEY = 'django-insecure-vx*^$h9#fbg3a_fg=p+^*+)*zamsn_6%wqg+-k-g@5cqmss@94
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ["blog.estebanmartins.com.ar"]
-# ALLOWED_HOSTS = ["*"]
+# ALLOWED_HOSTS = ["blog.estebanmartins.com.ar"]
+ALLOWED_HOSTS = ["blog.estebanmartins.com.ar","*"]
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -20,7 +20,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'blog'
+    'blog',
+    'projects',
 ]
 
 MIDDLEWARE = [
@@ -113,22 +114,24 @@ CSRF_COOKIE_SECURE = True
 
 CSRF_TRUSTED_ORIGINS = [
     "https://blog.estebanmartins.com.ar",
+    "http://127.0.0.1:8083",
+    "http://127.0.0.1:8500",
 ]
 
 
 SESSION_COOKIE_AGE = 3600
 SESSION_SAVE_EVERY_REQUEST = True
 
-USE_X_FORWARDED_HOST = True
-SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+# USE_X_FORWARDED_HOST = True
+# SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 
 
-SESSION_COOKIE_DOMAIN = ".estebanmartins.com.ar"
-CSRF_COOKIE_DOMAIN    = ".estebanmartins.com.ar"
+# SESSION_COOKIE_DOMAIN = ".estebanmartins.com.ar"
+# CSRF_COOKIE_DOMAIN    = ".estebanmartins.com.ar"
 
-SESSION_COOKIE_SECURE = True
-CSRF_COOKIE_SECURE    = True
+# SESSION_COOKIE_SECURE = True
+# CSRF_COOKIE_SECURE    = True
 
-SESSION_COOKIE_SAMESITE = "Lax"   # o "None" si haces fetch/AJAX cross-site
-CSRF_COOKIE_SAMESITE    = "Lax"
+# SESSION_COOKIE_SAMESITE = "Lax"  
+# CSRF_COOKIE_SAMESITE    = "Lax"

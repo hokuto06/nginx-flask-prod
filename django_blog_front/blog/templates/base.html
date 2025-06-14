@@ -21,7 +21,7 @@
   <!-- Navigation-->
   <nav class="navbar navbar-expand-lg navbar-light" id="mainNav">
       <div class="container px-4 px-lg-5">
-          <a class="navbar-brand" href="{% url 'Home' %}">Blog</a>
+          <a class="navbar-brand" href="{% url 'Home' %}">Home</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
               Menu
               <i class="fas fa-bars"></i>
@@ -29,8 +29,9 @@
           <div class="collapse navbar-collapse" id="navbarResponsive">
               <ul class="navbar-nav ms-auto py-4 py-lg-0">
                   {% comment %} <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="index.html">Inicio</a></li> {% endcomment %}
+                  <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'blog' %}">Blog</a></li>
                   <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'me' %}">Yo</a></li>
-                  <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'create_post' %}">Publicar</a></li>
+                  <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'projects' %}">Proyectos</a></li>
                   <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'contact' %}">Contacto</a></li>
                   {% if request.session.token %}
                   <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" data-bs-toggle="modal" data-bs-target="#logoutModal" href="{% url 'logout' %}">Logout</a></li>
@@ -50,9 +51,11 @@
   <main class="mb-4">
     <div class="container px-4 px-lg-5">
       <div class="row gx-4 gx-lg-5 justify-content-center">
+        <div class="col-md-10 col-lg-8 col-xl-7" id="post-list">
         {% block content %}
 
         {% endblock %}
+        </div>
       </div>
     </div>
   </main>

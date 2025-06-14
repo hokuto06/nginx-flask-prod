@@ -8,7 +8,6 @@
 
 {% block content %}
     {% comment %} <div class="container"> {% endcomment %}
-  <div class="col-md-10 col-lg-8 col-xl-7" id="post-list">
         {% for post in posts %}
         <div class="post-preview">
             <a href="{% url  'Post' post.slug %}">
@@ -23,6 +22,6 @@
         {% empty %}
             <p>No hay posts disponibles.</p>
     {% endfor %}
-  </div>
+    <a type="button" class="btn  btn-warning" href="{% url 'create_post' %}" >Publicar</a>
     {% comment %} </div> {% endcomment %}
 {% endblock %}

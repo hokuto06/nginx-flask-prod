@@ -10790,7 +10790,7 @@ header.masthead::before {
   background-color: rgba(0,0,0,0.5); /* Ajustá opacidad a gusto */
   z-index: 1;
   opacity: 0.5;
-  background: color-mix(in srgb, var(--background-color), transparent 65%);
+  background: color-mix(in srgb, var(--background-color), transparent 35%);
 }
 header.masthead .site-heading {
   position: relative;
@@ -10854,7 +10854,10 @@ header.masthead .post-heading .meta a {
   header.masthead .page-heading h1, header.masthead .page-heading .h1,
   header.masthead .site-heading h1,
   header.masthead .site-heading .h1 {
-    font-size: 5rem;
+    /* font-size: 5rem; */
+    font-size: 64px;
+    font-weight: 700 !important;
+    color: var(--surface-color);
   }
   header.masthead .post-heading h1, header.masthead .post-heading .h1 {
     font-size: 3.5rem;

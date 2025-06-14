@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block header %}
+
+{% include "includes/header.html" with title="Proyectos" description="de Esteban" created_at=none text_user_field=none user=none%}
+
+{% endblock %}
+
+{% block content %}
+        <div class="post-preview">
+            <a href="{% url  'blog' %}">
+                <h2 class="post-title">Este Blog</h2>
+                <h3 class="post-subtitle">Descripcion</h3>
+            </a>
+            <p class="post-meta">
+                Publicado por <strong>api/django </strong>
+            </p>
+            <hr class="my-4" />
+        </div>
+            <p>No hay posts disponibles.</p>
+{% endblock %}
