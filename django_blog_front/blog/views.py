@@ -130,6 +130,33 @@ def delete_post(request, slug):
 
     return redirect("Home")
 
+def create_category(request):
+    token = request.session.get("token")
+    if not token:
+        return redirect("login")
+
+    headers = {"Authorization": f"Bearer {token}",
+               "Content-Type": "application/json"}
+    if request.method == "POST":
+        data = {
+            "name": request.POST.get("name"),
+            "slug": request.POST.get("slug"),
+        }
+
+        response = requests.post(API_CATEGORIES_URL, json=data, headers=headers)
+        print("Respuesta POST:", response.status_code, response.text)
+
+        if response.status_code == 201:
+            return redirect("Home")
+        else:
+            return render(request, "create-category.html", {
+                "error": "No se pudo crear la categoría.",
+                "form_data": data,
+            })
+    return render(request, "create-category.html", {
+        "categories": [],
+    })
+
 
 # @csrf_exempt
 def create_post(request):
