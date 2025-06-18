@@ -18,7 +18,7 @@ urlpatterns = [
     path("contact/", views.contact, name="contact"),
     path("post/<slug:slug>/eliminar/", views.delete_post, name="delete_post"),
     path("registro/", views.register_view, name="register"),
-    path("post/<slug:slug>/editar/", views.edit_post, name="edit_post")
-    # path('projects', include('projects.urls'))
+    path("post/<slug:slug>/editar/", views.edit_post, name="edit_post"),
+    path("create_category/", views.create_category, name="create_category"),
 ]
 

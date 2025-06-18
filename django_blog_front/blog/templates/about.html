@@ -1,89 +1,257 @@
 {% extends "base.html" %}
 {% load static %}
 {% block header %}
-
-{% include "includes/header.html" with title="Esteban Martins" created_at=none text_user_field=none user=none bg_image="assets/img/hero_background2.png" description="Network Engineer" %}
-
+  {% include "includes/header.html" with title="Esteban Martins" created_at=none text_user_field=none user=none bg_image="assets/img/hero_background2.png" description="Network Engineer" %}
 {% endblock %}
 
 {% block content %}
-            <h2>Network Engineer Ssr/Sr.</h2>
-            <p class="fst-italic py-3">
-            A lo largo de mi carrera trabajé construyendo y optimizando estructuras. Me apasiona diseñar, crear y mejorar. Solucionar problemas está entre mis tareas más frecuentes, pero mi foco está en evitar tener problemas que solucionar. Y claro… siempre dispuesto a nuevos desafíos.
-            </p>
-            <div class="row">
-              <div class="col-lg-6">
-                <ul>
-                  <li><i class="bi bi-chevron-right"></i> <strong>Cumpleaños:</strong> <span>11 Nov 1980</span></li>
-                  <li><i class="bi bi-chevron-right"></i> <strong>Web:</strong> <a href="http://estebanmartins.com.ar">www.estebanmartins.com.ar</a></li>
-                  <!-- <li><i class="bi bi-chevron-right"></i> <strong>Teléfono:</strong> <span></span></li> -->
-                  <li><i class="bi bi-chevron-right"></i> <strong>Ciudad:</strong> <span>Buenos Aires, Argentina</span></li>
-                </ul>
-              </div>
-              <div class="col-lg-6">
-                <ul>
-                  <li><i class="bi bi-chevron-right"></i> <strong>Edad:</strong> <span>44</span></li>
-                  <li><i class="bi bi-chevron-right"></i> <strong>Grado:</strong> <span>Ssr/Sr</span></li>
-                  <li><i class="bi bi-chevron-right"></i> <strong>Email:</strong> <span>contacto@estebanmartins.com.ar</span></li>
-                  <!-- <li><i class="bi bi-chevron-right"></i> <strong>Freelance:</strong> <span>Available</span></li> -->
-                </ul>
-              </div>
-            </div>
-            <p class="py-3">
-              Esta carrera me llevó por caminos que nunca imaginé: conocí todo tipo de personas, lugares, culturas y vivencias que fueron transformando mi cabeza. Además, me permitió madurar profesionalmente en cada rol que desempeñé, más allá del título o la tarea.
-            </p>
+<style>
+.body {
+  background-color: #fdf9ee!important;
+  font-family: 'Inter', sans-serif;
+}
+.section-title {
+  font-family: var(--bs-font-family-heading);
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  margin-top: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.resume-card {
+  /*background: #fff;*/
+  background-color: var(--beige-1);
+  border-radius: var(--bs-border-radius);
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  padding: 1rem;
+  margin-bottom: 2rem;
+  border:1px solid var(--color-border-card)
+}
+@media (prefers-color-scheme: dark) {
+  .resume-card { background: #23272b; color: #f1f1f1; }
+}
+.resume-item h4 {
+  font-family: var(--bs-font-family-heading);
+  font-size: 1.15rem;
+  margin-bottom: 0.2rem;
+}
+.resume-item h5 {
+  font-size: 1rem;
+  color: var(--primary-light);
+  margin-bottom: 0.5rem;
+}
+</style>
 
-            <hr class="my-4" />
+<section id="about-summary">
+  <div class="section-title">
+    <i class="fa-solid fa-user-tie" style="color:#0085A1;"></i> Sobre mí
+  </div>
+  <div class="resume-card resume-item">
+    <p>
+      Network Engineer Ssr/Sr.<br>
+      A lo largo de mi carrera trabajé construyendo y optimizando estructuras. Me apasiona diseñar, crear y mejorar. Solucionar problemas está entre mis tareas más frecuentes, pero mi foco está en evitar tener problemas que solucionar. Siempre dispuesto a nuevos desafíos.
+    </p>
+  <ul class="list-unstyled row">
+    <li class="col-12 col-md-6 mb-2">
+      <i class="fa-solid fa-globe"></i><small><strong> Web:</strong></small><a class="text-color small" href="http://estebanmartins.com.ar"> estebanmartins.com.ar</a>
+    </li>
+    <li class="col-12 col-md-6 mb-2">
+      <i class="fa-solid fa-location-dot"></i><small><strong> Ciudad:</strong></small><a href="https://maps.app.goo.gl/x7ck11kpZboV7V886" class="text-color small"> Buenos Aires, Argentina</a>
+    </li>
+    </ul><ul class="list-unstyled row"> 
+      <li class="col-12 col-md-6 mb-2">
+        <i class="fa-solid fa-envelope"></i><small><strong> Email:</strong></small><a href="mailto:contacto@estebanmartins.com.ar" class="text-color small"> contacto@estebanmartins.com.ar</a>
+      </li>
+    </ul>
+  </div>
+</section>
 
-      <div class="container section-title" data-aos="fade-up">
-        <h2>Resumen</h2>
-        <p>
-          A lo largo de mi carrera cumplí diversos roles: empecé brindando soporte técnico y, con el tiempo, fui evolucionando hacia la administración de infraestructuras de red, tanto LAN como centralizadas, siempre dentro del campo del networking.
-          También participé activamente en el crecimiento de productos y soluciones, adaptándolos a las necesidades reales de cada entorno.
-        </p>
-      </div><!-- End Section Title -->
-        <p><em>
-        Especialista en redes con más de 15 años de experiencia diseñando, implementando y optimizando infraestructuras LAN, WLAN y redes centralizadas. Enfocado en la automatización de tareas, la mejora continua y la resolución eficiente de incidencias en entornos híbridos.
-        </em></p>
-            <hr class="my-4" />
-        <h3 class="resume-title">Experiencia profesional</h3>
-        <div class="resume-item">
-            <h4>Network Engineer | Project leader</h4>
-            <h5>2017 – 2025  </h5>
-            <p><em>Nimbus Networks</em></p>
-            <ul>
-            <li>Diseño y despliegue de redes Ethernet/Wi-Fi en entornos corporativos.</li>
-            <li>Coordinación de proyectos end-to-end: relevamiento, implementación y soporte postventa.</li>
-            <li>Segmentación por VLAN, multicast (IGMP/IPTV), SD-WAN, SDN.</li>
-            <li>Virtualización de servicios con Proxmox y VMware.</li>
-            <li>Automatización con Bash, Python y Wireless controllers APIs .</li>
-            </ul>
-        </div><!-- Edn Resume Item -->
+<section id="skills">
+  <div class="section-title">
+    <i class="fa-solid fa-screwdriver-wrench" style="color:#28a745;"></i> Skills
+  </div>
+  <div class="row">
+    <div class="col-12 col-md-6">
+      <div class="resume-card">
+        <div class="skill mb-4">
+          <div class="d-flex align-items-center mb-1">
+            <i class="fa-brands fa-linux me-2"></i>
+            <span class="fw-bold">Linux</span>
+          </div>
+          <div class="progress" style="height: 18px;">
+            <div class="progress-bar text-primary" role="progressbar" style="width: 75%;" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">90%</div>
+          </div>
+        </div>
+        <div class="skill mb-4">
+          <div class="d-flex align-items-center mb-1">
+            <i class="fa-brands fa-python me-2"></i>
+            <span class="fw-bold">Python</span>
+          </div>
+          <div class="progress" style="height: 18px;">
+            <div class="progress-bar text-warning" role="progressbar" style="width: 50%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">80%</div>
+          </div>
+        </div>
+        <div class="skill mb-4">
+          <div class="d-flex align-items-center mb-1">
+            <i class="fa-solid fa-network-wired me-2"></i>
+            <span class="fw-bold">Networking</span>
+          </div>
+          <div class="progress" style="height: 18px;">
+            <div class="progress-bar text-primary" role="progressbar" style="width: 75%;" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">85%</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-md-6">
+      <div class="resume-card">
+        <div class="skill mb-4">
+          <div class="d-flex align-items-center mb-1">
+            <i class="fa-brands fa-aws me-2"></i>
+            <span class="fw-bold">AWS</span>
+          </div>
+          <div class="progress" style="height: 18px;">
+            <div class="progress-bar text-warning" role="progressbar" style="width: 50%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">75%</div>
+          </div>
+        </div>
+        <div class="skill mb-4">
+          <div class="d-flex align-items-center mb-1">
+            <i class="fa-brands fa-docker me-2"></i>
+            <span class="fw-bold">Docker</span>
+          </div>
+          <div class="progress" style="height: 18px;">
+            <div class="progress-bar text-warning" role="progressbar" style="width: 50%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">70%</div>
+          </div>
+        </div>
+        <div class="skill mb-4">
+          <div class="d-flex align-items-center mb-1">
+            <i class="fa-solid fa-shield-halved me-2"></i>
+            <span class="fw-bold">Seguridad</span>
+          </div>
+          <div class="progress" style="height: 18px;">
+            <div class="progress-bar text-primary" role="progressbar" style="width: 65%;" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100">65%</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12 col-md-6">
+      <div class="resume-card">
+        <div class="skill mb-4">
+          <div class="d-flex align-items-center mb-1">
+            <i class="fa-brands fa-linux me-2"></i>
+            <span class="fw-bold">Linux</span>
+          </div>
+          <div class="progress" style="height: 18px;">
+            <div class="progress-bar bg-success" role="progressbar" style="width: 90%;" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100">90%</div>
+          </div>
+        </div>
+        <div class="skill mb-4">
+          <div class="d-flex align-items-center mb-1">
+            <i class="fa-brands fa-python me-2"></i>
+            <span class="fw-bold">Python</span>
+          </div>
+          <div class="progress" style="height: 18px;">
+            <div class="progress-bar bg-info" role="progressbar" style="width: 80%;" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100">80%</div>
+          </div>
+        </div>
+        <div class="skill mb-4">
+          <div class="d-flex align-items-center mb-1">
+            <i class="fa-solid fa-network-wired me-2"></i>
+            <span class="fw-bold">Networking</span>
+          </div>
+          <div class="progress" style="height: 18px;">
+            <div class="progress-bar bg-primary" role="progressbar" style="width: 85%;" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100">85%</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-md-6">
+      <div class="resume-card">
+        <div class="skill mb-4">
+          <div class="d-flex align-items-center mb-1">
+            <i class="fa-brands fa-aws me-2"></i>
+            <span class="fw-bold">AWS</span>
+          </div>
+          <div class="progress" style="height: 18px;">
+            <div class="progress-bar bg-warning" role="progressbar" style="width: 75%;" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">75%</div>
+          </div>
+        </div>
+        <div class="skill mb-4">
+          <div class="d-flex align-items-center mb-1">
+            <i class="fa-brands fa-docker me-2"></i>
+            <span class="fw-bold">Docker</span>
+          </div>
+          <div class="progress" style="height: 18px;">
+            <div class="progress-bar bg-info" role="progressbar" style="width: 70%;" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100">70%</div>
+          </div>
+        </div>
+        <div class="skill mb-4">
+          <div class="d-flex align-items-center mb-1">
+            <i class="fa-solid fa-shield-halved me-2"></i>
+            <span class="fw-bold">Seguridad</span>
+          </div>
+          <div class="progress" style="height: 18px;">
+            <div class="progress-bar bg-danger" role="progressbar" style="width: 65%;" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100">65%</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>  
+</section>
 
-        <div class="resume-item">
-            <h4>Network Engineer | Infraescture Administration</h4>
-            <h5>2009 – 2016</h5>
-            <p><em>Ecnex Argentina S.A.</em></p>
-            <li>Gestión de redes LAN/WAN con routing BGP y túneles VPN (IPsec, PPTP).</li>
-            <li>Balanceo de enlaces y políticas de seguridad sobre infraestructura WAN/LAN.</li>
-            <li>Migración hacia infraestructura centralizada en datacenter.</li>
-            <li>Configuración de firewalls, routers y switches multivendor.</li>
-            <li>Implementación de ssistemas de monitoreo con Nagios-Dude.</li>
-            <li>Documentación técnica y operativa para soporte y escalabilidad.</li>
-            <ul>
-            </ul>
-        </div><!-- Edn Resume Item -->
+<section id="experiencia">
+  <div class="section-title">
+    <i class="fa-solid fa-briefcase" style="color:#4053D6;"></i> Experiencia profesional
+  </div>
+  <div class="resume-card resume-item">
+    <h4><i class="fa-solid fa-network-wired"></i> Network Engineer | Project leader</h4>
+    <h5>2017 – 2025</h5>
+    <p><em>Nimbus Networks</em></p>
+    <ul>
+      <li>Diseño y despliegue de redes Ethernet/Wi-Fi en entornos corporativos.</li>
+      <li>Coordinación de proyectos end-to-end: relevamiento, implementación y soporte postventa.</li>
+      <li>Segmentación por VLAN, multicast (IGMP/IPTV), SD-WAN, SDN.</li>
+      <li>Virtualización de servicios con Proxmox y VMware.</li>
+      <li>Automatización con Bash, Python y Wireless controllers APIs.</li>
+    </ul>
+  </div>
+  <div class="resume-card resume-item">
+    <h4><i class="fa-solid fa-server"></i> Network Engineer | Infrastructure Administration</h4>
+    <h5>2009 – 2016</h5>
+    <p><em>Ecnex Argentina S.A.</em></p>
+    <ul>
+      <li>Gestión de redes LAN/WAN con routing BGP y túneles VPN (IPsec, PPTP).</li>
+      <li>Balanceo de enlaces y políticas de seguridad sobre infraestructura WAN/LAN.</li>
+      <li>Migración hacia infraestructura centralizada en datacenter.</li>
+      <li>Configuración de firewalls, routers y switches multivendor.</li>
+      <li>Implementación de sistemas de monitoreo con Nagios-Dude.</li>
+      <li>Documentación técnica y operativa para soporte y escalabilidad.</li>
+    </ul>
+  </div>
+  <div class="resume-card resume-item">
+    <h4><i class="fa-solid fa-headset"></i> Technical Support Junior</h4>
+    <h5>2008 – 2009</h5>
+    <p><em>Ecnex Argentina S.A.</em></p>
+    <ul>
+      <li>Soporte remoto a usuarios finales y técnicos en LATAM.</li>
+      <li>Diagnóstico de red, configuraciones básicas y administración de servidores Linux.</li>
+      <li>Automatización con Bash para tareas repetitivas.</li>
+      <li>Herramientas: iptables, hotspot, bash.</li>
+    </ul>
+  </div>
+</section>
 
-        <div class="resume-item">
-            <h4>Technical Support Junior</h4>
-            <h5>2008 – 2009</h5>
-            <p><em>Ecnex Argentina S.A.</em></p>
-            <ul>
-            <li>Soporte remoto a usuarios finales y técnicos en LATAM.</li>
-            <li>Diagnóstico de red, configuraciones básicas y administración de servidores Linux.</li>
-            <li>Automatización con Bash para tareas repetitivas.</li>
-            <li>Herramientas: iptables, hotspot, bash.</li>
-            </ul>
-        </div><!-- Edn Resume Item -->
-
- {% endblock %}
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  document.querySelectorAll('.skill-fill').forEach(fill => {
+    const percent = fill.dataset.percent;
+    setTimeout(() => {
+      fill.style.width = percent + '%';
+      fill.textContent = percent + '%';
+    }, 300);
+  });
+});
+</script>
+{% endblock %}

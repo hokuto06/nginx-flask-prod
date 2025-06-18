@@ -1,0 +1,160 @@
+{% extends "base.html" %}
+{% load static %}
+{% block header %}
+  {% include "includes/header.html" with title="Proyectos" description="de Esteban" created_at=none text_user_field=none user=none %}
+{% endblock %}
+
+{% block content %}
+
+<p class="lead">
+  <i class="fa-solid fa-envelope"></i> 
+  <i class="fa-solid fa-aws"></i>
+  <strong>Amazon Web Services</strong>
+  <br />  
+  <i class="fa-solid fa-server"></i>
+  <strong>Arquitectura Serverless</strong>
+  <br />
+  <i class="fa-solid fa-code"></i>
+  <strong>Python</strong>
+  <br />
+  <i class="fa-solid fa-database"></i>
+  <strong>DynamoDB</strong>
+  <br />
+  <i class="fa-solid fa-bell"></i>
+  <strong>Notificaciones con SNS</strong>
+  <br />
+  <i class="fa-solid fa-cloud"></i>
+  <strong>Sin servidores</strong>
+  <br />
+  <i class="fa-solid fa-rocket"></i>
+  <strong>Pipeline de correos</strong>
+  <br />
+  <i class="fa-solid fa-gear"></i>
+  <strong>Automatización</strong>
+  <br />
+  <i class="fa-solid fa-shield-alt"></i>
+  <strong>Seguridad</strong>
+  <br />
+  <i class="fa-solid fa-cogs"></i>
+  <strong>Configuración</strong>
+  <br />
+  <i class="fa-solid fa-cube"></i>
+  <strong>Bucket S3</strong>
+  <br />
+  <i class="fa-solid fa-code-branch"></i>
+  <strong>Pipeline de correos</strong>
+  <br />
+  <i class="fa-solid fa-clipboard-list"></i>
+  <strong>Reglas de Recepción</strong>
+  <br />
+  <i class="fa-solid fa-file-alt"></i>
+  <strong>Formato MIME</strong>
+  <br />
+  <i class="fa-solid fa-robot"></i>
+  <strong>Procesamiento Automático</strong>
+  <br />
+  <i class="fa-solid fa-users"></i>
+  <strong>Administrador del Sistema</strong>
+  <br />
+  <i class="fa-solid fa-check-circle"></i>
+  <strong>Funcionalidad Completa</strong>
+  <br />
+  <i class="fa-solid fa-lightbulb"></i>
+  <strong>Idea Innovadora</strong>
+  <br />
+  <i class="fa-solid fa-tools"></i>
+  <strong>Herramientas Utilizadas</strong>
+  <br />
+  <i class="fa-solid fa-comments"></i>
+  <strong>Comentarios y Feedback</strong>
+</p>
+
+<!-- prueba de botones -->
+<style type="text/css">
+/* Botón base */
+/* Botón base */
+.btn {
+  display: inline-block;
+  padding: 12px 24px;
+  color: #fff;
+  font-weight: 600;
+  font-size: 16px;
+  border: none;
+  border-radius: 6px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-decoration: none;
+  transition: background 0.2s, transform 0.2s;
+  cursor: pointer;
+}
+
+
+.btn:hover, .btn:focus {
+  transform: translateY(-1px) scale(1.03);
+}
+
+.btn:active {
+  transform: translateY(1px) scale(0.98);
+}
+
+.btn-success {
+  background-color: #1f7d75;
+}
+.btn-success:hover, .btn-success:focus {
+  background-color: #18665f;
+}
+.btn-success:active {
+  background-color: #114d47;
+}
+
+/* Primary */
+.btn-primary {
+  background-color: #2563eb;
+}
+.btn-primary:hover, .btn-primary:focus {
+  background-color: #1d4fd7;
+}
+.btn-primary:active {
+  background-color: #1e40af;
+}
+
+/* Danger */
+.btn-danger {
+  background-color: #dc2626;
+}
+.btn-danger:hover, .btn-danger:focus {
+  background-color: #b91c1c;
+}
+.btn-danger:active {
+  background-color: #991b1b;
+}
+
+/* Warning */
+.btn-warning {
+  background-color: #f59e42;
+  color: #fff;
+}
+.btn-warning:hover, .btn-warning:focus {
+  background-color: #e07c1e;
+}
+.btn-warning:active {
+  background-color: #b65d0b;
+}
+
+/* Info */
+.btn-info {
+  background-color: #0ea5e9;
+}
+.btn-info:hover, .btn-info:focus {
+  background-color: #0284c7;
+}
+.btn-info:active {
+  background-color: #0369a1;
+}
+</style>
+<a class="btn btn-success" href="#">Success</a>
+<a class="btn btn-primary" href="#">Primary</a>
+<a class="btn btn-danger" href="#">Danger</a>
+<a class="btn btn-warning" href="#">Warning</a>
+<a class="btn btn-info" href="#">Info</a>
+<!-- -->
+{% endblock %}

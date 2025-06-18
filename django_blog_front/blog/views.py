@@ -135,26 +135,46 @@ def create_category(request):
     if not token:
         return redirect("login")
 
-    headers = {"Authorization": f"Bearer {token}",
-               "Content-Type": "application/json"}
+    headers = {
+        "Authorization": f"Bearer {token}",
+        "Content-Type": "application/json"
+    }
+
+    form_data = {
+        "title": "",
+        "slug": "",
+        "published": "true"
+    }
+
     if request.method == "POST":
+        title = request.POST.get("title", "")
+        slug = request.POST.get("slug", "")
+        published = request.POST.get("published", "true") in ["true", "True", True]
+
         data = {
-            "name": request.POST.get("name"),
-            "slug": request.POST.get("slug"),
+            "title": title,
+            "slug": slug,
+            "published": published,
+        }
+        form_data = {
+            "title": title,
+            "slug": slug,
+            "published": "true" if published else "false"
         }
 
         response = requests.post(API_CATEGORIES_URL, json=data, headers=headers)
         print("Respuesta POST:", response.status_code, response.text)
 
         if response.status_code == 201:
-            return redirect("Home")
+            return redirect("create_category")
         else:
             return render(request, "create-category.html", {
                 "error": "No se pudo crear la categoría.",
-                "form_data": data,
+                "form_data": form_data,
             })
+
     return render(request, "create-category.html", {
-        "categories": [],
+        "form_data": form_data,
     })
 
 

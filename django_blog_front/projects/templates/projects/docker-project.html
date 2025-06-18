@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+{% load static %}
+{% block header %}
+  {% include "includes/projects-header.html" with title="Docker + Nginx + Flask" description="Plantilla de producción para apps Flask con Nginx y Docker" bg_image="assets/img/docker-project.png" %}
+{% endblock %}
+
+{% block content %}
+<article>
+  <section id="description">
+    <h3><i class="fa-brands fa-docker" style="color:#2496ed;" title="Docker"></i> Docker + Nginx + Flask – Plantilla de Producción</h3>
+    <p class="lead">
+      Este proyecto es una plantilla lista para producción que integra <strong>Flask</strong> (Python), <strong>Nginx</strong> y <strong>Docker</strong> para desplegar aplicaciones web de manera eficiente, segura y escalable.
+    </p>
+    <p class="lead">
+      <i class="fa-solid fa-cogs"></i>
+      <strong>Arquitectura</strong>
+      <br />
+      <img class="img-fluid" src="{% static 'assets/img/blog_stack.png' %}" alt="Arquitectura Docker Nginx Flask" />
+    </p>
+    <p class="lead">
+      <i class="fa-solid fa-tools"></i>
+      <strong>Herramientas utilizadas</strong>
+      <br />
+      <ul>
+        <li><i class="fa-brands fa-docker" style="color:#2496ed;"></i> Docker & Docker Compose</li>
+        <li><i class="fa-brands fa-python" style="color:#3776AB;"></i> Flask (Python)</li>
+        <li><i class="fa-solid fa-server" style="color:#009639;"></i> Nginx</li>
+        <li><i class="fa-solid fa-database" style="color:#4053D6;"></i> SQLite (por defecto, fácilmente reemplazable)</li>
+        <li><i class="fa-solid fa-shield-halved" style="color:#e67e22;"></i> Certbot (opcional, para HTTPS)</li>
+        <li><i class="fa-brands fa-github" style="color:#333;"></i> GitHub Actions (CI/CD opcional)</li>
+      </ul>
+    </p>
+    <p class="lead">
+      <i class="fa-solid fa-user-cog"></i>
+      <strong>Autor</strong>: Esteban Martins
+      <br />
+      <i class="fa-brands fa-github"></i><strong> Code: </strong>
+      <a href="https://github.com/hokuto06/nginx-flask-prod" target="_blank">github.com/hokuto06/nginx-flask-prod</a>
+      <br />
+    </p>
+  </section>
+
+  <section id="features">
+    <h3><i class="fa-solid fa-star" style="color:#f7b731;" title="Características"></i> Características principales</h3>
+    <ul>
+      <li>Despliegue rápido y reproducible de apps Flask en producción.</li>
+      <li>Configuración lista para HTTPS con Certbot (Let’s Encrypt).</li>
+      <li>Proxy reverso con Nginx para servir estáticos y balancear tráfico.</li>
+      <li>Separación de servicios en contenedores: <strong>nginx</strong>, <strong>flask</strong>, <strong>certbot</strong>.</li>
+      <li>Variables de entorno para configuración flexible.</li>
+      <li>Soporte para CI/CD con GitHub Actions.</li>
+      <li>Fácil extensión para bases de datos externas (PostgreSQL, MySQL, etc).</li>
+    </ul>
+  </section>
+
+  <section id="usage">
+    <h3><i class="fa-solid fa-play" style="color:#28a745;" title="Uso"></i> Cómo usar</h3>
+    <ol>
+      <li>Clona el repositorio:
+        <pre><code>git clone https://github.com/hokuto06/nginx-flask-prod.git</code></pre>
+      </li>
+      <li>Configura tus variables de entorno en el archivo <code>.env</code>.</li>
+      <li>Construye y levanta los servicios:
+        <pre><code>docker compose up --build</code></pre>
+      </li>
+      <li>Accede a la app Flask en <code>http://localhost</code> (o el dominio configurado).</li>
+      <li>Para producción, configura tus certificados SSL y variables de entorno reales.</li>
+    </ol>
+  </section>
+
+  <section id="structure">
+    <h3><i class="fa-solid fa-folder-tree" style="color:#4053D6;" title="Estructura"></i> Estructura del proyecto</h3>
+    <pre><code>
+nginx-flask-prod/
+├── app/                # Código fuente de la app Flask
+├── nginx/              # Configuración de Nginx
+├── docker-compose.yml  # Orquestación de servicios
+├── Dockerfile          # Imagen de la app Flask
+├── .env.example        # Variables de entorno de ejemplo
+├── certbot/            # Scripts para certificados SSL
+└── README.md
+    </code></pre>
+  </section>
+
+  <section id="summary">
+    <h2 class="section-heading"><i class="fa-solid fa-clipboard-list"></i> Resumen del flujo</h2>
+    <pre><code>Cliente → Nginx (SSL, estáticos, proxy) → Flask App → (DB opcional)</code></pre>
+    <ul>
+      <li>Nginx recibe las peticiones y sirve archivos estáticos o las reenvía a Flask.</li>
+      <li>Flask procesa la lógica de negocio y responde.</li>
+      <li>Certbot puede gestionar certificados SSL automáticamente.</li>
+      <li>Todo el stack es portable y reproducible vía Docker Compose.</li>
+    </ul>
+    <p>
+      Esta plantilla te permite desplegar aplicaciones Flask en producción de manera profesional, segura y escalable, con mínima configuración manual.
+    </p>
+  </section>
+</article>
+{% endblock %}

@@ -1,21 +1,104 @@
 {% extends "base.html" %}
-
+{% load static %}
 {% block header %}
-
-{% include "includes/header.html" with title="Proyectos" description="de Esteban" created_at=none text_user_field=none user=none%}
-
+  {% include "includes/projects-header.html" with title="Proyectos" description="de Esteban" bg_image="assets/img/projects_bg.png" created_at=none text_user_field=none user=none %}
 {% endblock %}
 
 {% block content %}
-        <div class="post-preview">
-            <a href="{% url  'blog' %}">
-                <h2 class="post-title">Este Blog</h2>
-                <h3 class="post-subtitle">Descripcion</h3>
-            </a>
-            <p class="post-meta">
-                Publicado por <strong>api/django </strong>
-            </p>
-            <hr class="my-4" />
+<style type="text/css" rel="stylesheet">
+body {
+  background-color: #fdf9ee;
+}
+.card.project-card {
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  margin-bottom: 2rem;
+  transition: box-shadow 0.2s, transform 0.2s;
+  background: #fff;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.card.project-card:hover {
+  box-shadow: 0 6px 24px rgba(0,0,0,0.10);
+  transform: translateY(-4px) scale(1.01);
+}
+.card-img-top {
+  border-radius: 12px 12px 0 0;
+  object-fit: cover;
+  height: 180px;
+  width: 100%;
+}
+.card-body {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.card-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+.card-text {
+  color: #555;
+  font-size: 1rem;
+  margin-bottom: 1.25rem;
+  flex-grow: 1;
+}
+.btn-minimal {
+  background: #0085A1;
+  color: #fff;
+  border-radius: 6px;
+  padding: 0.5rem 1.25rem;
+  font-weight: 600;
+  border: none;
+  transition: background 0.2s;
+  align-self: flex-start;
+}
+.btn-minimal:hover {
+  background: #005f73;
+  color: #fff;
+}
+@media (prefers-color-scheme: dark) {
+  .card.project-card {
+    background: #1e1e1e;
+    color: #f1f1f1;
+  }
+  .card-text { color: #bbb; }
+}
+.text-color{
+  color: #3576b8;
+}
+</style>
+<section id="projects">
+  <h2 class="text-center mb-4">Mis Proyectos</h2>
+  <p class="text-center mb-5">Aquí encontrarás una selección de mis proyectos destacados, cada uno con su propia funcionalidad y propósito.</p>
+</section>
+<div class="container py-4">
+  <div class="row g-4">
+    <div class="col-12 col-md-6 d-flex">
+      <div class="card project-card w-100">
+        <img class="card-img-top" src="{% static 'assets/img/email_pipeline_bg.png' %}" alt="Email Pipeline">
+        <div class="card-body">
+          <h5 class="card-title text-color">Email Pipeline</h5>
+          <p class="card-text">Pipeline serverless para recibir, procesar y notificar emails usando AWS SES, Lambda y SNS.</p>
+          <a href="{% url 'email-parser' %}" class="btn btn-minimal">Ver proyecto</a>
         </div>
-            <p>No hay posts disponibles.</p>
+      </div>
+    </div>
+    <div class="col-12 col-md-6 d-flex">
+      <div class="card project-card w-100">
+        <img class="card-img-top" src="{% static 'assets/img/docker-project.png' %}" alt="Otro Proyecto">
+        <div class="card-body">
+          <h5 class="card-title text-color">Docker+Django+AWS</h5>
+          <p class="card-text">Descripción breve y clara del proyecto destacado.</p>
+          <a href="{% url 'docker-project' %}" class="btn btn-minimal">Ver proyecto</a>
+        </div>
+      </div>
+    </div>
+    <!-- Agrega más tarjetas aquí -->
+  </div>
+</div>
 {% endblock %}

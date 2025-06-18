@@ -1,0 +1,27 @@
+{% load static %}
+
+<header class="masthead"
+style="background-image: url('{%  static "assets/img/projects_bg.png" %}');">
+    <div class="container position-relative px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                <div class="site-heading">
+                    <h1 >
+                    {{ title }}
+                    </h1>
+                    <h2 class="subheading">{{ description }}</h2>
+                    <span class="meta">
+                        {{ text_user_field }} 
+                        <!-- <a href="#!">Start Bootstrap</a> -->
+                        <a >{{ user }}</a>
+                        {{ created_at|date:"d/m/Y H:i" }}
+                    </span>
+                    <br>
+                    <a type="button" class="btn btn-custom" href="{% url 'projects' %}#projects" style="font-weight:600; letter-spacing:0.5px; transition:background 0.2s, transform 0.2s;">
+                    Mis Proyectos
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>

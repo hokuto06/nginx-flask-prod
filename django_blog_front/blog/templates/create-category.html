@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card shadow-sm">
+        <div class="card-header bg-primary text-white">
+          <h4 class="mb-0">Crear nueva categoría</h4>
+        </div>
+        <div class="card-body">
+          {% if error %}
+            <div class="alert alert-danger">{{ error }}</div>
+          {% endif %}
+          <form method="post" novalidate>
+            {% csrf_token %}
+            <div class="mb-3">
+              <label for="id_title" class="form-label">Título</label>
+              <input type="text" class="form-control" id="id_title" name="title" value="{{ form_data.title|default_if_none:'' }}">
+            </div>
+            <div class="mb-3">
+              <label for="id_slug" class="form-label">Slug</label>
+              <input type="text" class="form-control" id="id_slug" name="slug" value="{{ form_data.slug|default_if_none:'' }}">
+              <div class="form-text">Identificador único para la URL (opcional, se genera automáticamente si se deja vacío).</div>
+            </div>
+            <div class="mb-3">
+              <label for="id_published" class="form-label">¿Publicada?</label>
+              <select class="form-select" id="id_published" name="published">
+                <option value="true" {% if form_data.published == True or form_data.published == 'true' %}selected{% endif %}>Sí</option>
+                <option value="false" {% if form_data.published == False or form_data.published == 'false' %}selected{% endif %}>No</option>
+              </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Crear categoría</button>
+            <a href="{% url 'create_category' %}" class="btn btn-secondary ms-2">Cancelar</a>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

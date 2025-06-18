@@ -3,24 +3,31 @@
 
 {% block header %}
 
-    {% if request.session.token %}
-        {% include "includes/header.html" with bg_image="assets/img/image_home.jpg" title="Bienvenido!" description=request.session.user_name created_at=none text_user_field=none user=none%}
-    {% else %}
-        {% include "includes/header.html" with bg_image="assets/img/image_home.jpg" title="Bienvenido!" description="Usuario Anónimo" created_at=none text_user_field=none user=none%}
-    {% endif %}
+{% include "includes/header.html" with bg_image="assets/img/image_home.jpg" title="Hola, soy Esteban" description="Acá comparto proyectos, herramientas y  algunas experiencias en mi carrera.<br><br>" created_at=none text_user_field=none user=none%}
 
 {% endblock %}
 
 
 {% block content %}
-    <div class="post-preview">
-        <a href="{% url  'blog' %}">
-            <h2 class="post-title">Este Blog</h2>
-            <h3 class="post-subtitle">Descripcion</h3>
-        </a>
-        <p class="post-meta">
-            Publicado por <strong>api/django </strong>
-        </p>
-        <hr class="my-4" />
-    </div>
+<h2 id="hero" class="post-title">¿Que vas a encontrar acá?</h2>
+<p>Este es un blog de prueba para mostrar como funciona el sistema de plantillas de django</p>
+
+<span>test<span>
+
+<a href="#project"><strong>en mi perfil</strong></a>
+
+<p class="post-meta">
+</p>
+    <h2 id="project" class="post-title">¿Cual es el objetivo de este sitio?</h2>
+
+    <p>Una de las habilidades mas dificiles de poder demostrar sobre mi, es mi capacidad de aprender
+        nuevas tecnologias, uso de herramientas y adaptarme.
+        Documentar y organizar la informacion, es otra de las habilidades que tambien es dificil de demostrar 
+        y es algo que estuve poniendo en practica a lo largo del desarrollo de este proyecto.</p>
+    <p>Pero tambien para comenzar a documentar mi aprendijze y practicas.</p>
+            <p>Como puedes ver en</p><a href="#hero">
+<p class="post-meta">
+    Publicado por <strong>api/django </strong>
+</p>
+
 {% endblock %}

@@ -10,11 +10,43 @@
     <link rel="icon" type="image/x-icon" href="{% static 'assets/favicon.ico' %}" />
     <!-- Font Awesome icons (free version)-->
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
-    <!-- Google fonts-->
-    <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css" />
-    <!-- Core theme CSS (includes Bootstrap)-->
+    <!-- Google Fonts: Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Gabarito:wght@400;700&family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
     <link href="{% static 'css/styles.css' %}" rel="stylesheet" />
+<style>/*
+.btn-success {
+  display: inline-block;
+  padding: 12px 24px;
+  background-color: #1f7d75;
+  color: white;
+  font-weight: 600;
+  font-size: 16px;
+  border: none;
+  border-radius: 6px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-decoration: none;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-success:hover {
+  background-color: #18665f;
+  transform: translateY(-1px);
+  text-decoration: none;
+}
+
+.btn-success:active {
+  transform: translateY(1px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+  header.masthead .page-heading h1, header.masthead .page-heading .h1,
+  header.masthead .site-heading h1,
+  header.masthead .site-heading .h1 {
+    font-size: 4rem; 
+  }*/
+</style>  
+{% block styles %}
+{% endblock %}
 </head>
 
 <body>
@@ -32,13 +64,13 @@
                   <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'blog' %}">Blog</a></li>
                   <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'me' %}">Yo</a></li>
                   <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'projects' %}">Proyectos</a></li>
-                  <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'contact' %}">Contacto</a></li>
+                  {% comment %} <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'contact' %}">Contacto</a></li> {% endcomment %}
                   {% if request.session.token %}
                   <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" data-bs-toggle="modal" data-bs-target="#logoutModal" href="{% url 'logout' %}">Logout</a></li>
                   <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4">{{ request.session.user_name }}</a></li>
                   {% else %}
                   <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" data-bs-toggle="modal" data-bs-target="#loginModal" href="{% url 'login' %}">Login</a></li>
-                  <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4"  href="{% url 'register' %}">Registrarse</a></li>
+                  {% comment %} <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4"  href="{% url 'register' %}">Registrarse</a></li> {% endcomment %}
                   {% endif %}
               </ul>
           </div>

@@ -1,0 +1,122 @@
+{% extends "base.html" %}
+{% load static %}
+{% block header %}
+
+{% include "includes/projects-header.html" with title="SES  –  Pipeline" description="SES AWS – Email Pipeline Serverless" created_at="Un pipeline para recibir y procesar correos con SES" bg_image="assets/img/email_pipeline_bg.png" text_user_field=none user=none%}
+
+{% endblock %}
+
+
+{% block styles %}
+<style type="text/css" rel="stylesheet">
+body {
+  background-color: #fdf9ee;
+}
+section#lambda,
+section#sns,
+section#trigger,
+section#description {
+  margin-bottom: 2rem;
+}
+</style>
+{% endblock %}
+
+
+{% block content %}
+<article>
+  {% comment %} <h3><i class="fa-solid fa-envelope" style="color: #0099ff;" title="Notificación"></i> SES AWS – Email Pipeline Serverless</h3> {% endcomment %}
+    <h3 id="resume" >SES AWS – Email Pipeline Serverless</h3>
+    <p class="lead">
+      Este proyecto es un pipeline serverless que permite recibir correos electrónicos utilizando Amazon SES, 
+      almacenarlos en S3, procesarlos con una función Lambda y generar notificaciones automáticas.
+    </p>
+    <p class="lead">
+      <i class="fa-solid fa-cogs"></i> 
+      <strong >Arquitectura</strong>
+      <br />
+      <img class="img-fluid" src="{% static 'assets/img/email_pipeline.png' %}" alt="Arquitectura del Pipeline de Email" />
+    </p>
+    <p class="lead">
+      <i class="fa-solid fa-tools"></i> 
+      <strong>Herramientas utilizadas</strong>
+      <br />
+      <ul>
+        <li><i class="fa-brands fa-aws" style="color: #FF9900;"></i> Amazon Web Services (AWS)</li>
+        <li><i class="fa-solid fa-envelope" style="color: #0099ff;"></i> Amazon SES (Simple Email Service)</li>
+        <li><i class="fa-solid fa-bucket" style="color: #28a745;;"></i> Amazon S3 (Simple Storage Service)</li>
+        <li><span style="color: #FF9900; font-weight: bold; font-size: 1.2em;" title="Lambda Function">λ</span> AWS Lambda</li>
+        <li><i class="fa-solid fa-database" style="color: #4053D6;"></i> Amazon DynamoDB</li>
+        <li><i class="fa-solid fa-bell" style="color: #e74c3c;"></i> Amazon SNS (Simple Notification Service)</li>
+      </ul>
+    </p>
+    <p class="lead">
+      <i class="fa-solid fa-user-cog"></i> 
+      <strong>Autor</strong>: Esteban Martins
+      <br />
+      <i class="fa-brands fa-github"></i><strong> Code: </strong>
+      <a class="custom-link" href="https://github.com/hokuto06/email-pipeline" target="_blank">github.com/hokuto06</a>
+      <br />
+      <i class="fa-solid fa-envelope"></i><strong> Mail: </strong>
+      <a class="custom-link" href="mailto:contacto@estebanmartins.com.ar" target="_blank">info@estebanmartins.com.ar</a>
+    </p>
+    <h3>Trigger – Recepción del correo</h3>
+    <p>
+      Cuando Amazon SES recibe un correo dirigido a <code>info@estebanmartins.com.ar</code>, se activa una 
+      <strong>Regla de Recepción (Receipt Rule)</strong>.
+    </p>
+    <p>
+      Esta regla ejecuta una acción de tipo <strong>S3</strong>, que almacena el correo en formato <em>raw MIME</em> (formato técnico 
+      del mensaje con encabezados y cuerpo completo) en un bucket S3.
+    </p>
+    <p>
+      Este bucket tiene configurado un evento que <strong>dispara automáticamente</strong> una función Lambda llamada 
+      <code>email_parser</code> cada vez que se sube un nuevo objeto.
+    </p>
+
+    <h3 id="lambda">Lambda – Procesamiento del correo</h3>
+    <p>
+      La función Lambda <code>email_parser</code> recibe el evento con información del nuevo archivo en S3:
+      el nombre del bucket y el <code>object.key</code>.
+    </p>
+    <ul>
+      <li>Recupera el contenido del correo con <code>get_object</code> de S3</li>
+      <li>Parsea el mensaje usando la librería <code>email</code> de Python</li>
+      <li>Extrae datos útiles como <strong>From</strong>, <strong>Subject</strong>, <strong>Date</strong> y <strong>To</strong></li>
+      <li>Guarda esos datos estructurados en una tabla de <strong>Amazon DynamoDB</strong> llamada <code>email_received</code></li>
+    </ul>
+
+    <h3 id="sns"> Notificación – SNS Topic</h3>
+    <p>
+      Luego de almacenar los datos en DynamoDB, la Lambda publica un mensaje en un <strong>topic de Amazon SNS</strong> 
+      llamado <code class="text-color-pink">alerta-email-recibido</code>.
+    </p>
+    <p>
+      Este topic envía una notificación automática por email (o cualquier otro protocolo) al administrador del sistema (yo 😉).
+    </p>
+
+  <img class="img-fluid" src="{% static 'assets/img/email_pipeline.png' %}" alt="..." />
+
+    <h2 id="summary" class="section-heading">Resumen del Pipeline</h2>
+    <p>
+      El pipeline completo funciona de la siguiente manera:
+    </p>
+    <pre><code>SES → S3 → Lambda → DynamoDB + SNS</code></pre>
+    <ul>
+      <li>El correo llega a SES y se almacena en S3</li>
+      <li>La función Lambda se activa al detectar un nuevo archivo</li>
+      <li>Lambda procesa el correo, extrae datos y los guarda en DynamoDB</li>
+      <li>Se envía una notificación por SNS al administrador de la cuenta de correo.</li>
+    </ul>
+    <p>
+      Todo esto ocurre de forma automática y sin necesidad de mantener servidores, aprovechando al máximo la 
+      <strong>arquitectura serverless de AWS</strong>.
+</article>
+
+
+    Placeholder text by
+    <a class="custom-link" href="https://github.com/hokuto06/email-pipeline/">Source Code</a>
+    &middot; Images by
+    <a class="custom-link" href="https://github.com/hokuto06/email-pipeline">Demo</a>
+
+
+{% endblock %}
