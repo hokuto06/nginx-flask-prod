@@ -1,4 +1,4 @@
-{% extends "base_projects" %}
+{% extends "base_projects.html" %}
 {% load static %}
 {% block header %}
   {% comment %} {% include "includes/projects-header.html" with title="Docker + Nginx + Flask" description="Plantilla de producción para apps Flask con Nginx y Docker" bg_image="assets/img/docker-project.png" %} {% endcomment %}
@@ -7,7 +7,7 @@
 {% block content %}
 <article>
   <section id="description">
-    <h3><i class="fa-brands fa-docker" style="color:#2496ed;" title="Docker"></i> Docker + Nginx + Flask – Plantilla de Producción</h3>
+    <h3>Docker + Nginx + Flask – Plantilla de Producción</h3>
     <p class="lead">
       Este proyecto es una plantilla lista para producción que integra <strong>Flask</strong> (Python), <strong>Nginx</strong> y <strong>Docker</strong> para desplegar aplicaciones web de manera eficiente, segura y escalable.
     </p>
@@ -41,7 +41,7 @@
   </section>
 
   <section id="features">
-    <h3><i class="fa-solid fa-star" style="color:#f7b731;" title="Características"></i> Características principales</h3>
+    <h3>Características principales</h3>
     <ul>
       <li>Despliegue rápido y reproducible de apps Flask en producción.</li>
       <li>Configuración lista para HTTPS con Certbot (Let’s Encrypt).</li>
@@ -54,7 +54,7 @@
   </section>
 
   <section id="usage">
-    <h3><i class="fa-solid fa-play" style="color:#28a745;" title="Uso"></i> Cómo usar</h3>
+    <h3>Cómo usar</h3>
     <ol>
       <li>Clona el repositorio:
         <pre><code>git clone https://github.com/hokuto06/nginx-flask-prod.git</code></pre>
@@ -69,7 +69,7 @@
   </section>
 
   <section id="structure">
-    <h3><i class="fa-solid fa-folder-tree" style="color:#4053D6;" title="Estructura"></i> Estructura del proyecto</h3>
+    <h3>Estructura del proyecto</h3>
     <pre><code>
 nginx-flask-prod/
 ├── app/                # Código fuente de la app Flask
@@ -83,7 +83,7 @@ nginx-flask-prod/
   </section>
 
   <section id="summary">
-    <h2 class="section-heading"><i class="fa-solid fa-clipboard-list"></i> Resumen del flujo</h2>
+    <h2 class="section-heading">Resumen del flujo</h2>
     <pre><code>Cliente → Nginx (SSL, estáticos, proxy) → Flask App → (DB opcional)</code></pre>
     <ul>
       <li>Nginx recibe las peticiones y sirve archivos estáticos o las reenvía a Flask.</li>
