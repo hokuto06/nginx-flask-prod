@@ -20,6 +20,7 @@
 
 :root {
   --navbar-height: 70px;
+  --color-text-muted: light-dark(var(--gray-6), var(--gray-5));
 }
 .navbar {
   --bs-navbar-padding-y: 0;
@@ -56,7 +57,7 @@ a, h1, h2, h3, h4, h5, h6 {
           <div class="collapse navbar-collapse" id="navbarResponsive">
               <ul class="navbar-nav ms-auto py-4 py-lg-0">
                   {% comment %} <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="index.html">Inicio</a></li> {% endcomment %}
-                  <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'me' %}">Yo</a></li>
+                  <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'me' %}">Sobre mí</a></li>
                   <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'projects' %}">Proyectos</a></li>
                   <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'blog' %}">Blog</a></li>
                   {% comment %} <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'contact' %}">Contacto</a></li> {% endcomment %}
