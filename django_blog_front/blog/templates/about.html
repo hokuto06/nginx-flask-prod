@@ -1,11 +1,41 @@
-{% extends "base.html" %}
+{% extends "base_projects.html" %}
 {% load static %}
 {% block header %}
-  {% include "includes/header.html" with title="Esteban Martins" created_at=none text_user_field=none user=none bg_image="assets/img/hero_background2.png" description="Network Engineer" %}
+  {% comment %} {% include "includes/header.html" with title="Esteban Martins" created_at=none text_user_field=none user=none bg_image="assets/img/hero_background2.png" description="Network Engineer" %} {% endcomment %}
 {% endblock %}
 
 {% block content %}
-<style>
+{% block styles %}
+<style type="text/css" rel="stylesheet">
+:root {
+  --skill-25: #c0392b;   /* Rojo para 25% */
+  --skill-50: #f39c12;   /* Naranja para 50% */
+  --skill-75: #2980b9;   /* Azul para 75% */
+  --skill-100: #27ae60;  /* Verde para 100% */
+}
+.skill-bar {
+  background-color: #e0e0e0;
+  border-radius: var(--border-radius);
+  height: 18px;
+  overflow: hidden;
+  margin-bottom: 0.5rem;
+}
+.skill-fill {
+  height: 100%;
+  color: #fff;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--border-radius);
+  transition: width 1s;
+  white-space: nowrap;
+}
+.skill-fill-25 { background: var(--skill-25); }
+.skill-fill-50 { background: var(--skill-50); }
+.skill-fill-75 { background: var(--skill-75); }
+.skill-fill-100 { background: var(--skill-100); }
+
 .body {
   background-color: #fdf9ee!important;
   font-family: 'Inter', sans-serif;
@@ -14,10 +44,18 @@
   font-family: var(--bs-font-family-heading);
   font-size: 2rem;
   margin-bottom: 1.5rem;
-  margin-top: 1.5rem;
+  margin-top: 4rem;
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  text-decoration: underline;
+}
+a {
+  text-decoration: underline;
+}
+
+.card-expreience {
+  margin-bottom: 2rem;
 }
 .resume-card {
   /*background: #fff;*/
@@ -25,11 +63,14 @@
   border-radius: var(--bs-border-radius);
   box-shadow: 0 2px 12px rgba(0,0,0,0.06);
   padding: 1rem;
-  margin-bottom: 2rem;
+  /*margin-bottom: 2rem;*/
   border:1px solid var(--color-border-card)
 }
 @media (prefers-color-scheme: dark) {
   .resume-card { background: #23272b; color: #f1f1f1; }
+}
+.resume-item {
+  margin-bottom: 1.5rem;
 }
 .resume-item h4 {
   font-family: var(--bs-font-family-heading);
@@ -41,11 +82,86 @@
   color: var(--primary-light);
   margin-bottom: 0.5rem;
 }
-</style>
 
+.about-layout {
+  display: flex;
+  gap: 2rem;
+  align-items: flex-start;
+}
+
+
+
+@media (max-width: 1200px) {
+  .belief-box {
+    display: none;
+  }
+  .about-layout {
+    display: block;
+  }
+}
+
+/* Blockquote */
+:root {
+  --color-text-muted: light-dark(var(--gray-6), var(--gray-5));
+  --primary-light-rgb: 53, 118, 184;
+  --primary-rgb: 149, 154, 248;
+  --color-border-blockquote: light-dark(
+    rgba(var(--primary-light-rgb), 0.8),
+    rgba(var(--primary-rgb), 1)
+  );
+}
+.blockquote {
+  padding: 1rem;
+  margin: 1.5rem 0;
+  border: 1px solid var(--color-border-blockquote);
+  border-radius: var(--border-radius);
+  background: var(--color-background-blockquote);
+  color: var(--color-text-emphasized);
+  font-size: 1rem;
+  line-height: 1.6;
+  font-weight: 400;
+
+  > * {
+    margin-top: 0;
+  }
+
+  *:last-child {
+    margin-bottom: 0;
+  }
+
+  ul {
+    margin-top: 1.5rem;
+  }
+
+  strong {
+    text-decoration-line: underline;
+    text-decoration-thickness: 2px;
+    font-weight: 700;
+  }
+
+  &.quotation {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 0;
+    border-left: 12px solid var(--color-border);
+    background: transparent;
+    padding: 0 1rem;
+
+    cite {
+      display: block;
+      margin-top: 1rem;
+      text-align: right;
+      font-size: 1rem;
+      font-family: var(--font-family);
+    }
+  }
+}
+</style>
+{% endblock %}
 <section id="about-summary">
   <div class="section-title">
-    <i class="fa-solid fa-user-tie" style="color:#0085A1;"></i> Sobre mí
+    Sobre mí
   </div>
   <div class="resume-card resume-item">
     <p>
@@ -66,144 +182,147 @@
     </ul>
   </div>
 </section>
-
+<!-- section skills-->
 <section id="skills">
   <div class="section-title">
-    <i class="fa-solid fa-screwdriver-wrench" style="color:#28a745;"></i> Skills
+    Skills
   </div>
   <div class="row">
-    <div class="col-12 col-md-6">
-      <div class="resume-card">
-        <div class="skill mb-4">
+    <div id="onprem-network" class="col-12 col-md-6 mb-4">
+      <div class="resume-card" style="border-radius: var(--border-radius);">
+        <span style="color: var(--color-text-muted); display: block; font-size: 14px; margin-bottom: .5rem;">Onprem Network</span>
+        <div class="skill mb-3">
           <div class="d-flex align-items-center mb-1">
-            <i class="fa-brands fa-linux me-2"></i>
-            <span class="fw-bold">Linux</span>
+            <i class="fa-solid fa-network-wired  me-2"></i>
+            <span class="fw-bold">VLANs y Switching	[L2]</span>
           </div>
-          <div class="progress" style="height: 18px;">
-            <div class="progress-bar text-primary" role="progressbar" style="width: 75%;" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">90%</div>
+          <div class="skill-bar" style="border-radius: var(--border-radius);">
+            <div class="skill-fill skill-fill-100" data-percent="90" style="width: 90%; border-radius: var(--border-radius);">90%</div>
           </div>
         </div>
-        <div class="skill mb-4">
+        <div class="skill mb-3">
+          <div class="d-flex align-items-center mb-1">
+            <i class="fa-solid fa-network-wired me-2"></i>
+            <span class="fw-bold">Routing</span>
+          </div>
+          <div class="skill-bar" style="border-radius: var(--border-radius);">
+            <div class="skill-fill skill-fill-75" data-percent="80" style="width: 80%; border-radius: var(--border-radius);">80%</div>
+          </div>
+        </div>
+        <div class="skill mb-3">
+          <div class="d-flex align-items-center mb-1">
+            <i class="fa-solid fa-wifi me-2"></i>
+            <span class="fw-bold">Wireless</span>
+          </div>
+          <div class="skill-bar" style="border-radius: var(--border-radius);">
+            <div class="skill-fill skill-fill-100" data-percent="85" style="width: 85%; border-radius: var(--border-radius);">85%</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="Administration" class="col-12 col-md-6 mb-4">
+      <div class="resume-card" style="border-radius: var(--border-radius);">
+        <span style="color: var(--color-text-muted); display: block; font-size: 14px; margin-bottom: .5rem;">Administración</span>
+        <div class="skill mb-3">
+          <div class="d-flex align-items-center mb-1">
+            <i class="fa-brands fa-linux me-2"></i>
+            <span class="fw-bold">Linux Services</span>
+          </div>
+          <div class="skill-bar" style="border-radius: var(--border-radius);">
+            <div class="skill-fill skill-fill-75" data-percent="85" style="width: 85%; border-radius: var(--border-radius);">85%</div>
+          </div>
+        </div>
+        <div class="skill mb-3">
+          <div class="d-flex align-items-center mb-1">
+            <i class="fa-solid fa-server me-2"></i>
+            <span class="fw-bold">Virtualización</span>
+          </div>
+          <div class="skill-bar" style="border-radius: var(--border-radius);">
+            <div class="skill-fill skill-fill-50" data-percent="65" style="width: 65%; border-radius: var(--border-radius);">65%</div>
+          </div>
+        </div>
+        <div class="skill mb-3">
+          <div class="d-flex align-items-center mb-1">
+            <i class="fa-solid fa-shield-halved me-2"></i>
+            <span class="fw-bold">Firewall</span>
+          </div>
+          <div class="skill-bar" style="border-radius: var(--border-radius);">
+            <div class="skill-fill skill-fill-50" data-percent="45" style="width: 45%; border-radius: var(--border-radius);">45%</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="programming" class="col-12 col-md-6 mb-4">
+      <div class="resume-card" style="border-radius: var(--border-radius);">
+        <span style="color: var(--color-text-muted); display: block; font-size: 14px; margin-bottom: .5rem;">Programming</span>
+        <div class="skill mb-3">
           <div class="d-flex align-items-center mb-1">
             <i class="fa-brands fa-python me-2"></i>
             <span class="fw-bold">Python</span>
           </div>
-          <div class="progress" style="height: 18px;">
-            <div class="progress-bar text-warning" role="progressbar" style="width: 50%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">80%</div>
+          <div class="skill-bar" style="border-radius: var(--border-radius);">
+            <div class="skill-fill skill-fill-75" data-percent="70" style="width: 70%; border-radius: var(--border-radius);">90%</div>
           </div>
         </div>
-        <div class="skill mb-4">
+        <div class="skill mb-3">
           <div class="d-flex align-items-center mb-1">
-            <i class="fa-solid fa-network-wired me-2"></i>
-            <span class="fw-bold">Networking</span>
+            <i class="fa-brands fa-html5 me-2"></i>
+            <span class="fw-bold">HTML/CSS</span>
           </div>
-          <div class="progress" style="height: 18px;">
-            <div class="progress-bar text-primary" role="progressbar" style="width: 75%;" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">85%</div>
+          <div class="skill-bar" style="border-radius: var(--border-radius);">
+            <div class="skill-fill skill-fill-25" data-percent="35" style="width: 35%; border-radius: var(--border-radius);">35%</div>
+          </div>
+        </div>
+        <div class="skill mb-3">
+          <div class="d-flex align-items-center mb-1">
+            <i class="fa-brands fa-js  me-2"></i>
+            <span class="fw-bold"> Jvascript</span>
+          </div>
+          <div class="skill-bar" style="border-radius: var(--border-radius);">
+            <div class="skill-fill skill-fill-25" data-percent="25" style="width: 25%; border-radius: var(--border-radius);">25%</div>
           </div>
         </div>
       </div>
     </div>
-    <div class="col-12 col-md-6">
-      <div class="resume-card">
-        <div class="skill mb-4">
+    <div id="Vendors" class="col-12 col-md-6 mb-4">
+      <div class="resume-card" style="border-radius: var(--border-radius);">
+        <span style="color: var(--color-text-muted); display: block; font-size: 14px; margin-bottom: .5rem;">DevOps</span>
+        <div class="skill mb-3">
           <div class="d-flex align-items-center mb-1">
             <i class="fa-brands fa-aws me-2"></i>
-            <span class="fw-bold">AWS</span>
+            <span class="fw-bold">Cloud [aws]</span>
           </div>
-          <div class="progress" style="height: 18px;">
-            <div class="progress-bar text-warning" role="progressbar" style="width: 50%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">75%</div>
+          <div class="skill-bar" style="border-radius: var(--border-radius);">
+            <div class="skill-fill skill-fill-50" data-percent="55" style="width: 55%; border-radius: var(--border-radius);">55%</div>
           </div>
         </div>
-        <div class="skill mb-4">
+        <div class="skill mb-3">
           <div class="d-flex align-items-center mb-1">
             <i class="fa-brands fa-docker me-2"></i>
             <span class="fw-bold">Docker</span>
           </div>
-          <div class="progress" style="height: 18px;">
-            <div class="progress-bar text-warning" role="progressbar" style="width: 50%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">70%</div>
+          <div class="skill-bar" style="border-radius: var(--border-radius);">
+            <div class="skill-fill skill-fill-50" data-percent="63" style="width: 63%; border-radius: var(--border-radius);">63%</div>
           </div>
         </div>
-        <div class="skill mb-4">
+        <div class="skill mb-3">
           <div class="d-flex align-items-center mb-1">
-            <i class="fa-solid fa-shield-halved me-2"></i>
-            <span class="fw-bold">Seguridad</span>
+            <i class="fa-brands fa-git-alt me-2"></i>
+            <span class="fw-bold">Git</span>
           </div>
-          <div class="progress" style="height: 18px;">
-            <div class="progress-bar text-primary" role="progressbar" style="width: 65%;" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100">65%</div>
+          <div class="skill-bar" style="border-radius: var(--border-radius);">
+            <div class="skill-fill skill-fill-25" data-percent="33" style="width: 33%; border-radius: var(--border-radius);">33%</div>
           </div>
         </div>
       </div>
-    </div>
+    </div>    
   </div>
-  <div class="row">
-    <div class="col-12 col-md-6">
-      <div class="resume-card">
-        <div class="skill mb-4">
-          <div class="d-flex align-items-center mb-1">
-            <i class="fa-brands fa-linux me-2"></i>
-            <span class="fw-bold">Linux</span>
-          </div>
-          <div class="progress" style="height: 18px;">
-            <div class="progress-bar bg-success" role="progressbar" style="width: 90%;" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100">90%</div>
-          </div>
-        </div>
-        <div class="skill mb-4">
-          <div class="d-flex align-items-center mb-1">
-            <i class="fa-brands fa-python me-2"></i>
-            <span class="fw-bold">Python</span>
-          </div>
-          <div class="progress" style="height: 18px;">
-            <div class="progress-bar bg-info" role="progressbar" style="width: 80%;" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100">80%</div>
-          </div>
-        </div>
-        <div class="skill mb-4">
-          <div class="d-flex align-items-center mb-1">
-            <i class="fa-solid fa-network-wired me-2"></i>
-            <span class="fw-bold">Networking</span>
-          </div>
-          <div class="progress" style="height: 18px;">
-            <div class="progress-bar bg-primary" role="progressbar" style="width: 85%;" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100">85%</div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col-12 col-md-6">
-      <div class="resume-card">
-        <div class="skill mb-4">
-          <div class="d-flex align-items-center mb-1">
-            <i class="fa-brands fa-aws me-2"></i>
-            <span class="fw-bold">AWS</span>
-          </div>
-          <div class="progress" style="height: 18px;">
-            <div class="progress-bar bg-warning" role="progressbar" style="width: 75%;" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">75%</div>
-          </div>
-        </div>
-        <div class="skill mb-4">
-          <div class="d-flex align-items-center mb-1">
-            <i class="fa-brands fa-docker me-2"></i>
-            <span class="fw-bold">Docker</span>
-          </div>
-          <div class="progress" style="height: 18px;">
-            <div class="progress-bar bg-info" role="progressbar" style="width: 70%;" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100">70%</div>
-          </div>
-        </div>
-        <div class="skill mb-4">
-          <div class="d-flex align-items-center mb-1">
-            <i class="fa-solid fa-shield-halved me-2"></i>
-            <span class="fw-bold">Seguridad</span>
-          </div>
-          <div class="progress" style="height: 18px;">
-            <div class="progress-bar bg-danger" role="progressbar" style="width: 65%;" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100">65%</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>  
 </section>
+<!-- End Skills section -->
 
 <section id="experiencia">
   <div class="section-title">
-    <i class="fa-solid fa-briefcase" style="color:#4053D6;"></i> Experiencia profesional
+    Experiencia profesional
   </div>
   <div class="resume-card resume-item">
     <h4><i class="fa-solid fa-network-wired"></i> Network Engineer | Project leader</h4>
@@ -247,10 +366,12 @@
 document.addEventListener("DOMContentLoaded", function () {
   document.querySelectorAll('.skill-fill').forEach(fill => {
     const percent = fill.dataset.percent;
-    setTimeout(() => {
-      fill.style.width = percent + '%';
-      fill.textContent = percent + '%';
-    }, 300);
+    if (percent) {
+      setTimeout(() => {
+        fill.style.width = percent + '%';
+        fill.textContent = percent + '%';
+      }, 300);
+    }
   });
 });
 </script>

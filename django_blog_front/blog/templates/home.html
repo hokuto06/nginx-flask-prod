@@ -1,9 +1,9 @@
-{% extends "base.html" %}
+{% extends "base_projects.html" %}
 {% load static %}
 
 {% block header %}
 
-{% include "includes/header.html" with bg_image="assets/img/image_home.jpg" title="Hola, soy Esteban" description="Acá comparto proyectos, herramientas y  algunas experiencias en mi carrera.<br><br>" created_at=none text_user_field=none user=none%}
+{% comment %} {% include "includes/header.html" with bg_image="assets/img/image_home.jpg" title="Hola, soy Esteban" description="Acá comparto proyectos, herramientas y  algunas experiencias en mi carrera.<br><br>" created_at=none text_user_field=none user=none%} {% endcomment %}
 
 {% endblock %}
 
@@ -23,9 +23,11 @@
     <p>Una de las habilidades mas dificiles de poder demostrar sobre mi, es mi capacidad de aprender
         nuevas tecnologias, uso de herramientas y adaptarme.
         Documentar y organizar la informacion, es otra de las habilidades que tambien es dificil de demostrar 
-        y es algo que estuve poniendo en practica a lo largo del desarrollo de este proyecto.</p>
-    <p>Pero tambien para comenzar a documentar mi aprendijze y practicas.</p>
-            <p>Como puedes ver en</p><a href="#hero">
+        y es algo que estuve poniendo en practica a lo largo del desarrollo de este proyecto.
+    </p>
+    <p>Pero tambien para comenzar a documentar mi aprendijze y practicas.
+    </p>
+    <span>Como puedes ver en</span><a href="#hero"></a>
 <p class="post-meta">
     Publicado por <strong>api/django </strong>
 </p>

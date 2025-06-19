@@ -14,45 +14,37 @@
     <link href="https://fonts.googleapis.com/css2?family=Gabarito:wght@400;700&family=Inter:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
     <link href="{% static 'css/styles.css' %}" rel="stylesheet" />
-<style>/*
-.btn-success {
-  display: inline-block;
-  padding: 12px 24px;
-  background-color: #1f7d75;
-  color: white;
-  font-weight: 600;
-  font-size: 16px;
-  border: none;
-  border-radius: 6px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  text-decoration: none;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-}
-
-.btn-success:hover {
-  background-color: #18665f;
-  transform: translateY(-1px);
-  text-decoration: none;
-}
-
-.btn-success:active {
-  transform: translateY(1px);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-  header.masthead .page-heading h1, header.masthead .page-heading .h1,
-  header.masthead .site-heading h1,
-  header.masthead .site-heading .h1 {
-    font-size: 4rem; 
-  }*/
-</style>  
 {% block styles %}
 {% endblock %}
+<style type="text/css">
+
+:root {
+  --navbar-height: 70px;
+}
+.navbar {
+  --bs-navbar-padding-y: 0;
+}
+.main-wrapper{
+  padding-top: var(--navbar-height);
+}
+.belief-box {
+  border-left: 1px solid var(--beige-3);
+  padding: 0;
+  padding-left: 1.5rem;
+  font-style: italic;
+  color: var(--color-text-muted);
+  max-width: 350px;
+  min-width: 220px;
+  margin-top: 8rem;
+}
+</style>
 </head>
 
 <body>
   <!-- Navigation-->
-  <nav class="navbar navbar-expand-lg navbar-light" id="mainNav">
-      <div class="container px-4 px-lg-5">
+
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+      <div class="container" style="border-bottom: 1px solid var(--beige-3);">
           <a class="navbar-brand" href="{% url 'Home' %}">Home</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
               Menu
@@ -61,10 +53,10 @@
           <div class="collapse navbar-collapse" id="navbarResponsive">
               <ul class="navbar-nav ms-auto py-4 py-lg-0">
                   {% comment %} <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="index.html">Inicio</a></li> {% endcomment %}
-                  <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'blog' %}">Blog</a></li>
                   <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'me' %}">Yo</a></li>
                   <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'projects' %}">Proyectos</a></li>
-                  <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'contact' %}">Contacto</a></li>
+                  <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'blog' %}">Blog</a></li>
+                  {% comment %} <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'contact' %}">Contacto</a></li> {% endcomment %}
                   {% if request.session.token %}
                   <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" data-bs-toggle="modal" data-bs-target="#logoutModal" href="{% url 'logout' %}">Logout</a></li>
                   <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4">{{ request.session.user_name }}</a></li>
@@ -76,20 +68,38 @@
           </div>
       </div>
   </nav>
+  </div>
+        </div>
+    </div>
+  </header>
+  <!-- Masthead-->
     {% block header %}
 
     {% endblock %}
 
-  <main class="mb-4">
-    <div class="container px-4 px-lg-5">
-      <div class="row gx-4 gx-lg-5 justify-content-center">
-        <div class="col-md-10 col-lg-8 col-xl-7" id="post-list">
+  <main class="mb-4 main-wrapper">
+    <div class="container">
+      <div class="row  justify-content-between">
+        <!-- Bloque principal: 8 columnas en desktop, 12 en mobile -->
+        <div class="col-12 col-lg-7">
         {% block content %}
 
         {% endblock %}
         </div>
-      </div>
-    </div>
+            <div class="col-12 col-lg-4">
+              <aside class="belief-box">   
+                <em>
+                  <strong>Disclaimer.</strong> Creo en la empatía. Creo en la colaboración.<br>
+                  Todos somos bienvenidos aquí, sin importar de dónde vengas o tu experiencia.<br>
+                  ¡Sigue adelante con tu mejor versión!
+                  <br><br>
+                  — Esteban Martins
+                </em>
+              </aside>
+            </div>
+          </div>
+        </div>
+
   </main>
   <!-- Footer-->
   <footer class="border-top">
@@ -187,7 +197,7 @@
   <!-- Bootstrap core JS-->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
   <!-- Core theme JS-->
-  <script src="{% static 'js/scripts.js' %}"></script>
+  {% comment %} <script src="{% static 'js/scripts.js' %}"></script> {% endcomment %}
 
   <script>
     /**

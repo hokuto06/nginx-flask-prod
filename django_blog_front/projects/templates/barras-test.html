@@ -1,0 +1,151 @@
+<style>
+#skills-cards-row {
+  max-width: 900px;
+  margin: 0 auto 40px auto;
+  padding: 40px 20px;
+}
+.skill-card {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  padding: 28px 22px 18px 22px;
+  margin-bottom: 32px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+@media (prefers-color-scheme: dark) {
+  .skill-card {
+    background: #23272b;
+    color: #f1f1f1;
+  }
+}
+.skill {
+  margin-bottom: 28px;
+}
+.skill:last-child {
+  margin-bottom: 0;
+}
+.skill-title {
+  font-weight: bold;
+  margin-bottom: 6px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.skill-bar {
+  background: #eee;
+  height: 22px;
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+}
+.skill-fill {
+  background: var(--accent-color, #0085A1);
+  height: 100%;
+  width: 0;
+  border-radius: 12px;
+  transition: width 1.2s cubic-bezier(.4,2,.6,1);
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 12px;
+  color: #fff;
+  font-weight: 600;
+  font-size: 13px;
+}
+.skill-desc {
+  font-size: 14px;
+  margin-top: 6px;
+  color: #444;
+}
+.info-icon {
+  font-size: 15px;
+  color: #666;
+  cursor: help;
+}
+</style>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  document.querySelectorAll('.skill-fill').forEach(fill => {
+    const percent = fill.dataset.percent;
+    setTimeout(() => {
+      fill.style.width = percent + '%';
+      fill.textContent = percent + '%';
+    }, 300);
+  });
+});
+</script>
+
+<div id="skills-cards-row" class="row">
+  <div class="col-12 col-md-6">
+    <div class="skill-card">
+      <div class="skill">
+        <div class="skill-title">
+          Linux
+          <i class="fa-solid fa-circle-info info-icon" title="Administración de sistemas, scripting Bash, hardening de servidores."></i>
+        </div>
+        <div class="skill-bar">
+          <div class="skill-fill" data-percent="90"></div>
+        </div>
+        <div class="skill-desc"></div>
+      </div>
+      <div class="skill">
+        <div class="skill-title">
+          Python
+          <i class="fa-solid fa-circle-info info-icon" title="Automatización, scripting, integración de APIs, desarrollo de herramientas CLI."></i>
+        </div>
+        <div class="skill-bar">
+          <div class="skill-fill" data-percent="80"></div>
+        </div>
+        <div class="skill-desc"></div>
+      </div>
+      <div class="skill">
+        <div class="skill-title">
+          Networking
+          <i class="fa-solid fa-circle-info info-icon" title="Diseño, implementación y troubleshooting de redes LAN/WAN/WLAN, VLAN, routing, switching."></i>
+        </div>
+        <div class="skill-bar">
+          <div class="skill-fill" data-percent="85"></div>
+        </div>
+        <div class="skill-desc"></div>
+      </div>
+    </div>
+  </div>
+  <div class="col-12 col-md-6">
+    <div class="skill-card">
+      <div class="skill">
+        <div class="skill-title">
+          AWS
+          <i class="fa-solid fa-circle-info info-icon" title="Despliegue y administración de servicios en la nube, automatización con CloudFormation y Lambda."></i>
+        </div>
+        <div class="skill-bar">
+          <div class="skill-fill" data-percent="75"></div>
+        </div>
+        <div class="skill-desc"></div>
+      </div>
+      <div class="skill">
+        <div class="skill-title">
+          Docker
+          <i class="fa-solid fa-circle-info info-icon" title="Contenerización de aplicaciones, creación de imágenes, orquestación básica."></i>
+        </div>
+        <div class="skill-bar">
+          <div class="skill-fill" data-percent="70"></div>
+        </div>
+        <div class="skill-desc"></div>
+      </div>
+      <div class="skill">
+        <div class="skill-title">
+          Seguridad
+          <i class="fa-solid fa-circle-info info-icon" title="Hardening, firewalls, gestión de accesos, monitoreo y respuesta a incidentes."></i>
+        </div>
+        <div class="skill-bar">
+          <div class="skill-fill" data-percent="65"></div>
+        </div>
+        <div class="skill-desc"></div>
+      </div>
+    </div>
+  </div>
+</div>
