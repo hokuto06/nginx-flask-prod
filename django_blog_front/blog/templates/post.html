@@ -1,45 +1,52 @@
-{% extends "base.html" %}
+{% extends "base-blog.html" %}
 {% load static %}
 {% block header %}
 
-{% include "includes/header.html" with title=post.title created_at=post.created_at text_user_field="Publicado por " user=post.user.username bg_image=post.miniature_url description=post.description %}
+{% include "includes/header-blog.html" with title=post.title created_at=post.created_at text_user_field="Publicado por " user=post.user.username bg_image=post.miniature_url description=post.description %}
 
 {% endblock%}
 
 {% block content %}
   <article>
-    <div class="container">
-      <div class="row">
-        {% comment %} <div class="col-md-10 mx-auto"> {% endcomment %}
-          {{ post.content | safe }}
-          {% if request.session.token and post.user.email == request.session.email %}
-          <br>
-          <a type="button" class="btn  btn-warning" href="{% url 'edit_post' post.slug %}" >Editar</a>
-          <form action="{% url 'delete_post' post.slug %}" method="post" style="display:inline;">
-            {% csrf_token %}
-            <button type="submit" class="btn btn-danger" onclick="return confirm('Eliminar este post?');">
-              Eliminar
-            </button>
-          </form>  
-          {% endif %}
-          <br>
-          <h3>Comentarios</h3>
-         {% for comment in comments %}
-          <div class="mb-3 border-bottom pb-2">
-            <strong>{{ comment.user.username }}</strong>
-            <small class="text-muted"> — {{ comment.created_at|date:"d/m/Y H:i" }}</small>
-            <p>{{ comment.content }}</p>
-          </div>
-          {% empty %}
-          <p>No hay comentarios aún.</p>
-          {% endfor %}
-          <br>
-          <form id="comment-form">
-            <textarea id="comment-content" class="form-control mb-2" rows="3" placeholder="Comentar..." required></textarea>
-            <button type="submit" class="btn btn-primary">Enviar</button>
-          </form>
-        {% comment %} </div> {% endcomment %}
+    <header class="m-post-header">
+      <h1 data-controller="blog-title" data-action="dblclick->blog-title#highlight" class="m-post-header__title">{{ post.title }}</h1>
+      <div class="m-post-header__author">
+        Por 
+        <a href="https://estebanmartins.com.ar" rel="author">{{ post.user.username }} </a>
       </div>
-    </div>
+      <div class="m-post-header__meta">
+        Publicado 
+        <time datetime="{{ post.created_at|date:'c' }}"> {{ post.created_at|slice:":16"|cut:"T"|cut:"Z"|slice:"10"  }}</time>
+        En 
+        <a href="">{{ post.category }}</a>
+      </div>
+    </header>
+    {{ post.content | safe }}
+    {% if request.session.token and post.user.email == request.session.email %}
+      <br>
+      <a type="button" class="btn  btn-warning" href="{% url 'edit_post' post.slug %}" >Editar</a>
+      <form action="{% url 'delete_post' post.slug %}" method="post" style="display:inline;">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger" onclick="return confirm('Eliminar este post?');">
+          Eliminar
+        </button>
+      </form>  
+      {% endif %}
+      <br>
+      <h3>Comentarios</h3>
+      {% for comment in comments %}
+      <div class="mb-3 border-bottom pb-2">
+        <strong>{{ comment.user.username }}</strong>
+        <small class="text-muted"> — {{ comment.created_at|date:"d/m/Y H:i" }}</small>
+        <p>{{ comment.content }}</p>
+      </div>
+      {% empty %}
+      <p>No hay comentarios aún.</p>
+      {% endfor %}
+      <br>
+      <form id="comment-form">
+        <textarea id="comment-content" class="form-control mb-2" rows="3" placeholder="Comentar..." required></textarea>
+        <button type="submit" class="btn btn-primary">Enviar</button>
+      </form>
   </article>
 {% endblock %}
