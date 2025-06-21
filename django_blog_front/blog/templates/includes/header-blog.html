@@ -1,0 +1,33 @@
+{% load static %}
+<header class="l-site-header">
+    <figure id="site-photo-figure" data-controller="site-photos" data-action="mouseenter-&gt;site-photos#preloadPhotos" class="site-photo">
+        <a href="" class="site-photo__hero-link">
+            <picture>
+                {% if post.miniature_url %}
+                    <source srcset="{{ post.miniature_url }}" media="(min-width: 1024px)">
+                {% elif bg_image %}
+                    <source srcset="{% static bg_image %}" media="(min-width: 1024px)">
+                {% else %}
+                    <source srcset="{% static 'assets/img/home_bg_library2.jpg' %}" media="(min-width: 1024px)">
+                {% endif %}
+                <img data-rel="238" fetchpriority="high" loading="eager" alt="Ben Nadel at the New York ColdFusion User Group (Nov. 2009) with: Pete Freitag" class="site-photo__hero-image">
+            </picture>
+        </a>
+        <figcaption class="site-photo__caption">
+            <span class="site-photo__caption__description">
+                Este es el blog de:  
+            </span>
+            <span class="site-photo__caption__item">
+                <a href="http://estebanmartins.com.ar" target="_blank" rel="noopener">Esteban Martins</a>
+            </span>
+        </figcaption>
+        {% comment %} <div class="site-photo__nav">
+            <a href="/?site-photo=237" data-action="focus-&gt;site-photos#preloadPhotos" data-site-photos-target="prevLink" data-image-src="https://bennadel-cdn.com/images/header/photos/ruslan_sivak.jpg?v=2023.07.04.11.24" rel="nofollow" class="site-photo__prev prev">
+                ← <span>Previous Photo</span>
+            </a>
+            <a href="/?site-photo=239" data-action="focus-&gt;site-photos#preloadPhotos" data-site-photos-target="nextLink" data-image-src="https://bennadel-cdn.com/images/header/photos/clark_valberg_javier_julio.jpg?v=2023.07.04.11.24" rel="nofollow" class="site-photo__next next">
+                <span>Next Photo</span> →
+            </a>
+        </div> {% endcomment %}
+    </figure>
+</header>

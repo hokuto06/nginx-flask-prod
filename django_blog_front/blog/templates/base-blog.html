@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="es">
+  {% load static %}
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Blog</title>
+    <link rel="icon" type="image/x-icon" href="{% static 'assets/favicon.ico' %}" />
+    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+    <link href="{% static 'css/main.css' %}" rel="stylesheet" />
+    <link href="{% static 'css/blog.css' %}" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;700&display=swap" rel="stylesheet" />
+    {% block styles %}
+    {% endblock %}
+    <style type="text/css" rel="stylesheet">
+      html {
+        height: 100%; /* Asegura que el html ocupe el 100% de la altura del viewport */
+      }
+
+      body {
+        display: flex; /* Habilita Flexbox en el body */
+        flex-direction: column; /* Organiza los elementos hijos en una columna */
+        min-height: 100%; /* Asegura que el body tenga al menos el 100% de la altura */
+        margin: 0; /* Elimina márgenes predeterminados del body */
+        padding: 0; /* Elimina rellenos predeterminados del body */
+      }
+
+      .l-site-body {
+        flex-grow: 1; /* Permite que este elemento se expanda y ocupe el espacio disponible */
+        padding-bottom: 50px; /* Mantén tu padding-bottom existente si es necesario para el espaciado del contenido */
+      }
+    </style>
+  </head>
+  <body class="standard">
+    <!-- Navbar -->
+    <div 			id="primary-navigation"
+			data-controller="nav click-outside"
+			data-action="click-outside:click->nav#close"
+			data-nav-open-class="open" class="m-sl-nav-bar m-sl-nav-bar--no-photo">
+      <div class="m-sl-nav-bar__wrapper">
+        <a class="m-sl-nav-bar__logo" href="{% url 'Home' %}">Esteban Martins . com</a>
+        <button data-action="nav#toggleMenu" class="ds-text-button m-sl-nav-bar__toggle">
+					Menú
+				</button>
+        <nav class="m-sl-nav-bar__nav" id="navbarResponsive">
+          <ul class="m-sl-nav-bar__items">
+            <li class="m-sl-nav-bar__item"><a class="m-sl-nav-bar__link" href="{% url 'me' %}">Sobre mí</a></li>
+            <li class="m-sl-nav-bar__item"><a class="m-sl-nav-bar__link" href="{% url 'projects' %}">Proyectos</a></li>
+            <li class="m-sl-nav-bar__item"><a class="m-sl-nav-bar__link" href="{% url 'blog' %}">Blog</a></li>
+            {% if request.session.token %}
+              <li class="m-sl-nav-bar__item"><a class="m-sl-nav-bar__link" href="{% url 'logout' %}" data-bs-toggle="modal" data-bs-target="#logoutModal">Logout</a></li>
+              <li class="m-sl-nav-bar__item"><a class="m-sl-nav-bar__link">{{ request.session.user_name }}</a></li>
+            {% else %}
+              <li class="m-sl-nav-bar__item"><a class="m-sl-nav-bar__link" href="{% url 'login' %}" data-bs-toggle="modal" data-bs-target="#loginModal">Login</a></li>
+            {% endif %}
+            <li class="m-sl-nav-bar__item m-sl-nav-bar__themer" data-controller="nav-theme">
+              <button data-theme="light" data-action="nav-theme#setTheme" tabindex="-1" class="m-sl-nav-bar__theme">Light Ui</button>
+              <button data-theme="dark" data-action="nav-theme#setTheme" tabindex="-1" class="m-sl-nav-bar__theme">Dark Ui</button>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+    {% block header %}
+    {% endblock %}
+    <!-- Contenido principal -->
+    <div id="site-content" class="l-site-body">
+      <div class="l-site-body__content content">
+        <main id="main-content">
+          <article>
+          {% block content %}
+          {% endblock %}
+          </article>
+        </main>
+      </div>
+      <div class="l-site-body__aside">
+        <figure class="m-love">   
+          <blockquote class="m-love__copy">
+            A lo largo de mi carrera he aprendido que la tecnología es una herramienta poderosa para resolver problemas y mejorar la vida de las personas.<br>
+            Creo en la importancia de la ética en la tecnología y en el desarrollo de soluciones que sean accesibles y sostenibles.<br>
+            Creo en la educación continua y en el aprendizaje compartido<br>
+            Creo en la empatía y también creo en la colaboración.<br>
+            Creo en la innovación responsable y en el poder de la comunidad para impulsar cambios.<br><br>
+          </blockquote>
+          <figcaption class="m-love__caption">
+            —
+            <a href="{% url 'me' %}" title="Esteban Martins." class="m-love__author"> Esteban Martins</a>
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+    <footer class="l-site-footer">
+      <small>
+        <span class="copyright">
+        Esteban Martins © 2025.
+        </span>
+        <a href="#primary-navigation" class="back-to-top">
+          Back to Top
+        </a>
+      </small>
+      <section class="epilogue">
+        <div class="mini-resume">
+          <div class="title"> Sobre Esteban Martins</div>
+          
+          <div class="bio">
+              Soy un profesional con más de 10 años de experiencia en el área de IT, especializado en la administración de redes y la automatización de procesos.
+          </div>
+          <div class="links">
+            <div class="links__title"> Links a mis redes</div>
+            <ul class="links__items">
+              <li class="links__item"><a class="links__link" href="https://www.linkedin.com/in/esteban-martins-816b9837/"></a>Linkedin</li>
+              <li class="links__item"><a class="links__link" href="https://gitlab.com/hokuto06/">Github</a></li>
+              <li class="links__item"><a class="links__link" href="https://github.com/hokuto06">Gitlab</a></li>
+            </ul>
+          </div>
+        </div>
+      </section>
+    </footer>
+
+    <!-- Bootstrap core JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+document.querySelectorAll('.m-sl-nav-bar__theme').forEach(btn => {
+  btn.addEventListener('click', function() {
+    const theme = this.getAttribute('data-theme');
+    document.documentElement.setAttribute('data-theme', theme);
+    // Opcional: guardá la preferencia en localStorage
+    localStorage.setItem('theme', theme);
+  });
+});
+
+// Al cargar la página, aplicá el tema guardado
+const savedTheme = localStorage.getItem('theme');
+if (savedTheme) {
+  document.documentElement.setAttribute('data-theme', savedTheme);
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  const toggleBtn = document.querySelector('.m-sl-nav-bar__toggle');
+  const navMenu = document.getElementById('navbarResponsive');
+  if (toggleBtn && navMenu) {
+    toggleBtn.addEventListener('click', function() {
+      navMenu.classList.toggle('open');
+    });
+  }
+});
+</script>    
+  </body>
+</html>
