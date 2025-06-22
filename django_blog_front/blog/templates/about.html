@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block header %}
-  {% include "includes/header-blog.html" with title="Sobre mí" created_at="" text_user_field="Publicado por " user="Esteban Martins" bg_image="assets/img/hero_background2.png" description="Conoce más sobre mi experiencia y habilidades." %}
+  {% include "includes/header-blog.html" with title="Sobre mí" created_at="" text_user_field="Publicado por " user="Esteban Martins" bg_image="assets/img/hero_background2.webp" description="Conoce más sobre mi experiencia y habilidades." %}
 {% endblock %}
 
 {% block content %}
@@ -29,17 +29,20 @@
     </p>
   </aside>
 
-  <h1>Experiencia Profesional</h1>
+  <h2>Experiencia Profesional</h2>
   <p>
     A lo largo de mi carrera, he trabajado en diversas empresas y proyectos que me han permitido adquirir una amplia experiencia en el campo de la tecnología y la administración de redes.
     Aquí te presento un resumen de mi trayectoria profesional:
   </p>
 
   <aside class="m-working-code">
-    <div class="resume-card resume-item">
-      <h4><i class="fa-solid fa-network-wired"></i> Network Engineer | Project leader</h4>
-      <h5>2017 – 2025</h5>
-      <p><em>Nimbus Networks</em></p>
+      <h3 class="m-working-code__title">Network Engineer | Project leader</h3>
+      <p><a href="https://nimbusnetworks.com">Nimbus Networks</a>
+      <small> - (2017 – 2025)</small>
+      </p>
+      <p class="m-working-code__description">
+      Durante esta estapa, mi funcion fue la de liderar proyectos de infraestructura de red, desde el diseño hasta la implementación y soporte postventa. Trabajé en estrecha colaboración con equipos multidisciplinarios para garantizar la entrega de soluciones de alta calidad.  
+      </p>
       <ul>
         <li>Diseño y despliegue de redes Ethernet/Wi-Fi en entornos corporativos.</li>
         <li>Coordinación de proyectos end-to-end: relevamiento, implementación y soporte postventa.</li>
@@ -47,14 +50,16 @@
         <li>Virtualización de servicios con Proxmox y VMware.</li>
         <li>Automatización con Bash, Python y Wireless controllers APIs.</li>
       </ul>
-    </div>
   </aside>
 
   <aside class="m-working-code">
-    <div class="resume-card resume-item">
-      <h4><i class="fa-solid fa-server"></i> Network Engineer | Infrastructure Administration</h4>
-      <h5>2009 – 2016</h5>
-      <p><em>Ecnex Argentina S.A.</em></p>
+      <h3 class="m-working-code__title">Network Engineer | Infrastructure Administration</h3>
+      <p><a href="https://www.linkedin.com/company/ecnex-international/">Ecnex</a>
+      <small>(2009 – 2016)</small>
+      </p>
+      <p class="m-working-code__description">
+      En esta etapa, me desempeñé como ingeniero de redes, administrando y optimizando la infraestructura de red de la empresa. Mi enfoque estuvo en la implementación de soluciones de conectividad y seguridad, así como en la automatización de procesos para mejorar la eficiencia operativa.
+      </p>
       <ul>
         <li>Gestión de redes LAN/WAN con routing BGP y túneles VPN (IPsec, PPTP).</li>
         <li>Balanceo de enlaces y políticas de seguridad sobre infraestructura WAN/LAN.</li>
@@ -63,12 +68,14 @@
         <li>Implementación de sistemas de monitoreo con Nagios-Dude.</li>
         <li>Documentación técnica y operativa para soporte y escalabilidad.</li>
       </ul>
-    </div>
+      <p>
+        <strong>Leer mas sobre</strong> →<a href="https://www.linkedin.com/in/esteban-martins-816b9837/" target="_blank" rel="noopener">mi experiencia en Ecnex</a>.
+      </p>
   </aside>
+
   <aside class="m-working-code">
-    <div class="resume-card resume-item">
-      <h4><i class="fa-solid fa-headset"></i> Technical Support Junior</h4>
-      <h5>2008 – 2009</h5>
+      <h3 class="m-working-code__title">Technical Support Junior</h3>
+      <span>2008 – 2009</span>
       <p><em>Ecnex Argentina S.A.</em></p>
       <ul>
         <li>Soporte remoto a usuarios finales y técnicos en LATAM.</li>
@@ -76,9 +83,8 @@
         <li>Automatización con Bash para tareas repetitivas.</li>
         <li>Herramientas: iptables, hotspot, bash.</li>
       </ul>
-    </div>
   </aside>
-  <h1>Herramientas y Tecnologías</h1>
+  <h2>Herramientas y Tecnologías</h2>
   <p>
     A lo largo de mi carrera, he trabajado con una amplia variedad de herramientas y tecnologías que me han permitido desarrollar soluciones efectivas y eficientes. Aquí te presento un resumen de las principales herramientas y tecnologías que manejo:
   </p>
@@ -104,7 +110,7 @@
         </ul>
       </div>
   </aside>
-  <h1>Habilidades Técnicas</h1>
+  <h2>Habilidades Técnicas</h2>
   <p>
     A lo largo de mi carrera, he desarrollado una sólida base técnica y habilidades en diversas áreas de la tecnología. Aquí te presento un resumen de mis principales habilidades:
   </p>
@@ -119,7 +125,7 @@
       <li>Trabajo en equipo y liderazgo de proyectos.</li>
     </ul>
   </aside>
-  <h1>Contacto</h1>
+  <h2>Contacto</h2>
   <p>
     Si estás interesado en conocer más sobre mi perfil profesional o en discutir posibles oportunidades de colaboración, no dudes en contactarme a través de los siguientes medios:
   </p>

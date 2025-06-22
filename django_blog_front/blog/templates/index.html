@@ -21,11 +21,12 @@
             </div>
             <div class="tags">
                 Tags: <a href="">
-                {{ post.category }}</a>
+                {{ post.category_title }}</a>
             </div>
             <p class="preview">
                 {% comment %} {{ post.description }} {% endcomment %}
-                {{ post.content|striptags|truncatewords:30 }}
+                {{ post.content|striptags|truncatewords:30 }}&nbsp;
+                <a href="{% url 'Post' post.slug %}">leer&nbsp;mas</a>&nbsp;→
             </p>
         </div>
         {% empty %}

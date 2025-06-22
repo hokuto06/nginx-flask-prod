@@ -9,7 +9,11 @@ class PostSerializer(serializers.ModelSerializer):
     user = UserSerializer(read_only=True)
     category = serializers.PrimaryKeyRelatedField(queryset=Category.objects.all())
     miniature_url = serializers.SerializerMethodField()
+    category_title = serializers.SerializerMethodField()
 
+    def get_category_title(self, obj):
+        return obj.category.title if obj.category else None
+    
     def get_miniature_url(self, obj):
         if obj.miniature:
             return get_presigned_url(obj.miniature.name)
@@ -21,5 +25,5 @@ class PostSerializer(serializers.ModelSerializer):
             'title', 'id','content', 'slug', 'description',
             'miniature_url', 'miniature',
             'published', 'created_at',
-            'user', 'category'
+            'user', 'category','category_title'
         ]
