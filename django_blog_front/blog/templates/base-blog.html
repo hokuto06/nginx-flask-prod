@@ -120,6 +120,8 @@
       </section>
     </footer>
 <script>
+document.addEventListener('DOMContentLoaded', function () {
+  console.log("Cargando scripts");
   document.querySelectorAll('.m-sl-nav-bar__theme').forEach(btn => {
     btn.addEventListener('click', function() {
       const theme = this.getAttribute('data-theme');
@@ -134,6 +136,7 @@
   }
 
   document.addEventListener('DOMContentLoaded', function() {
+    console.log("Script loaded eventListener");
     const toggleBtn = document.querySelector('.m-sl-nav-bar__toggle');
     const navMenu = document.getElementById('navbarResponsive');
     if (toggleBtn && navMenu) {
@@ -141,6 +144,7 @@
         navMenu.classList.toggle('open');
       });
     }
+  });
   });
 </script>    
   </body>
