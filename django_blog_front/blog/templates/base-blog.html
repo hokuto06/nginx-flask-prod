@@ -120,32 +120,34 @@
       </section>
     </footer>
 <script>
-document.addEventListener('DOMContentLoaded', function () {
-  console.log("Cargando scripts");
-  document.querySelectorAll('.m-sl-nav-bar__theme').forEach(btn => {
-    btn.addEventListener('click', function() {
-      const theme = this.getAttribute('data-theme');
-      document.documentElement.setAttribute('data-theme', theme);
-      localStorage.setItem('theme', theme);
-    });
-  });
+  document.addEventListener('DOMContentLoaded', function () {
+    console.log("Cargando scripts");
 
-  const savedTheme = localStorage.getItem('theme');
-  if (savedTheme) {
+    let savedTheme = localStorage.getItem("theme");
+
+    if (!savedTheme) {
+      savedTheme = "light";  // por defecto
+      localStorage.setItem("theme", savedTheme);
+    }
+
     document.documentElement.setAttribute('data-theme', savedTheme);
-  }
 
-  document.addEventListener('DOMContentLoaded', function() {
-    console.log("Script loaded eventListener");
+    document.querySelectorAll('.m-sl-nav-bar__theme').forEach(btn => {
+      btn.addEventListener('click', function () {
+        const theme = this.getAttribute('data-theme');
+        document.documentElement.setAttribute('data-theme', theme);
+        localStorage.setItem('theme', theme);
+      });
+    });
+
     const toggleBtn = document.querySelector('.m-sl-nav-bar__toggle');
     const navMenu = document.getElementById('navbarResponsive');
     if (toggleBtn && navMenu) {
-      toggleBtn.addEventListener('click', function() {
+      toggleBtn.addEventListener('click', function () {
         navMenu.classList.toggle('open');
       });
     }
   });
-  });
-</script>    
-  </body>
+</script>
+</body>
 </html>
