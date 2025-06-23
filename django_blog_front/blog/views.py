@@ -1,11 +1,16 @@
-from django.shortcuts import render, redirect
-import requests
-from .forms import LoginForm
+from django.shortcuts import render, redirect, HttpResponse
+from django.conf import settings
+from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
+from django.utils.timezone import now, make_aware
+from .forms import LoginForm
+import boto3
+import requests
 from datetime import datetime
-from django.utils.timezone import make_aware
+from email.message import EmailMessage
 import dateutil.parser
 from pprint import pprint
+import uuid
 
 
 API_LOGIN_URL = "http://django-api:8000/api/auth/login"
@@ -15,6 +20,43 @@ API_CATEGORIES_URL = "http://django-api:8000/api/categories/"
 API_CREATE_POST_URL = "http://django-api:8000/api/posts/"
 
 COMMENTS_URL = "http://django-api:8000/api/comments/"
+
+
+# @csrf_exempt
+def contact_form_s3(request):
+    if request.method == "POST":
+        name = request.POST.get("name", "")
+        email = request.POST.get("email", "")
+        message = request.POST.get("comments", "")
+
+        msg = EmailMessage()
+        msg["Subject"] = f"Portfolio: Nuevo contacto de {name}"
+        msg["From"] = email
+        msg["To"] = "contacto@estebanmartins.com.ar"
+        msg.set_content(message)
+
+        s3 = boto3.client(
+            "s3",
+            aws_access_key_id=settings.AWS_ACCESS_KEY_ID,
+            aws_secret_access_key=settings.AWS_SECRET_ACCESS_KEY,
+            region_name=settings.AWS_S3_REGION_NAME,
+        )
+
+        filename = f"contact/{now().strftime('%Y-%m-%d_%H%M%S')}_{uuid.uuid4().hex}.eml"
+
+        # Subida al bucket
+        s3.put_object(
+            Bucket=settings.AWS_STORAGE_BUCKET_NAME,
+            Key=filename,
+            Body=msg.as_string(),
+            ContentType="message/rfc822"
+        )
+
+        # return JsonResponse({"status": "ok", "message": "Enviado correctamente."})
+        return HttpResponse("<h3>Gracias por tu mensaje. Te responderé pronto.</h3>")
+
+    return JsonResponse({"error": "Método no permitido"}, status=405)
+
 
 
 def home(request):

@@ -449,7 +449,7 @@ html[data-theme="dark"] {
   background-color: #eaeaea;
   background-color: var(--border-lightest);
   color: var(--border-darker);
-  content: "B N";
+  /* content: "E M"; */
   text-align: center;
   border-radius: 11px;
   width: 40px;
@@ -2328,7 +2328,7 @@ body.error .options__option {
 }
 
 .l-invision-site-layout header img {
-  with: 300px;
+  width: 300px;
   border-radius: 300px;
   height: 300px;
   margin: 0 auto;
@@ -2473,4 +2473,3 @@ body.error .options__option {
     font-size: 1px;
   }
 }
-/*# sourceMappingURL=bennadel.css.map */

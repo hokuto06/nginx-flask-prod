@@ -20,5 +20,6 @@ urlpatterns = [
     path("registro/", views.register_view, name="register"),
     path("post/<slug:slug>/editar/", views.edit_post, name="edit_post"),
     path("create_category/", views.create_category, name="create_category"),
+    path("api/contact/", views.contact_form_s3, name="contact_from_portfolio"),
 ]
 

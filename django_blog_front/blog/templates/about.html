@@ -7,29 +7,39 @@
 
 {% block content %}
 <article>
-    <h1>Sobre mí</h1>
+  <header class="m-post-header">
+    <h1 class="m-post-header__title">Este es un espacio dedicado a mi perfil profesional</h1>
     <p>
-      Soy un profesional con más de 10 años de experiencia en el área de IT, especializado en la administración de redes y la automatización de procesos.
+    
     </p>
-  <aside class="m-working-code">
-    <span style="color: var(--color-text-muted); display: block; font-size: 14px; margin-bottom: .5rem;text-decoration:underline;">Esteban Martins</span>
+    <p class="m-post-header__meta">
+      Última actualización por <a href="https://www.linkedin.com/in/esteban-martins-816b9837/" target="_blank" rel="noopener">Esteban Martins</a>
+      el <time datetime="2025-06-22">22 de junio de 2025</time>
+    </p>
+  </header>
+    <p>
+      Este es un espacio que decidí crear para publicar un resumen fiel de <a href="#about">mi perfil profesional</a>
+      Poder contar con más detalle mi <a href="#experience">experiencia profesional</a> las <a href="#tools">Herramientas</a> que domino. 
+      mis <a href="#skills">Habilidades Técnicas</a> y también contar <a href="#wyd">Que estoy haciendo actualmente</a>.
+    <a href="#experience" rel="tag" class="tag">Experiencia</a>&nbsp;
+    <a href="#skills" rel="tag" class="tag">Habilidades</a>&nbsp;
+    <a href="#tools" rel="tag" class="tag">Herramientas</a>&nbsp;
+    <a href="#about" rel="tag" class="tag">Acerca de mí</a>&nbsp;
+    <a href="#wyd" rel="tag" class="tag">Que estoy haciendo?</a>
+    </p>
+    <h2 id="experience">Acerca de mí</h2>
     <p>
       Me desempeñé a lo largo de mi carrera profesional en la administracion de redes, despligue de infraestructura onprem y finalmente con foco en la automatización.
       Hoy en dia, orientado a la automatización de procesos, despliegue de infraestructura y la implementación de soluciones en la nube.
     </p>
-<hr>
     <p>
       Me motiva enfrentar problemas técnicos desafiantes y encontrar formas innovadoras de optimizar procesos y sistemas.
     </p>
     <p>
       Actualmente, me encuentro en la búsqueda de nuevos desafíos profesionales que me permitan seguir creciendo y aportar valor a un equipo.
     </p>
-    <p>
-      Si te interesa saber más sobre mi perfil profesional, no dudes en contactarme. Estoy abierto a nuevas oportunidades y colaboraciones.
-    </p>
-  </aside>
 
-  <h2>Experiencia Profesional</h2>
+  <h2 id="experience"><span style="text-decoration:underline">#</span> Experiencia Profesional</h2>
   <p>
     A lo largo de mi carrera, he trabajado en diversas empresas y proyectos que me han permitido adquirir una amplia experiencia en el campo de la tecnología y la administración de redes.
     Aquí te presento un resumen de mi trayectoria profesional:
@@ -50,12 +60,16 @@
         <li>Virtualización de servicios con Proxmox y VMware.</li>
         <li>Automatización con Bash, Python y Wireless controllers APIs.</li>
       </ul>
+      <p>
+        <strong>Leer mas sobre</strong> →<a href="https://www.linkedin.com/in/esteban-martins-816b9837/" target="_blank" rel="noopener">mi experiencia en Nimbus Networks</a>.
+      </p>
   </aside>
 
   <aside class="m-working-code">
       <h3 class="m-working-code__title">Network Engineer | Infrastructure Administration</h3>
-      <p><a href="https://www.linkedin.com/company/ecnex-international/">Ecnex</a>
-      <small>(2009 – 2016)</small>
+      <p>
+        <a href="https://www.linkedin.com/company/ecnex-international/">Ecnex</a>
+        <small>(2009 – 2016)</small>
       </p>
       <p class="m-working-code__description">
       En esta etapa, me desempeñé como ingeniero de redes, administrando y optimizando la infraestructura de red de la empresa. Mi enfoque estuvo en la implementación de soluciones de conectividad y seguridad, así como en la automatización de procesos para mejorar la eficiencia operativa.
@@ -75,46 +89,130 @@
 
   <aside class="m-working-code">
       <h3 class="m-working-code__title">Technical Support Junior</h3>
-      <span>2008 – 2009</span>
-      <p><em>Ecnex Argentina S.A.</em></p>
+      <p>
+        <a href="https://www.linkedin.com/company/ecnex-international/">Ecnex</a>
+        <small>2008 – 2009</small>
+      </p>
+      <p class="m-working-code__description">
+        En mis inicios en el área de IT, trabajé como soporte técnico junior, brindando asistencia a usuarios finales y técnicos en la resolución de problemas relacionados con redes y sistemas operativos.
+        Esta experiencia me permitió desarrollar habilidades de diagnóstico y resolución de problemas, así como una comprensión sólida de la infraestructura de red.
+      </p>
       <ul>
         <li>Soporte remoto a usuarios finales y técnicos en LATAM.</li>
         <li>Diagnóstico de red, configuraciones básicas y administración de servidores Linux.</li>
         <li>Automatización con Bash para tareas repetitivas.</li>
         <li>Herramientas: iptables, hotspot, bash.</li>
       </ul>
+      <p>
+        <strong>Leer mas sobre</strong> →<a href="https://www.linkedin.com/in/esteban-martins-816b9837/" target="_blank" rel="noopener">mi experiencia en Ecnex</a>.
+      </p>
   </aside>
-  <h2>Herramientas y Tecnologías</h2>
+
+  <h2 id="skills">Habilidades técnicas</h2>
   <p>
+    En esta sección listo mis habilidades 
     A lo largo de mi carrera, he trabajado con una amplia variedad de herramientas y tecnologías que me han permitido desarrollar soluciones efectivas y eficientes. Aquí te presento un resumen de las principales herramientas y tecnologías que manejo:
   </p>
-  <aside class="m-working-code">
-      <div class="resume-card" style="border-radius: var(--border-radius);">
-        <span class="section-label">Administración</span>
-        <ul class="skills-list">
-          <li>
-            <i class="fa-brands fa-linux me-2"></i>
-            <span class="fw-bold">Linux Services</span>
-            <span class="skill-level"> → Avanzado</span>
-          </li>
-          <li>
-            <i class="fa-solid fa-server me-2"></i>
-            <span class="fw-bold">Virtualización</span>
-            <span class="skill-level"> → Intermedio</span>
-          </li>
-          <li>
-            <i class="fa-solid fa-shield-halved me-2"></i>
-            <span class="fw-bold">Firewall</span>
-            <span class="skill-level"> → Básico</span>
-          </li>
-        </ul>
-      </div>
-  </aside>
-  <h2>Habilidades Técnicas</h2>
+
+<!-- skill code - Network Engineer -->
+<div class="skill__list">
+  <h3 class="skill__strong"><span style="text-decoration:underline;">#</span>Administración de Redes (Onprem)</h3>
+  <ul>
+    <li>VLANs y Switching	[L2]
+      <ul>
+        <li><small class="skill__small">Django 30%</small></li>
+        <li><small class="skill__small">Flask 45%</small></li>
+      </ul>
+    </li>
+    <li>Routing
+      <ul>
+        <li><small class="skill__small">Django 30%</small></li>
+        <li><small class="skill__small">Flask 45%</small></li>
+      </ul>
+    </li>
+    <li>Wireless
+      <ul>
+        <li><small >Node.js</small><span class="skill__small">85%</span></li>
+        <li><span class="skill__small">React 85%</span></li>
+      </ul>
+    </li>
+    <li>Firewall
+      <ul>
+        <li><small class="skill__small">Bash 85%</small></li>
+        <li><small class="skill__small">Shell 85%</small></li>
+        <li><small class="skill__small">Perl 85%</small></li>
+      </ul>
+    </li>
+    <li>Base de Datos
+      <ul>
+        <li><small class="skill__small">NO SQL 85%</small></li>
+        <li><small class="skill__small">SQL 85%</small></li>
+      </ul>
+    </li>    
+  </ul>
+</div>
+
+<!-- skill code Programación-->
+<div class="skill__list">
+  <h3 ><span style="text-decoration:underline;">#</span> Programación</h3>
+  <ul>
+    <li>Python
+      <ul>
+        <li><small class="skill__small">Django 30%</small></li>
+        <li><small class="skill__small">Flask 45%</small></li>
+      </ul>
+    </li>
+    <li>Javascript
+      <ul>
+        <li><small >Node.js</small><span class="skill__small">85%</span></li>
+        <li><span class="skill__small">React 85%</span></li>
+      </ul>
+    </li>
+    <li>Shell scripting
+      <ul>
+        <li><small class="skill__small">Bash 85%</small></li>
+        <li><small class="skill__small">Shell 85%</small></li>
+        <li><small class="skill__small">Perl 85%</small></li>
+      </ul>
+    </li>
+  </ul>
+</div>
+
+<!-- skill code DevOps -->
+<div class="skill__list">
+  <h3><span style="text-decoration:underline;">#</span> DevOps</h3>
+  <ul>
+    <li>Cloud
+      <ul>
+        <li><small class="skill__small">AWS</small></li>
+        <li><small class="skill__small">GCP</small></li>
+        <li><small class="skill__small">Azure</small></li>
+      </ul>
+    </li>
+    <li>Contenerización
+      <ul>
+        <li><small >Docker</small><small class="skill__small">85%</small></li>
+        <li><small class="skill__small">Kubernetes 85%</small></li>
+      </ul>
+    </li>
+    <li>IaC
+      <ul>
+        <li><small class="skill__small">Ansible 85%</small></li>
+        <li><small class="skill__small">Terraform 85%</small></li>
+      </ul>
+    </li>
+  </ul>
+</div>
+<span>ADAPTABILIDAD</span>
+<span>TRABAJO EN EQUIPO</span>
+<span>RESOLUCION DE PROBLEMAS</span>
+<span>DOCUMENTACION</span>
+<span>COMUNICACION</span>
+
+  <h2 id="tools">Herramientas</h2>
   <p>
     A lo largo de mi carrera, he desarrollado una sólida base técnica y habilidades en diversas áreas de la tecnología. Aquí te presento un resumen de mis principales habilidades:
   </p>
-  <aside class="m-working-code">
     <ul>
       <li>Administración de redes LAN/WAN y Wi-Fi empresarial.</li>
       <li>Configuración de routers, switches y firewalls multivendor.</li>
@@ -124,7 +222,11 @@
       <li>Documentación técnica y operativa.</li>
       <li>Trabajo en equipo y liderazgo de proyectos.</li>
     </ul>
-  </aside>
+  <h2 id="wyd">Que estoy haciendo hoy en día?</h2>
+    <p>
+      Actualmente me encuentro enfocado en el aprendizaje continuo de tecnologías de automatización y cloud, explorando nuevas herramientas y metodologías para optimizar la gestión de infraestructuras. Participo en proyectos personales y colaborativos relacionados con DevOps, infraestructura como código y despliegue de servicios en la nube. Además, estoy ampliando mis conocimientos en desarrollo de aplicaciones y scripting para mejorar la integración y eficiencia de los procesos IT.
+    </p> <a href=""> → ver mas..</a>
+
   <h2>Contacto</h2>
   <p>
     Si estás interesado en conocer más sobre mi perfil profesional o en discutir posibles oportunidades de colaboración, no dudes en contactarme a través de los siguientes medios:
@@ -136,17 +238,65 @@
       <li><strong>GitHub:</strong> <a href="https://github.com/hokuto06" target="_blank" rel="noopener">hokuto06</a></li>
     </ul>
   </aside>
+
+  <div aria-hidden="true" class="ds-hrule">
+    <br>
+  </div>
+
+
   <p>
-    Estoy abierto a nuevas oportunidades y colaboraciones en proyectos interesantes. ¡Espero poder conectar contigo pronto!
+    Estoy abierto a nuevas oportunidades y colaboraciones en proyectos interesantes.
     </p>
   <p>
-    Gracias por visitar mi perfil profesional. Si tienes alguna pregunta o comentario, no dudes en contactarme. Estoy aquí para ayudarte.
+    Gracias por visitar mi perfil profesional. Si tienes alguna pregunta o comentario, no dudes en contactarme.
     </p>
   <p>
     <strong>¡Saludos!</strong>
   </p>
-  <p>
-    Esteban Martins
-  </p>
+  <form id="contact-form" method="post" action="/api/contact/" data-controller="contact-form" class="ds-form">
+
+  {% csrf_token %}
+
+    <input type="hidden" name="submitted" value="true">
+    <input type="hidden" name="emailAddress" value="">
+    <input type="hidden" name="phoneNumber" value="">
+    <input type="hidden" name="street1" value="">
+    <input type="hidden" name="street2" value="">
+    <input type="hidden" name="city" value="">
+    <input type="hidden" name="state" value="">
+    <input type="hidden" name="zip" value="">
+    <div class="ds-form-entry">
+      <label for="name-input" class="ds-form-entry__label">
+        Name:
+      </label>
+      <div class="ds-form-entry__body">
+        <input id="name-input" type="text" name="name" value="" maxlength="100" class="ds-input">
+      </div>
+    </div>
+    <div class="ds-form-entry">
+      <label for="email-input" class="ds-form-entry__label">
+        Email:
+      </label>
+      <div class="ds-form-entry__body">
+        <input id="email-input" type="text" name="email" value="" maxlength="100" class="ds-input">
+      </div>
+    </div>
+    <div class="ds-form-entry">
+      <label for="message-input" class="ds-form-entry__label">
+        Message:
+      </label>
+      <div class="ds-form-entry__body">
+        <textarea id="message-input" name="comments" data-action="
+            keydown.meta+enter-&gt;contact-form#requestSubmit
+            keydown.ctrl+enter-&gt;contact-form#requestSubmit
+          " class="ds-textarea"></textarea>
+      </div>
+    </div>
+    <div class="ds-form-buttons">
+      <button type="submit" data-contact-form-target="submitButton" class="ds-primary-button">
+        Submit Contact Form
+      </button>
+    </div>
+  </form>
 </article>
 {% endblock %}
