@@ -1,10 +1,13 @@
-{% extends "base_projects.html" %}
+{% extends "base-blog.html" %}
 {% load static %}
 {% block header %}
   {% comment %} {% include "includes/projects-header.html" with title="Proyectos" description="de Esteban" bg_image="assets/img/projects_bg.png" created_at=none text_user_field=none user=none %} {% endcomment %}
 {% endblock %}
 
 {% block content %}
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+  <link href="{% static 'css/styles.css' %}" rel="stylesheet" />
+
 <style type="text/css" rel="stylesheet">
 body {
   background-color: #fdf9ee;

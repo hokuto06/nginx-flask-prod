@@ -111,7 +111,7 @@
           <div class="links">
             <div class="links__title"> Links a mis redes</div>
             <ul class="links__items">
-              <li class="links__item"><a class="links__link" href="https://www.linkedin.com/in/esteban-martins-816b9837/"></a>Linkedin</li>
+              <li class="links__item"><a class="links__link" href="https://www.linkedin.com/in/esteban-martins-816b9837/">Linkedin</a></li>
               <li class="links__item"><a class="links__link" href="https://gitlab.com/hokuto06/">Github</a></li>
               <li class="links__item"><a class="links__link" href="https://github.com/hokuto06">Gitlab</a></li>
             </ul>
@@ -147,6 +147,12 @@
         navMenu.classList.toggle('open');
       });
     }
+    document.addEventListener('click', function (e) {
+      const clickedOutsideMenu = !navMenu.contains(e.target) && !toggleBtn.contains(e.target);
+      if (clickedOutsideMenu && navMenu.classList.contains('open')) {
+        navMenu.classList.remove('open');
+      }
+    });
   });
 </script>
 </body>

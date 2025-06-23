@@ -1,4 +1,4 @@
-{% extends "base_projects.html" %}
+{% extends "base-blog.html" %}
 {% load static %}
 {% block header %}
 
@@ -25,7 +25,7 @@ section#description {
 {% block content %}
 <article>
   {% comment %} <h3><i class="fa-solid fa-envelope" style="color: #0099ff;" title="Notificación"></i> SES AWS – Email Pipeline Serverless</h3> {% endcomment %}
-    <h3 id="resume" >SES AWS – Email Pipeline Serverless</h3>
+    <h1 id="resume" >SES AWS – Email Pipeline Serverless</h1>
     <p class="lead">
       Este proyecto es un pipeline serverless que permite recibir correos electrónicos utilizando Amazon SES, 
       almacenarlos en S3, procesarlos con una función Lambda y generar notificaciones automáticas.
@@ -38,7 +38,9 @@ section#description {
       <figcaption class="figure-caption">
           Arquitectura del Pipeline de Email
         </figcaption>
-      <img class="img-fluid" src="{% static 'assets/img/email_pipeline.png' %}" alt="Arquitectura del Pipeline de Email" />
+        <div class="m-image-tile">
+      <img width="700" class="img-fluid" src="{% static 'assets/img/email_pipeline.png' %}" alt="Arquitectura del Pipeline de Email" />
+      </div>
       </figure>
     </p>
     <p class="lead">
@@ -98,8 +100,6 @@ section#description {
     <p>
       Este topic envía una notificación automática por email (o cualquier otro protocolo) al administrador del sistema (yo 😉).
     </p>
-
-  <img class="img-fluid" src="{% static 'assets/img/email_pipeline.png' %}" alt="..." />
 
     <h2 id="summary" class="section-heading">Resumen del Pipeline</h2>
     <p>

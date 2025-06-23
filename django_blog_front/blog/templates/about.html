@@ -229,30 +229,12 @@
 
   <h2>Contacto</h2>
   <p>
-    Si estás interesado en conocer más sobre mi perfil profesional o en discutir posibles oportunidades de colaboración, no dudes en contactarme a través de los siguientes medios:
+    Si estás interesado en conocer más sobre mi perfil profesional o en discutir posibles oportunidades de colaboración, no dudes en contactarme.
   </p>
-  <aside class="m-working-code">
-    <ul>
-      <li><strong>Email:</strong> <a href="mailto:contacto.estebanmartins.com.ar">
-      <li><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/esteban-martins-816b9837/" target="_blank" rel="noopener">Esteban Martins</a></li>
-      <li><strong>GitHub:</strong> <a href="https://github.com/hokuto06" target="_blank" rel="noopener">hokuto06</a></li>
-    </ul>
-  </aside>
-
-  <div aria-hidden="true" class="ds-hrule">
-    <br>
-  </div>
-
-
   <p>
     Estoy abierto a nuevas oportunidades y colaboraciones en proyectos interesantes.
     </p>
-  <p>
-    Gracias por visitar mi perfil profesional. Si tienes alguna pregunta o comentario, no dudes en contactarme.
-    </p>
-  <p>
-    <strong>¡Saludos!</strong>
-  </p>
+
   <form id="contact-form" method="post" action="/api/contact/" data-controller="contact-form" class="ds-form">
 
   {% csrf_token %}
@@ -298,5 +280,15 @@
       </button>
     </div>
   </form>
+  <p>
+    Gracias por visitar mi perfil profesional. Si tienes alguna pregunta o comentario, no dudes en contactarme.
+    </p>
+  <p>
+    <strong>¡Saludos!</strong>
+  </p>
+  <div aria-hidden="true" class="ds-hrule">
+    <br>
+  </div>
+
 </article>
 {% endblock %}

@@ -1,13 +1,20 @@
-{% extends "base_projects.html" %}
+{% extends "base-blog.html" %}
 {% load static %}
 {% block header %}
   {% comment %} {% include "includes/projects-header.html" with title="Docker + Nginx + Flask" description="Plantilla de producción para apps Flask con Nginx y Docker" bg_image="assets/img/docker-project.png" %} {% endcomment %}
 {% endblock %}
+{% block styles %}
+<style type="text/css">
+body {
+  background-color: var(--beige-0)
+}
 
+</style>
+{% endblock %}
 {% block content %}
 <article>
   <section id="description">
-    <h3>Docker + Nginx + Flask – Plantilla de Producción</h3>
+    <h1>Docker + Nginx + Flask – Plantilla de Producción</h1>
     <p class="lead">
       Este proyecto es una plantilla lista para producción que integra <strong>Flask</strong> (Python), <strong>Nginx</strong> y <strong>Docker</strong> para desplegar aplicaciones web de manera eficiente, segura y escalable.
     </p>
@@ -15,8 +22,10 @@
       <i class="fa-solid fa-cogs"></i>
       <strong>Arquitectura</strong>
       <br />
-      <img class="img-fluid" src="{% static 'assets/img/blog_stack.png' %}" alt="Arquitectura Docker Nginx Flask" />
     </p>
+    <div class="m-image-tile">
+      <img width="700"  class="img-fluid" src="{% static 'assets/img/blog_stack.png' %}" loading="lazy" alt="Arquitectura Docker Nginx Flask" />
+    </div>
     <p class="lead">
       <i class="fa-solid fa-tools"></i>
       <strong>Herramientas utilizadas</strong>

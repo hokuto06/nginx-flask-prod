@@ -1,3 +1,9 @@
+/*!
+ * Copyright (c) 2025 Ben Nadel
+ * MIT License
+ * https://bennadel.com/blog/license.htm
+ */
+
 .font-family-title, .font-family-content {
   font-family: nunito sans, arial, helvetica, sans-serif;
 }
@@ -40,6 +46,46 @@
   --border: #ccc;
   --border-darker: #ccc;
   --border-darkest: #aaa;
+  /* Tania paleta*/
+  /* --primary: #9898ff; */
+  --primary-hover: #bebeff;
+  --primary-light-muted: #508bc6;
+  --primary-light: #3576b8;
+  --primary-light-hover: #28629d;
+  --primary-light-rgb: 53, 118, 184;
+  --primary-rgb: 149, 154, 248;
+  --green-rgb: 146, 209, 146;
+  --yellow: #ffd479;
+  --yellow-dark: #bf8301;
+  --green: #5eddac;
+  --light-yellow: #fcd37a;
+  --pink: #f57ad0;
+  --lavender: #a586fb;
+  --blue: #989dfa;
+  --light-blue: #6ab0f3;
+
+  --gray-0: #fbfbfb;
+  --gray-05: #f6f6f6;
+  --gray-1: #eee;
+  --gray-2: #e6e6e6;
+  --gray-3: #ccc;
+  --gray-4: #bbb;
+  --gray-5: #999;
+  --gray-6: #575757;
+  --gray-65: #3d3d3d;
+  --gray-7: #2c2c2c;
+  --gray-8: #252525;
+  --gray-9: #1f1f1f;
+  --gray-10: #181818;
+  --gray-11: #111;
+  --gray-12: #0f0f0f;
+
+  --beige-0: #fdf9ee;
+  --beige-1: #fdf6e3;
+  --beige-2: #eee8d5;
+  --beige-3: #ded4b2;
+  --beige-4: #c6ba93;
+
 }
 
 @media (prefers-color-scheme: dark) {
