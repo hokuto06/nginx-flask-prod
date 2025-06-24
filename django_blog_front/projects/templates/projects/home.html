@@ -6,12 +6,13 @@
 
 {% block content %}
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-  <link href="{% static 'css/styles.css' %}" rel="stylesheet" />
+  {% comment %} <link href="{% static 'css/styles.css' %}" rel="stylesheet" /> {% endcomment %}
 
 <style type="text/css" rel="stylesheet">
 body {
   background-color: #fdf9ee;
 }
+/*
 .card.project-card {
   border: none;
   border-radius: 12px;
@@ -74,35 +75,51 @@ body {
 .text-color{
   color: #3576b8;
 }
-
+*/
 </style>
-<section id="projects">
-  <h2 class="mb-4">Mis Proyectos</h2>
-  <p class=" mb-5">Aquí encontrarás una selección de mis proyectos destacados, cada uno con su propia funcionalidad y propósito.</p>
-</section>
-<div class="container py-4">
-  <div class="row g-4">
-    <div class="col-12 col-md-6 d-flex">
-      <div class="card project-card w-100">
-        <img class="card-img-top" src="{% static 'assets/img/email_pipeline_bg.png' %}" alt="Email Pipeline">
-        <div class="card-body">
-          <h5 class="card-title text-color">Email Pipeline</h5>
-          <p class="card-text">Pipeline serverless para recibir, procesar y notificar emails usando AWS SES, Lambda y SNS.</p>
-          <a href="{% url 'email-parser' %}" class="btn btn-minimal">Ver proyecto</a>
-        </div>
-      </div>
-    </div>
-    <div class="col-12 col-md-6 d-flex">
-      <div class="card project-card w-100">
-        <img class="card-img-top" src="{% static 'assets/img/docker-project.png' %}" alt="Otro Proyecto">
-        <div class="card-body">
-          <h5 class="card-title text-color">Docker+Django+AWS</h5>
-          <p class="card-text">Descripción breve y clara del proyecto destacado.</p>
-          <a href="{% url 'docker-project' %}" class="btn btn-minimal">Ver proyecto</a>
-        </div>
-      </div>
-    </div>
-    <!-- Agrega más tarjetas aquí -->
-  </div>
-</div>
+<aside class="m-working-code">
+  <p class="m-working-code__description">
+  NOTA: Esta es una sección dedicada a exhibir algunos de mis proyectos. Aqui encontrarás ejemplos de trabajos recientes y destacados en los que he participado.
+  </p>
+</aside>
+
+<article>
+<aside class="m-working-code" >
+    <figure id="site-photo-figure" data-controller="site-photos" data-action="mouseenter-&gt;site-photos#preloadPhotos" class="site-photo">
+        <a href="{% url 'email-parser' %}" class="site-photo__hero-link">
+            <picture>
+              <source srcset="{% static 'assets/img/email_pipeline_bg.png' %}" media="(min-width: 1024px)">
+                <img width="100%" data-rel="238" fetchpriority="high" loading="eager" alt="Esteban Martins" class="site-photo__hero-image">
+            </picture>
+        </a>
+        <figcaption class="site-photo__caption">
+            <h3 class="site-photo__caption__description">
+                Email Pipeline  
+            </h3>
+            <p>
+              Pipeline serverless para recibir, procesar y notificar emails usando AWS SES, Lambda y SNS.
+            </p>
+        </figcaption>
+    </figure>
+</aside>
+<aside class="m-working-code" >
+    <figure id="site-photo-figure" data-controller="site-photos" data-action="mouseenter-&gt;site-photos#preloadPhotos" class="site-photo">
+        <a href="{% url 'docker-project' %}" class="site-photo__hero-link">
+            <picture>
+              <source srcset="{% static 'assets/img/docker-project.png' %}" media="(min-width: 1024px)">
+                <img width="100%" data-rel="238" fetchpriority="high" loading="eager" alt="Esteban Martins" class="site-photo__hero-image">
+            </picture>
+        </a>
+        <figcaption class="site-photo__caption">
+            <h3 class="site-photo__caption__description">
+                Docker+Django+AWS  
+            </h3>
+            <p>
+            Proyecto de despliegue de aplicaciones Django usando Docker y AWS ECS para lograr escalabilidad y despliegues automatizados.
+            </p>
+        </figcaption>
+    </figure>
+</aside>
+</article>
+
 {% endblock %}

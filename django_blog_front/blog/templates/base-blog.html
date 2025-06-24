@@ -10,7 +10,6 @@
     <link rel="icon" type="image/x-icon" href="{% static 'assets/favicon.ico' %}" />
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
     <link href="{% static 'css/main.css' %}" rel="stylesheet" />
-    <link href="{% static 'css/about.css' %}" rel="stylesheet" />
     <link href="{% static 'css/blog.css' %}" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;700&display=swap" rel="stylesheet" />
     {% block styles %}
@@ -41,7 +40,7 @@
 			data-action="click-outside:click->nav#close"
 			data-nav-open-class="open" class="m-sl-nav-bar m-sl-nav-bar--no-photo">
       <div class="m-sl-nav-bar__wrapper">
-        <a class="m-sl-nav-bar__logo" href="{% url 'Home' %}">Esteban Martins . com</a>
+        <a class="m-sl-nav-bar__logo" href="{% url 'Home' %}">Esteban Martins . com . ar</a>
         <button data-action="nav#toggleMenu" class="ds-text-button m-sl-nav-bar__toggle">
 					Menú
 				</button>
@@ -50,12 +49,12 @@
             <li class="m-sl-nav-bar__item"><a class="m-sl-nav-bar__link" href="{% url 'me' %}">Sobre mí</a></li>
             <li class="m-sl-nav-bar__item"><a class="m-sl-nav-bar__link" href="{% url 'projects' %}">Proyectos</a></li>
             <li class="m-sl-nav-bar__item"><a class="m-sl-nav-bar__link" href="{% url 'blog' %}">Blog</a></li>
-            {% if request.session.token %}
+            {% comment %} {% if request.session.token %}
               <li class="m-sl-nav-bar__item"><a class="m-sl-nav-bar__link" href="{% url 'logout' %}" data-bs-toggle="modal" data-bs-target="#logoutModal">Logout</a></li>
               <li class="m-sl-nav-bar__item"><a class="m-sl-nav-bar__link">{{ request.session.user_name }}</a></li>
             {% else %}
               <li class="m-sl-nav-bar__item"><a class="m-sl-nav-bar__link" href="{% url 'login' %}" data-bs-toggle="modal" data-bs-target="#loginModal">Login</a></li>
-            {% endif %}
+            {% endif %} {% endcomment %}
             <li class="m-sl-nav-bar__item m-sl-nav-bar__themer" data-controller="nav-theme">
               <button data-theme="light" data-action="nav-theme#setTheme" tabindex="-1" class="m-sl-nav-bar__theme">Light Ui</button>
               <button data-theme="dark" data-action="nav-theme#setTheme" tabindex="-1" class="m-sl-nav-bar__theme">Dark Ui</button>

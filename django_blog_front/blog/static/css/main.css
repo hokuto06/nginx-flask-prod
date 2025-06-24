@@ -3,6 +3,7 @@
  * MIT License
  * https://bennadel.com/blog/license.htm
  */
+@charset "UTF-8";
 
 .font-family-title, .font-family-content {
   font-family: nunito sans, arial, helvetica, sans-serif;
@@ -2499,6 +2500,49 @@ body.error .options__option {
 .l-invision-site-layout footer div.seperator {
   vertical-align: middle;
   display: inline-block;
+}
+
+/* About template*/
+
+.skill__list ul {
+  padding-left: 1em;
+  /*font-family: monospace;*/
+}
+
+.skill__list > ul {
+  list-style-type: disc;
+  padding-left: 1.5em;
+}
+
+.skill__list > ul > li {
+  list-style-type: disc;
+}
+
+.skill__list ul ul {
+  list-style-type: none;
+  padding-left: 1.5em;
+}
+
+.skill__list ul ul li::before {
+  content: "├── ";
+  color: #888;
+}
+
+.skill__list ul ul li:last-child::before {
+  content: "└── ";
+}
+
+.skill__small {
+  color: #666;
+  font-size: 0.85em;
+  margin-left: 0.5em;
+}
+
+.skill__strong {
+  display: block;
+  margin-bottom: 0.5em;
+  /*font-family: monospace;*/
+  font-size: 1.1em;
 }
 
 @media (width <= 600px) {
