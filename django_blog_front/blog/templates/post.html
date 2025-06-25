@@ -44,9 +44,6 @@
       <p>No hay comentarios aún.</p>
       {% endfor %}
       <br>
-      <form id="comment-form">
-        <textarea id="comment-content" class="form-control mb-2" rows="3" placeholder="Comentar..." required></textarea>
-        <button type="submit" class="btn btn-primary">Enviar</button>
-      </form>
   </article>
+{% include 'comment-box.html' %}
 {% endblock %}

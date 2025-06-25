@@ -1,18 +1,10 @@
 {% load static %}
 <header class="l-site-header">
     <figure id="site-photo-figure" data-controller="site-photos" data-action="mouseenter-&gt;site-photos#preloadPhotos" class="site-photo">
-        <a class="site-photo__hero-link">
-            <picture>
-                {% if post.miniature_url %}
-                    <source srcset="{{ post.miniature_url }}" media="(min-width: 1024px)">
-                {% elif bg_image %}
-                    <source srcset="{% static bg_image %}" media="(min-width: 1024px)">
-                {% else %}
-                    <source srcset="{% static 'assets/img/home_bg_library2.jpg' %}" media="(min-width: 1024px)">
-                {% endif %}
-                <img data-rel="238" fetchpriority="high" loading="eager" alt="Esteban Martins" class="site-photo__hero-image">
-            </picture>
-        </a>
+    <picture class="site-photo__hero-link">
+        <source srcset="{{ post.miniature_url }}" media="(min-width: 1024px)">
+            <img src="{% static 'assets/img/hero_background2.webp' %}" alt="Esteban Martins"  class="site-photo__hero-image" loading="eager" fetchpriority="high">
+    </picture>
         <figcaption class="site-photo__caption">
             <span class="site-photo__caption__description">
                 Este es el blog de:  

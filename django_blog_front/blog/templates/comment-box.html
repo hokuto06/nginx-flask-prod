@@ -1,0 +1,65 @@
+<turbo-frame id="create-comment-form-frame" src="https://www.bennadel.com/blog/comment/create.htm?entryID=4816&amp;replyTo=" target="_top" class="ds-transcluded" complete="">
+    <form method="post" action="/blog/comment/create.htm" data-controller="comment-form" data-action="emojis:emoji-&gt;comment-form#insertEmoji" class="ds-form">
+        <input type="hidden" name="entryID" value="4816">
+        <input type="hidden" name="submitted" value="true">
+        <input type="hidden" name="subscribe" value="true">
+        <button type="submit" class="ds-visually-hidden">
+            Submit Comment
+        </button>
+        <div class="ds-form-entry">
+            <label for="authorName-input" class="ds-form-entry__label">
+                Name:
+            </label>
+            <div class="ds-form-entry__body">
+                <input id="authorName-input" type="text" name="authorName" value="" class="ds-input">
+            </div>
+        </div>
+        <div class="ds-form-entry">
+            <label for="authorEmail-input" class="ds-form-entry__label">
+                Email:
+            </label>
+            <div class="ds-form-entry__body">
+                <input id="authorEmail-input" type="text" name="authorEmail" value="" data-comment-form-target="authorEmail" class="ds-input">
+            </div>
+        </div>
+        <div class="ds-form-entry">
+            <label for="authorUrl-input" class="ds-form-entry__label">
+                Sitio Web:
+            </label>
+            <div class="ds-form-entry__body">
+                <input id="authorUrl-input" type="text" name="authorUrl" value="" class="ds-input">
+            </div>
+        </div>
+        <div class="ds-form-entry">
+            <label for="content-input" class="ds-form-entry__label">
+                Comentario:
+            </label>
+            <div class="ds-form-entry__body">
+                <div class="m-form-formatting-notes">
+                    <strong>Formato Markdown:</strong> Se admite formato básico: negrita, cursiva, citas, listas, bloques de código.
+                    <a href="https://daringfireball.net/projects/markdown/basics" target="_blank" rel="noopener" class="markdown-syntax">Read more about markdown syntax</a> »
+                </div>
+                <textarea id="content-input" name="content" data-controller="comment-content" data-action="
+                        keydown.meta+enter-&gt;comment-form#requestSubmit
+                        keydown.ctrl+enter-&gt;comment-form#requestSubmit
+                        input-&gt;comment-form#requestPreview
+                    " data-comment-form-target="comment" class="ds-textarea ds-textarea--tall" data-is-initialized="true"></textarea>
+                <div data-comment-form-target="commentPreview">
+                </div>
+                <div class="m-form-etiquette">
+                    <strong>Etiqueta de comentarios</strong>: Por favor, no publique spam. Mantenga los comentarios en el tema.
+                    Por favor, <em>no publiques preguntas no relacionadas</em> ni <em>grandes fragmentos de código</em>. Y, sobre todo,
+                    sé amable con los demás: queremos tener una buena conversación aquí.
+                </div>
+            </div>
+        </div>
+        <div class="ds-form-buttons">
+            <button type="submit" data-comment-form-target="submitButton" class="ds-primary-button">
+                Enviar comentario
+            </button>
+            <a href="/blog/4816-encoding-ffffffff-into-an-int-in-adobe-coldfusion.htm" class="ds-form-buttons__right ds-transcluded__hide-if-transcluded">
+                Cancelar
+            </a>
+        </div>
+    </form>
+</turbo-frame>

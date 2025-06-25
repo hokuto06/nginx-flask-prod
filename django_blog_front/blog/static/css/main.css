@@ -1003,9 +1003,10 @@ header.l-site-header[x-force-photo] {
 
   @supports (object-fit: contain ) {
     header.l-site-header .site-photo__hero-image {
-      object-fit: contain;
-      object-position: center bottom;
+      object-fit: cover;
+      /* object-position: center bottom; */
       height: 100%;
+      width:100%;
     }
   }
 
