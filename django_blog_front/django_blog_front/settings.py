@@ -15,7 +15,7 @@ environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 SECRET_KEY = 'django-insecure-vx*^$h9#fbg3a_fg=p+^*+)*zamsn_6%wqg+-k-g@5cqmss@94'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
 # ALLOWED_HOSTS = ["blog.estebanmartins.com.ar","estebanmartins.com.ar","*"]
