@@ -6,7 +6,8 @@ from django.shortcuts import redirect
 
 
 urlpatterns = [
-    path('', lambda request: redirect('Home', permanent=True)),
+    # path('', lambda request: redirect('Home', permanent=True)),
+    path('', views.home_redirect_or_bot),
     path('home/',  views.home, name="Home"),
     path('blog/',  views.blog, name="blog"),
     path('post/<str:slug>', views.post_detail, name='Post' ),

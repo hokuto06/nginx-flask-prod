@@ -21,6 +21,12 @@ API_CREATE_POST_URL = "http://django-api:8000/api/posts/"
 
 COMMENTS_URL = "http://django-api:8000/api/comments/"
 
+def home_redirect_or_bot(request):
+    ua = request.META.get('HTTP_USER_AGENT', '').lower()
+    if any(bot in ua for bot in ['facebookexternalhit', 'whatsapp', 'twitterbot', 'linkedinbot']):
+        return render(request, 'home.html')  # la misma plantilla que usás en /home/
+    return redirect('Home') 
+
 
 # @csrf_exempt
 def contact_form_s3(request):
