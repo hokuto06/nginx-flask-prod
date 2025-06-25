@@ -15,7 +15,7 @@ environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 SECRET_KEY = 'django-insecure-vx*^$h9#fbg3a_fg=p+^*+)*zamsn_6%wqg+-k-g@5cqmss@94'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ["*"]
 # ALLOWED_HOSTS = ["blog.estebanmartins.com.ar","estebanmartins.com.ar","*"]
@@ -134,6 +134,7 @@ CSRF_COOKIE_SECURE = False
 CSRF_TRUSTED_ORIGINS = [
     "https://blog.estebanmartins.com.ar",
     "https://estebanmartins.com.ar",
+    "https://www.estebanmartins.com.ar"
     "http://127.0.0.1:8083",
     "http://127.0.0.1:8500",
 ]
