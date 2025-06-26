@@ -3,37 +3,34 @@
 
 {% block header %}
 
-{% comment %} {% include "includes/header.html" with bg_image="assets/img/image_home.jpg" title="Hola, soy Esteban" description="Acá comparto proyectos, herramientas y  algunas experiencias en mi carrera.<br><br>" created_at=none text_user_field=none user=none%} {% endcomment %}
+{% comment %} {% include "includes/header-blog.html" %} {% endcomment %}
 
 {% endblock %}
 
 
 {% block content %}
+<!-- hello -->
 <h1>Hola, soy Esteban!</h1>
-<p>Soy un trabajador IT y me desempeñe toda mi carreara en el area el area de infraestructura.</p>
-<p>He trabajado admnistrando y creando redes y brindando soluciones desde el año 2008.</p>
+<p>Soy un profesional de IT y me he desarrollado toda mi carrera en el área de infraestructura.</p>
+<p>Desde 2008, trabajo administrando redes, diseñando soluciones y optimizando entornos técnicos.</p>
 
+<!-- about this page -->
 <h2 id="hero" class="post-title">¿Que vas a encontrar acá?</h2>
-<p>Este es un espacio que decidí crear con el fin de documentar publicamente mi perfil profesional.</p>
-<p>En este sitio también podrás ver mi <a href="{% url 'me' %}">portfolio</a> con algunos de los proyectos en los que he trabajado.</p>
-<span>test<span>
-
-<a href="#project"><strong>en mi perfil</strong></a>
-
-<p class="post-meta">
+<p>
+Este sitio es un espacio personal donde documento mi recorrido profesional y te muestro cómo trabajo.
+Podés explorar mi <a href="{% url 'me' %}">portfolio</a> con proyectos en los que participé, y leer publicaciones donde profundizo en aspectos técnicos, decisiones tomadas y aprendizajes adquiridos.
 </p>
-    <h2 id="project" class="post-title">¿Cual es el objetivo de este sitio?</h2>
-
-    <p>Una de las habilidades mas dificiles de poder demostrar sobre mi, es mi capacidad de aprender
-        nuevas tecnologias, uso de herramientas y adaptarme.
-        Documentar y organizar la informacion, es otra de las habilidades que tambien es dificil de demostrar 
-        y es algo que estuve poniendo en practica a lo largo del desarrollo de este proyecto.
-    </p>
-    <p>Pero tambien para comenzar a documentar mi aprendijze y practicas.
-    </p>
-    <span>Como puedes ver en</span><a href="#hero"></a>
-<p class="post-meta">
-    Publicado por <strong>api/django </strong>
+<p>
+Cada sección está pensada para que conozcas mi perfil más allá del CV: cómo pienso, cómo encaro los desafíos y cómo incorporo nuevas herramientas.
 </p>
-
+<blockquote>
+    Este blog no tiene fines comunitarios, es simplemente una bitácora personal-profesional. <a href="post/este-blog">→ Leer más sobre "Este blog"</a>
+</blockquote>
+<!-- scope -->
+<h2 id="project" class="post-title">¿Cual es el objetivo de este sitio?</h2>
+<p>
+    Una de las habilidades más difíciles de demostrar es la capacidad de aprender nuevas tecnologías, adaptarse y aplicar herramientas en distintos contextos... a menos que cuentes con un buen portafolio.
+    Otra, igual de valiosa, es la de organizar y documentar información de forma clara.
+    Este proyecto busca reflejar ambas capacidades, mientras registro mis aprendizajes y prácticas actuales.
+</p>
 {% endblock %}
