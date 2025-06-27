@@ -18,7 +18,7 @@
         Publicado 
         <time datetime="{{ post.created_at|date:'c' }}"> {{ post.created_at|slice:":16"|cut:"T"|cut:"Z"|slice:"10"  }}</time>
         En 
-        <a href="">{{ post.category }}</a>
+        <a href="">{{ post.category_title  }}</a>
       </div>
     </header>
     {{ post.content | safe }}

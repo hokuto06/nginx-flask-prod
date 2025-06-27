@@ -40,7 +40,9 @@
       html {
         height: 100%; /* Asegura que el html ocupe el 100% de la altura del viewport */
       }
-
+      .ds-primary-button{
+        background-color:#e80049;
+      }
       body {
         display: flex; /* Habilita Flexbox en el body */
         flex-direction: column; /* Organiza los elementos hijos en una columna */
@@ -71,6 +73,7 @@
             <li class="m-sl-nav-bar__item"><a class="m-sl-nav-bar__link" href="{% url 'me' %}">Sobre mí</a></li>
             <li class="m-sl-nav-bar__item"><a class="m-sl-nav-bar__link" href="{% url 'projects' %}">Proyectos</a></li>
             <li class="m-sl-nav-bar__item"><a class="m-sl-nav-bar__link" href="{% url 'blog' %}">Blog</a></li>
+            <li class="m-sl-nav-bar__item"><a class="m-sl-nav-bar__link" href="{% url 'contact' %}">Contacto</a></li>
             {% comment %} {% if request.session.token %}
               <li class="m-sl-nav-bar__item"><a class="m-sl-nav-bar__link" href="{% url 'logout' %}" data-bs-toggle="modal" data-bs-target="#logoutModal">Logout</a></li>
               <li class="m-sl-nav-bar__item"><a class="m-sl-nav-bar__link">{{ request.session.user_name }}</a></li>

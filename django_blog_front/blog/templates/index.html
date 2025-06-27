@@ -2,11 +2,17 @@
 {% load static %}
 
 {% block header %}
-  {% include "includes/header-blog.html" with title="Sobre mí" created_at="" text_user_field="Publicado por " user="Esteban Martins" bg_image="assets/img/portada_blog.png" description="Conoce más sobre mi experiencia y habilidades." %}
+  {% comment %} {% include "includes/header-blog.html" with title="Sobre mí" created_at="" text_user_field="Publicado por " user="Esteban Martins" bg_image="assets/img/blog-bg-hero.png" description="Conoce más sobre mi experiencia y habilidades." %} {% endcomment %}
 {% endblock %}
 
 {% block content %}
     {% comment %} <div class="container"> {% endcomment %}
+    <aside class="m-working-code">
+    <p>
+    Este blog es, simplemente, una bitácora técnica personal. Un espacio donde documento mi trabajo, mis aprendizajes, mis decisiones y errores, con el objetivo de dejar un registro que pueda ser útil para mí, y también para quienes deseen evaluar mi perfil de forma más profunda.
+
+    </p>
+    </aside>
     <h1 id="hero">Ultimos posts de Esteban Martins</h1>
         {% for post in posts %}
         <div class="m-recent-post">

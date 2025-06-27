@@ -1,10 +1,10 @@
 {% load static %}
 <header class="l-site-header">
     <figure id="site-photo-figure" data-controller="site-photos" data-action="mouseenter-&gt;site-photos#preloadPhotos" class="site-photo">
-    <picture class="site-photo__hero-link">
-        <source srcset="{{ post.miniature_url }}" media="(min-width: 1024px)">
+        <picture class="site-photo__hero-link">
+            <source srcset="{{ post.miniature_url }}" media="(min-width: 1024px)">
             <img src="{% static 'assets/img/hero_background2.webp' %}" alt="Esteban Martins"  class="site-photo__hero-image" loading="eager" fetchpriority="high">
-    </picture>
+        </picture>
         <figcaption class="site-photo__caption">
             <span class="site-photo__caption__description">
                 Este es el blog de:  
