@@ -6,12 +6,12 @@
 <body>
     <h1>mails</h1>
     <ul>
-        {% for task in tasks %}
+        {% for email in emails %}
             <li>
-                <strong>subject: </strong>: {{ task['subject'] }}
-                <strong>Mail de: </strong>: {{ task['from'] }}
+                <strong>subject: </strong>: {{ email['subject'] }}
+                <strong>Mail de: </strong>: {{ email['from'] }}
                 {% comment %} <strong>Para: </strong>: {{ task['subject'] }} {% endcomment %}
-                {% if task.get('leido') %}
+                {% if email.get('leido') %}
                     <span style="color: green;">[leido]</span>
                 {% else %}
                     <span style="color: red;">[Sin leer]</span>
