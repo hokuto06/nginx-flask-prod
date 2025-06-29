@@ -14,14 +14,6 @@ def home():
 def get_mail():
     dynamodb = boto3.resource('dynamodb', region_name='us-east-1') 
     table = dynamodb.Table('email_received')
-
     response = table.scan()
-    print(response)
-    #pprint(response)
-    #pprint(response['Items'])
-    # for mail in response['Items']:
-    # #pprint(mail)
-    #     if 'for' in mail:
-    #         pprint(mail)
-    #         print("From: "+mail['from'],"To "+mail['for'] ,"Asunto: "+mail['subject'])
-    return 'ok'
+    items = response['Items']  # Lista de diccionarios
+    return render_template('mails.html', tasks=items)
