@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lista de mails</title>
+</head>
+<body>
+    <h1>mails</h1>
+    <ul>
+        {% for task in tasks %}
+            <li>
+                <strong>subject: </strong>: {{ task['subject'] }}
+                <strong>Mail de: </strong>: {{ task['from'] }}
+                {% comment %} <strong>Para: </strong>: {{ task['subject'] }} {% endcomment %}
+                {% if task.get('leido') %}
+                    <span style="color: green;">[leido]</span>
+                {% else %}
+                    <span style="color: red;">[Sin leer]</span>
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
