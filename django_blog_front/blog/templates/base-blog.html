@@ -118,8 +118,8 @@
               <li class="m-sl-nav-bar__item"><a class="m-sl-nav-bar__link" href="{% url 'login' %}" data-bs-toggle="modal" data-bs-target="#loginModal">Login</a></li>
             {% endif %} {% endcomment %}
             <li class="m-sl-nav-bar__item m-sl-nav-bar__themer" data-controller="nav-theme">
-              <button data-theme="light" data-action="nav-theme#setTheme" tabindex="-1" class="m-sl-nav-bar__theme">Light Ui</button>
-              <button data-theme="dark" data-action="nav-theme#setTheme" tabindex="-1" class="m-sl-nav-bar__theme">Dark Ui</button>
+              <a style="cursor:pointer" type="button" data-theme="light" data-action="nav-theme#setTheme" tabindex="-1" class="m-sl-nav-bar__theme">Light Ui</a>
+              <a style="cursor:pointer" type="button" data-theme="dark" data-action="nav-theme#setTheme" tabindex="-1" class="m-sl-nav-bar__theme">Dark Ui</a>
             </li>
           </ul>
         </nav>

@@ -6,12 +6,10 @@
 {% endblock %}
 
 {% block content %}
-{% comment %} <aside class="m-working-code">
-<p>
-Este blog es, simplemente, una bitácora técnica personal. Un espacio donde documento mi trabajo, mis aprendizajes, mis decisiones y errores, con el objetivo de dejar un registro que pueda ser útil para mí, y también para quienes deseen evaluar mi perfil de forma más profunda.
-</p> {% endcomment %}
-</aside>
 <h1 id="hero">Ultimos posts de Esteban Martins</h1>
+<blockquote>
+Esta es una sección dedicada a exhibir algunos de mis posts recientes. Aquí vas a encontrar ejemplos de artículos y reflexiones sobre temas que me apasionan, como la programación, la tecnología y el desarrollo personal.
+</blockquote>
 <div id="posts-content"
     hx-get="{% url 'posts_fragment' %}"
     hx-trigger="load"
