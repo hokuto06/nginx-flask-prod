@@ -20,11 +20,42 @@ jobs:
           chmod 600 ~/.ssh/id_ed25519
           ssh-keyscan -H ${{ secrets.EC2_HOST }} >> ~/.ssh/known_hosts
 
+      - name: Obtener mensaje del último commit
+        id: commit
+        run: |
+          echo "COMMIT_MSG=$(git log -1 --pretty=%B)" >> $GITHUB_ENV
+
       - name: Deploy to EC2
         run: |
-          ssh ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} << 'EOF'
+          echo "Mensaje de commit: $COMMIT_MSG"
+
+          RESTART=false
+          REBUILD=false
+
+          if [[ "$COMMIT_MSG" == *"[restart]"* ]]; then
+            RESTART=true
+          fi
+
+          if [[ "$COMMIT_MSG" == *"[rebuild]"* ]]; then
+            REBUILD=true
+          fi
+
+          echo "RESTART=$RESTART"
+          echo "REBUILD=$REBUILD"
+
+          ssh ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} << EOF
             cd /home/ubuntu/nginx-flask-prod
             git pull
-            docker compose down
-            docker compose up -d --build
+
+            if $RESTART; then
+              docker compose down
+            fi
+
+            if $REBUILD; then
+              docker compose up -d --build
+            elif $RESTART; then
+              docker compose up -d
+            else
+              echo "No se hizo ni rebuild ni restart de contenedores."
+            fi
           EOF
