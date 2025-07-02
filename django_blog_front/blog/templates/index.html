@@ -6,38 +6,40 @@
 {% endblock %}
 
 {% block content %}
-    {% comment %} <div class="container"> {% endcomment %}
-    <aside class="m-working-code">
-    <p>
-    Este blog es, simplemente, una bitácora técnica personal. Un espacio donde documento mi trabajo, mis aprendizajes, mis decisiones y errores, con el objetivo de dejar un registro que pueda ser útil para mí, y también para quienes deseen evaluar mi perfil de forma más profunda.
+{% comment %} <aside class="m-working-code">
+<p>
+Este blog es, simplemente, una bitácora técnica personal. Un espacio donde documento mi trabajo, mis aprendizajes, mis decisiones y errores, con el objetivo de dejar un registro que pueda ser útil para mí, y también para quienes deseen evaluar mi perfil de forma más profunda.
+</p> {% endcomment %}
+</aside>
+<h1 id="hero">Ultimos posts de Esteban Martins</h1>
+<div id="posts-content"
+    hx-get="{% url 'posts_fragment' %}"
+    hx-trigger="load"
+    hx-target="#posts-content"
+    hx-swap="innerHTML">
+<div class="spinner">⏳ Cargando los posts...</div>
+</div>
+<a type="button" class="btn" href="{% url 'create_post' %}" >Nuevo Post</a>
 
-    </p>
-    </aside>
-    <h1 id="hero">Ultimos posts de Esteban Martins</h1>
-        {% for post in posts %}
-        <div class="m-recent-post">
-            <h2>
-                <a href="{% url  'Post' post.slug %}">
-                    {{ post.title }}
-                </a>
-            </h2>
-            <div class="meta">
-                Publicado por {{ post.user.username }} el 
-                <time datetime="{{ post.created_at|date:'c' }}"> {{ post.created_at|slice:":16"|cut:"T"|cut:"Z"|slice:"10"  }}</time>
-            </div>
-            <div class="tags">
-                Tags: <a href="">
-                {{ post.category_title }}</a>
-            </div>
-            <p class="preview">
-                {% comment %} {{ post.description }} {% endcomment %}
-                {{ post.content|striptags|truncatewords:30 }}&nbsp;
-                <a href="{% url 'Post' post.slug %}">leer&nbsp;mas</a>&nbsp;→
-            </p>
-        </div>
-        {% empty %}
-            <p>No hay posts disponibles.</p>
-    {% endfor %}
-    <a type="button" class="btn" href="{% url 'create_post' %}" >Nuevo Post</a>
-    {% comment %} </div> {% endcomment %}
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+const container = document.getElementById("posts-content");
+const cachedPosts = sessionStorage.getItem("cachedPosts");
+
+if (cachedPosts) {
+    container.innerHTML = cachedPosts;
+} else {
+    container.setAttribute("hx-get", "{% url 'posts_fragment' %}");
+    container.setAttribute("hx-trigger", "load");
+    container.setAttribute("hx-target", "#posts-content");
+    container.setAttribute("hx-swap", "innerHTML");
+
+    document.body.addEventListener("htmx:afterSwap", function (evt) {
+    if (evt.target.id === "posts-content") {
+        sessionStorage.setItem("cachedPosts", container.innerHTML);
+    }
+    });
+}
+});
+</script>
 {% endblock %}

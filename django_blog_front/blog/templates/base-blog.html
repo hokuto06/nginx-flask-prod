@@ -55,8 +55,45 @@
         flex-grow: 1; /* Permite que este elemento se expanda y ocupe el espacio disponible */
         padding-bottom: 50px; /* Mantén tu padding-bottom existente si es necesario para el espaciado del contenido */
       }
+/*--------------------------------------------------------------
+# Preloader
+--------------------------------------------------------------*/
+/*
+  #preloader {
+    position: fixed;
+    inset: 0;
+    z-index: 999999;
+    overflow: hidden;
+    background: var(--background-color);
+    transition: all 0.6s ease-out;
+  }
+
+  #preloader:before {
+    content: "";
+    position: fixed;
+    top: calc(50% - 30px);
+    left: calc(50% - 30px);
+    border: 6px solid #ffffff;
+    border-color: var(--accent-color) transparent var(--accent-color) transparent;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    animation: animate-preloader 1.5s linear infinite;
+  }
+
+  @keyframes animate-preloader {
+    0% {
+      transform: rotate(0deg);
+    }
+
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  */
     </style>
   </head>
+  <script src="https://unpkg.com/htmx.org@1.9.5"></script>
   <body class="standard">
     <!-- Navbar -->
     <div 			id="primary-navigation"
@@ -116,6 +153,9 @@
         </figure>
       </div>
     </div>
+    <!-- Preloader -->
+    <div id="preloader"></div>
+
     <footer class="l-site-footer">
       <small>
         <span class="copyright">
@@ -144,6 +184,10 @@
       </section>
     </footer>
 <script>
+window.addEventListener('load', function () {
+  document.body.classList.add('loaded');
+});
+
   document.addEventListener('DOMContentLoaded', function () {
     console.log("Cargando scripts");
 
@@ -178,6 +222,19 @@
       }
     });
   });
+/*
+document.querySelectorAll('a').forEach(link => {
+  if (link.getAttribute('target') !== '_blank' && !link.href.startsWith('#')) {
+    link.addEventListener('click', function (e) {
+      e.preventDefault();
+      document.body.classList.add('fade-out');
+      setTimeout(() => {
+        window.location = this.href;
+      }, 300); // mismo tiempo que la transición CSS
+    });
+  }
+});
+*/  
 </script>
 </body>
 </html>

@@ -12,7 +12,6 @@ import dateutil.parser
 from pprint import pprint
 import uuid
 
-
 API_LOGIN_URL = "http://django-api:8000/api/auth/login"
 API_USER_ME_URL = "http://django-api:8000/api/auth/me"
 
@@ -69,15 +68,16 @@ def home(request):
     return render(request, "home.html")
 
 def blog(request):
+    return render(request, "index.html")
+
+def posts_fragment(request):
     try:
         response = requests.get("http://django-api:8000/api/posts/")
         posts = response.json() if response.status_code == 200 else []
     except Exception as e:
         print("Error al conectarse con la API:", e)
-        posts = []
-
-    return render(request, "index.html", {"posts": posts})
-
+        posts = []    
+    return render(request, "partials/posts.html", {"posts": posts})
 
 def about(request):
     return render(request, "about.html")

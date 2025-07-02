@@ -230,6 +230,25 @@ html[data-theme="dark"] {
   --border-darkest: #666;
 }
 
+body {
+  background-color: #fff;
+  background-color: var(--background);
+  color: var(--on-background);
+  margin: 0;
+  padding: 0;
+  font-family: nunito sans, arial, helvetica, sans-serif;
+  font-size: 1.2rem;
+  font-weight: 400;
+  line-height: 1.5;
+  /* For Lightning CSS - GPT SUGGESTION */
+  opacity: 0;
+  transition: opacity 0.4s ease-in-out;
+}
+
+body.loaded {
+  opacity: 1;
+}
+
 .ds-visually-hidden {
   clip: rect(0 0 0 0);
   -webkit-clip-path: inset(100%);
@@ -538,17 +557,6 @@ strong.ds-highlight {
   display: none;
 }
 
-body {
-  background-color: #fff;
-  background-color: var(--background);
-  color: var(--on-background);
-  margin: 0;
-  padding: 0;
-  font-family: nunito sans, arial, helvetica, sans-serif;
-  font-size: 1.2rem;
-  font-weight: 400;
-  line-height: 1.5;
-}
 
 article, aside, details, figcaption, figure, footer, header, hgroup, main, nav, section, summary {
   display: block;

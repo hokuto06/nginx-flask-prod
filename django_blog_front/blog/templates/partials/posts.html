@@ -1,0 +1,22 @@
+{% for post in posts %}
+  <div class="m-recent-post">
+    <h2>
+      <a href="{% url 'Post' post.slug %}">{{ post.title }}</a>
+    </h2>
+    <div class="meta">
+      Publicado por {{ post.user.username }} el 
+      <time datetime="{{ post.created_at|date:'c' }}">
+        {{ post.created_at|slice:":16"|cut:"T"|cut:"Z"|slice:"10" }}
+      </time>
+    </div>
+    <div class="tags">
+      Tags: <a href="">{{ post.category_title }}</a>
+    </div>
+    <p class="preview">
+      {{ post.content|striptags|truncatewords:30 }}&nbsp;
+      <a href="{% url 'Post' post.slug %}">leer&nbsp;mas</a>&nbsp;→
+    </p>
+  </div>
+{% empty %}
+  <p>No hay posts disponibles.</p>
+{% endfor %}
