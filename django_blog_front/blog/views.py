@@ -1,3 +1,4 @@
+from django.template.loader import get_template
 from django.shortcuts import render, redirect, HttpResponse
 from django.conf import settings
 from django.http import JsonResponse
@@ -26,6 +27,17 @@ def home_redirect_or_bot(request):
         return render(request, 'home.html')  # la misma plantilla que usás en /home/
     return redirect('Home') 
 
+def custom_400(request, exception):
+    return render(request, '400.html', status=400)
+
+def custom_403(request, exception):
+    return render(request, '403.html', status=403)
+
+def custom_404(request, exception):
+    return render(request, '404.html', status=404)
+
+# def custom_500(request):
+#     return render(request, '500.html', status=500)
 
 # @csrf_exempt
 def contact_form_s3(request):

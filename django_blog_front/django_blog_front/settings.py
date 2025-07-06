@@ -15,7 +15,7 @@ environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 SECRET_KEY = 'django-insecure-vx*^$h9#fbg3a_fg=p+^*+)*zamsn_6%wqg+-k-g@5cqmss@94'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ["*"]
 # ALLOWED_HOSTS = ["blog.estebanmartins.com.ar","estebanmartins.com.ar","*"]
@@ -47,7 +47,7 @@ ROOT_URLCONF = 'django_blog_front.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+         'DIRS': [BASE_DIR / 'django_blog_front' / 'templates'],  
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    {% load static %}
+  <meta charset="UTF-8">
+  <title>{% block title %}Error{% endblock %}</title>
+  <link href="{% static 'css/main.css' %}" rel="stylesheet" />
+
+</head>
+<body>
+  <header style="background: #222; color: #fff; padding: 4rem 1rem; text-align: center;">
+    <h1>{% block heading %}Algo salió mal{% endblock %}</h1>
+    <p style="font-size: 1.2rem;">{% block subheading %}Estamos trabajando para solucionarlo{% endblock %}</p>
+  </header>
+
+  <main style="max-width: 600px; margin: 3rem auto; padding: 0 1rem; text-align: center;">
+    {% block content %}
+    {% comment %} <a href="{% url 'home' %}" style="display: inline-block; margin-top: 2rem; text-decoration: underline;">Volver al inicio</a> {% endcomment %}
+    {% endblock %}
+  </main>
+</body>
+</html>
