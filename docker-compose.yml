@@ -12,11 +12,11 @@ services:
     env_file:
       - ./app/.env
 
-  php:
-    build: ./php
-    container_name: php-fpm
-    volumes:
-      - ./php:/var/www/html
+  # php:
+  #   build: ./php
+  #   container_name: php-fpm
+  #   volumes:
+  #     - ./php:/var/www/html
 
   api:
     build: ./django-api
@@ -31,10 +31,8 @@ services:
       - "8000:8000"
 
   blog-front:
-    build:
-      context: ./django_blog_front
+    build: ./django_blog_front
     container_name: blog-front
-    entrypoint: ["/app/entrypoint.sh"]
     environment:
       - APP_PORT=8500
     volumes:
@@ -62,5 +60,4 @@ services:
       - /etc/letsencrypt:/etc/letsencrypt:ro
     depends_on:
       - flask
-      - php
       - blog-front
