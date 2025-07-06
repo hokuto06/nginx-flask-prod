@@ -1,8 +1,35 @@
-from flask import Flask, url_for, flash, redirect, render_template, abort
+from flask import Flask, url_for, flash, redirect, render_template, abort, request
 import boto3
 from pprint import pprint
 from dotenv import load_dotenv
 import os
+import boto3
+
+ses = boto3.client('ses', region_name='us-east-1')
+
+def enviar_respuesta(destinatario, asunto_original, mensaje, mensaje_original, remitente="info@estebanmartins.com.ar"):
+    respuesta_con_historial = (
+        f"{mensaje}\n\n"
+        "----- Mensaje original -----\n"
+        f"De: {mensaje_original.get('from', '')}\n"
+        f"Fecha: {mensaje_original.get('fecha', '')}\n"
+        f"Asunto: {mensaje_original.get('subject', '')}\n\n"
+        f"{mensaje_original.get('body', '')}"
+    )
+
+    return ses.send_email(
+        Source=remitente,
+        Destination={
+            'ToAddresses': [destinatario],
+        },
+        Message={
+            'Subject': {'Data': f"Re: {asunto_original}", 'Charset': 'UTF-8'},
+            'Body': {
+                'Text': {'Data': respuesta_con_historial, 'Charset': 'UTF-8'}
+            }
+        }
+    )
+
 
 load_dotenv(dotenv_path=os.path.join(os.path.dirname(__file__), '.env'))
 
@@ -35,7 +62,7 @@ def view_email(email_id):
     table = dynamodb.Table('email_received')
     response = table.get_item(Key={'id': email_id})
     item = response.get('Item')
-
+    pprint(item)
     if not item:
         abort(404)
     if not item.get('leido'):
@@ -66,3 +93,27 @@ def delete_email(email_id):
 
     flash('Correo eliminado correctamente.', 'success')
     return redirect(url_for('get_emails'))
+
+@app.route('/view_email/<email_id>/reply', methods=['POST'])
+def responder_email(email_id):
+    dynamodb = boto3.resource('dynamodb', region_name='us-east-1')
+    table = dynamodb.Table('email_received')
+    response = table.get_item(Key={'id': email_id})
+    item = response.get('Item')
+
+    if not item:
+        abort(404)
+
+    mensaje_respuesta = request.form['respuesta']
+    destinatario = item['from']
+    asunto_original = item['subject']
+
+    enviar_respuesta(
+        destinatario=destinatario,
+        asunto_original=asunto_original,
+        mensaje=mensaje_respuesta,
+        mensaje_original=item  # Se usa para construir el historial
+    )
+
+    flash('Respuesta enviada correctamente.', 'success')
+    return redirect(url_for('view_email', email_id=email_id))
