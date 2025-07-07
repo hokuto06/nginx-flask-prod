@@ -18,7 +18,6 @@ services:
   #   volumes:
   #     - ./php:/var/www/html
 
-
   api:
     build: ./django-api
     container_name: django-api
