@@ -36,9 +36,6 @@ def custom_403(request, exception):
 def custom_404(request, exception):
     return render(request, '404.html', status=404)
 
-# def custom_500(request):
-#     return render(request, '500.html', status=500)
-
 # @csrf_exempt
 def contact_form_s3(request):
     if request.method == "POST":
