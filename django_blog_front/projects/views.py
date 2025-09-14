@@ -6,6 +6,9 @@ def home(request):
 def project_email(request):
     return render(request, 'projects/email-project.html')
 
+def project_iot_cctv(request):
+    return render(request, 'projects/iot-cctv-project.html')
+
 def project_template(request):
     return render(request, 'projects/template-project.html')
 
