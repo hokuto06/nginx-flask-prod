@@ -1,12 +1,6 @@
 {% extends "base-blog.html" %}
 {% load static %}
 {% block header %}{% endblock %}
-{% block styles %}
-<style type="text/css">
-body { background-color: var(--beige-0) }
-.m-image-tile { margin: 1rem 0; text-align: center; }
-.lead i { margin-right: .35rem; }
-</style>
 {% endblock %}
 {% block content %}
 <article>
@@ -25,7 +19,7 @@ body { background-color: var(--beige-0) }
       <strong>Arquitectura</strong>
     </p>
     <div class="m-image-tile">
-      <img width="900" class="img-fluid" src="{% static 'assets/img/iot_cctv_stack.png' %}" loading="lazy" alt="Topología IoT + CCTV" />
+      <img width="700" class="img-fluid" src="{% static 'assets/img/iot_cctv_stack.png' %}" loading="lazy" alt="Topología IoT + CCTV" />
     </div>
 
     <p class="lead">
