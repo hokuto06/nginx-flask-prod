@@ -89,18 +89,18 @@ Esta es una sección dedicada a exhibir algunos de mis proyectos. Aqui encontrar
 <article>
 <aside class="m-working-code" >
     <figure id="site-photo-figure" data-controller="site-photos" data-action="mouseenter-&gt;site-photos#preloadPhotos" class="site-photo">
-        <a href="{% url 'email-parser' %}" class="site-photo__hero-link">
+        <a href="{% url 'iot-cctv' %}" class="site-photo__hero-link">
             <picture>
-              <source srcset="{% static 'assets/img/email_pipeline_bg.png' %}" media="(min-width: 1024px)">
+              <source srcset="{% static 'assets/img/iot-cctv-miniature.png' %}" media="(min-width: 1024px)">
                 <img width="100%" data-rel="238" fetchpriority="high" loading="eager" alt="Esteban Martins" class="site-photo__hero-image">
             </picture>
         </a>
         <figcaption class="site-photo__caption">
             <h3 class="site-photo__caption__description">
-                Email Pipeline  
+                Red IoT + CCTV  
             </h3>
             <p>
-              Pipeline serverless para recibir, procesar y notificar emails usando AWS SES, Lambda y SNS.
+            Proyecto de arquitectura de red integrando MikroTik, Switch PoE, Cámaras IP + NVR, y un stack IoT en Raspberry Pi con Docker (Home Assistant, zigbee2mqtt, Mosquitto, Nginx y Filebrowser). Incluye VPN L2TP y una red Wi-Fi de usuarios.
             </p>
         </figcaption>
     </figure>
@@ -119,6 +119,24 @@ Esta es una sección dedicada a exhibir algunos de mis proyectos. Aqui encontrar
             </h3>
             <p>
             Proyecto de despliegue de aplicaciones Django usando Docker y AWS ECS para lograr escalabilidad y despliegues automatizados.
+            </p>
+        </figcaption>
+    </figure>
+</aside>
+<aside class="m-working-code" >
+    <figure id="site-photo-figure" data-controller="site-photos" data-action="mouseenter-&gt;site-photos#preloadPhotos" class="site-photo">
+        <a href="{% url 'email-parser' %}" class="site-photo__hero-link">
+            <picture>
+              <source srcset="{% static 'assets/img/email_pipeline_bg.png' %}" media="(min-width: 1024px)">
+                <img width="100%" data-rel="238" fetchpriority="high" loading="eager" alt="Esteban Martins" class="site-photo__hero-image">
+            </picture>
+        </a>
+        <figcaption class="site-photo__caption">
+            <h3 class="site-photo__caption__description">
+                Email Pipeline  
+            </h3>
+            <p>
+              Pipeline serverless para recibir, procesar y notificar emails usando AWS SES, Lambda y SNS.
             </p>
         </figcaption>
     </figure>
