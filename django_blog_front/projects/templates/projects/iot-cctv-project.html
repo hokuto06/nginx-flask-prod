@@ -1,0 +1,85 @@
+{% extends "base-blog.html" %}
+{% load static %}
+{% block header %}{% endblock %}
+{% block styles %}
+<style type="text/css">
+body { background-color: var(--beige-0) }
+.m-image-tile { margin: 1rem 0; text-align: center; }
+.lead i { margin-right: .35rem; }
+</style>
+{% endblock %}
+{% block content %}
+<article>
+  <section id="description">
+    <h1>IoT + CCTV – Topología Doméstica</h1>
+    <p class="lead">
+      Arquitectura de red que integra <strong>MikroTik</strong>, <strong>Switch PoE Hikvision</strong>,
+      <strong>Cámaras IP + NVR</strong>, y un <strong>stack IoT</strong> en <strong>Raspberry&nbsp;Pi</strong> (Ubuntu) con
+      <strong>Docker</strong>: Home Assistant, zigbee2mqtt, Mosquitto, Nginx (proxy) y Filebrowser.
+      Incluye <strong>VPN L2TP</strong> (cliente a EC2 y servidor para administración remota) y una
+      <strong>red Wi-Fi de usuarios</strong> con APs conectados al MikroTik.
+    </p>
+
+    <p class="lead">
+      <i class="fa-solid fa-network-wired"></i>
+      <strong>Arquitectura</strong>
+    </p>
+    <div class="m-image-tile">
+      <img width="900" class="img-fluid" src="{% static 'assets/img/iot_cctv_stack.png' %}" loading="lazy" alt="Topología IoT + CCTV" />
+    </div>
+
+    <p class="lead">
+      <i class="fa-solid fa-sitemap"></i>
+      <strong>Componentes</strong>
+      <br />
+    </p>
+    <ul class="lead">
+      <li><strong>ISP → Modem Movistar</strong> → <strong>MikroTik</strong> (ether1 WAN).</li>
+      <li><strong>MikroTik</strong> (ether2 LAN) → <strong>Switch PoE 8 puertos (Hikvision)</strong>.</li>
+      <li>Sobre el PoE: <strong>5 Cámaras IP</strong> + <strong>NVR</strong>.</li>
+      <li><strong>Red Wi-Fi de usuarios</strong>: APs conectados al MikroTik (SSID de navegación).</li>
+      <li><strong>Raspberry&nbsp;Pi</strong> por Wi-Fi 2.4 GHz al MikroTik ejecutando Docker:
+        <ul>
+          <li>Home Assistant</li>
+          <li>zigbee2mqtt → Mosquitto</li>
+          <li>Nginx (proxy) + Filebrowser</li>
+        </ul>
+      </li>
+      <li><strong>Zigbee Mesh</strong> (7 dispositivos: 2 interruptores, 2 PIR, 2 contactos de puerta, 1 extra) coordinado por zigbee2mqtt.</li>
+      <li><strong>VPN L2TP</strong>: Cliente a <strong>EC2 Linux (AWS)</strong> y servidor en el MikroTik para administración desde casa.</li>
+    </ul>
+  </section>
+
+  <section id="features">
+    <h3>Características clave</h3>
+    <ul>
+      <li>Separación visual por dominios: Internet / Routing, CCTV, IoT, y Acceso Remoto.</li>
+      <li>Proxy Nginx delante de Home Assistant; mensajería MQTT centralizada.</li>
+      <li>Topología CCTV en estrella desde el Switch PoE (cámaras + NVR).</li>
+      <li>Zigbee representado como red en malla (mesh) coordinada por zigbee2mqtt.</li>
+      <li>Red Wi-Fi de usuarios gestionada por MikroTik (APs al router).</li>
+    </ul>
+  </section>
+
+  <section id="usage">
+    <h3>Cómo reutilizar esta página</h3>
+    <ol>
+      <li>Guardá el diagrama como <code>assets/img/iot_cctv_stack.png</code> en tu carpeta de estáticos.</li>
+      <li>Copiá este archivo como <code>iot-cctv-project.html</code> dentro de tus templates.</li>
+      <li>Enlazalo desde tu índice o menú del sitio.</li>
+      <li>Si usás otro path, cambiá el atributo <code>src</code> del &lt;img&gt; en la sección “Arquitectura”.</li>
+    </ol>
+  </section>
+
+  <section id="summary">
+    <h2 class="section-heading">Resumen del flujo</h2>
+    <pre><code>Internet → Modem → MikroTik
+  ├─ ether2 → Switch PoE → (Red CCTV: 5 Cams + NVR)
+  ├─ Wi-Fi 2.4 GHz → Raspberry Pi (Docker: HA, zigbee2mqtt, Mosquitto, Nginx, Filebrowser)
+  ├─ APs usuarios (Wi-Fi navegación)
+  ├─ L2TP Client → EC2 (AWS)
+  └─ L2TP Server (acceso remoto admin)
+Zigbee Mesh → zigbee2mqtt → Mosquitto → Home Assistant</code></pre>
+  </section>
+</article>
+{% endblock %}
