@@ -1,43 +1,80 @@
 {% extends "base-blog.html" %}
 {% load static %}
 
-{% block header %}
-  {% include "includes/header-blog.html" with title="Sobre mí" created_at="" text_user_field="Publicado por " user="Esteban Martins" bg_image="assets/img/hero_background2.webp" description="Conoce más sobre mi experiencia y habilidades." %}
+{% block header %}{% endblock %}
+
+{% block styles %}
+<style>
+/* ── About / Perfil ───────────────────────────────────── */
+.me-hero {
+  border-left: 3px solid var(--primary);
+  padding-left: 1.25rem;
+  margin: 0 0 2.5rem;
+}
+
+.me-hero__name {
+  font-size: 1.8rem;
+  font-weight: 700;
+  line-height: 1.2;
+  margin: 0 0 0.25rem;
+}
+
+.me-hero__role {
+  font-size: 0.92rem;
+  color: var(--on-background-lighter);
+  margin: 0 0 0.25rem;
+}
+
+.me-hero__updated {
+  font-size: 0.78rem;
+  color: var(--on-background-lighter);
+  margin: 0;
+}
+
+.me-label {
+  display: block;
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--on-background-lighter);
+  font-weight: 700;
+  margin: 2.25rem 0 0.4rem;
+}
+
+.me-section-title {
+  margin-top: 0.25rem;
+}
+</style>
 {% endblock %}
+
 {% block content %}
 <article>
-  <header class="m-post-header">
-    <h1 class="m-post-header__title">Acerca de mí</h1>
-    <p class="m-post-header__meta">
-      Última actualización por <a href="https://www.linkedin.com/in/esteban-martins-816b9837/" target="_blank" rel="noopener">Esteban Martins</a>
-      el <time datetime="2026-05-15">15 de mayo de 2026</time>
-    </p>
-  </header>
+  <section class="me-hero">
+    <h1 class="me-hero__name">Esteban Martins</h1>
+    <p class="me-hero__role">Network &amp; Infrastructure Engineer &rarr; DevOps · Cloud · IaC</p>
+    <p class="me-hero__updated">Actualizado el <time datetime="2026-05-15">15 de mayo de 2026</time></p>
+  </section>
+
     <p>
       Soy un profesional con más de 15 años de experiencia en redes e infraestructura crítica, especializado en el diseño, implementación y mantenimiento de soluciones híbridas (on-premise y cloud).
-      A lo largo de mi carrera he liderado proyectos en entornos corporativos de alta demanda, priorizando la eficiencia operativa, 
-      la automatización y la continuidad del servicio. Actualmente enfoco mi desarrollo hacia prácticas DevOps, contenedores y cloud computing, integrando conocimientos de networking con automatización y despliegue moderno.        
+      A lo largo de mi carrera he liderado proyectos en entornos corporativos de alta demanda, priorizando la eficiencia operativa,
+      la automatización y la continuidad del servicio. Actualmente enfoco mi desarrollo hacia prácticas DevOps, contenedores y cloud computing, integrando conocimientos de networking con automatización y despliegue moderno.
       Me motiva enfrentar problemas técnicos desafiantes y encontrar formas innovadoras de optimizar procesos y sistemas.
-      {% comment %} Este es un espacio que decidí crear para publicar un resumen fiel de <a href="#about">mi perfil profesional</a>
-      Poder contar con más detalle mi <a href="#experience">experiencia profesional</a> las <a href="#tools">Herramientas</a> que domino. 
-      mis <a href="#skills">Habilidades Técnicas</a> y también contar <a href="#wyd">Que estoy haciendo actualmente</a>. {% endcomment %}
-    {% comment %} <a href="#experience" rel="tag" class="tag">Experiencia</a>&nbsp;
-    <a href="#skills" rel="tag" class="tag">Habilidades</a>&nbsp;
-    <a href="#tools" rel="tag" class="tag">Herramientas</a>&nbsp;
-    <a href="#about" rel="tag" class="tag">Acerca de mí</a>&nbsp;
-    <a href="#wyd" rel="tag" class="tag">Que estoy haciendo?</a> {% endcomment %}
     </p>
-    <h2 id="profile">Mi perfil profesional</h2>
+
+    <span class="me-label">Perfil</span>
+    <h2 id="profile" class="me-section-title">Mi perfil profesional</h2>
     <p>
-      Mi trayectoria combina una sólida base en administración de redes y servicios, con un enfoque práctico en resolver desafíos técnicos complejos. 
-      He trabajado con tecnologías multivendor y herramientas, tanto en campo como de forma remota, optimizando infraestructuras y automatizando procesos mediante scripting. 
+      Mi trayectoria combina una sólida base en administración de redes y servicios, con un enfoque práctico en resolver desafíos técnicos complejos.
+      He trabajado con tecnologías multivendor y herramientas, tanto en campo como de forma remota, optimizando infraestructuras y automatizando procesos mediante scripting.
       Hoy busco sumar valor en roles donde se combine experiencia en infraestructura con visión DevOps.
     </p>
 
-  <h2 id="experience">Mi Trayectoria profesional</h2>
+  <span class="me-label">Trayectoria</span>
+  <h2 id="experience" class="me-section-title">Mi Trayectoria profesional</h2>
   <p>
     A lo largo de mi carrera he desempeñado diversos roles vinculados a la operación, automatización y evolución de entornos de red. Desde tareas de soporte técnico hasta liderazgo en proyectos de renovación tecnológica,
-    cada experiencia consolidó mi capacidad de análisis, adaptación y mejora continua. 
+    cada experiencia consolidó mi capacidad de análisis, adaptación y mejora continua.
   </p>
 
   <aside class="m-working-code">
@@ -46,7 +83,7 @@
       <small> - (2017 – 2025)</small>
       </p>
       <p class="m-working-code__description">
-      Durante esta etapa, mi función fue la de liderar proyectos de infraestructura de red, desde el diseño hasta la implementación y soporte postventa. Trabajé en estrecha colaboración con equipos multidisciplinarios para garantizar la entrega de soluciones de alta calidad.  
+      Durante esta etapa, mi función fue la de liderar proyectos de infraestructura de red, desde el diseño hasta la implementación y soporte postventa. Trabajé en estrecha colaboración con equipos multidisciplinarios para garantizar la entrega de soluciones de alta calidad.
       </p>
       <ul>
         <li>Diseño y despliegue de redes Ethernet/Wi-Fi en entornos corporativos.</li>
@@ -81,6 +118,7 @@
         <strong>Leer más sobre</strong> →<a href="{% url 'Post' 'ecnex-infraestructura' %}">mi experiencia en Ecnex</a>.
       </p>
   </aside>
+
   <aside class="m-working-code">
       <h3 class="m-working-code__title">Technical Support Junior</h3>
       <p>
@@ -101,29 +139,18 @@
         <strong>Leer más sobre</strong> →<a href="{% url 'Post' 'soporte-ecnex' %}">mi experiencia en Ecnex</a>.
       </p>
   </aside>
-  <h2 id="skills">Habilidades Técnicas</h2>
+
+  <span class="me-label">Habilidades</span>
+  <h2 id="skills" class="me-section-title">Habilidades Técnicas</h2>
   <p>
     A continuación presento un resumen detallado de las tecnologías, herramientas y entornos que domino, organizados según mi experiencia, frecuencia de uso y nivel de autonomía.
     Esta sección refleja mi recorrido técnico y las bases que sustentan mi práctica profesional.
   </p>
 
-<!-- skill code - Network Engineer -->
-
-{% comment %} 
-<h2>Herramientas y Plataformas</h2>
-{% endcomment %}
 {% include 'skills_table.html' %}
 
-{% comment %} <blockquote>
-  <p>
-    “La tecnología es mejor cuando une a las personas.”<br>
-    <small>– Matt Mullenweg</small>
-  </p>
-</blockquote> {% endcomment %}
-
-
-
-<h2 id="tools">Tecnologías, vendors y herramientas que manejo</h2>
+<span class="me-label">Herramientas</span>
+<h2 id="tools" class="me-section-title">Tecnologías, vendors y herramientas que manejo</h2>
 <ul>
   <li><strong>Vendors</strong>
     <ul>
@@ -148,11 +175,12 @@
       <li>Docker / Docker Compose</li>
       <li>GitHub Actions (CI/CD)</li>
       <li>Nginx</li>
-      <li>Prometheus & Grafana</li>
+      <li>Prometheus &amp; Grafana</li>
       <li>Ansible (básico)</li>
       <li>Linux (administración intermedia, scripts, monitoreo)</li>
     </ul>
   </li>
+  <li><strong>Base de datos</strong>
     <ul>
       <li>MongoDB (con Djongo)</li>
       <li>SQLite / PostgreSQL (básico, vía Django)</li>
@@ -168,26 +196,28 @@
   </li>
 </ul>
 
-<h2>Habilidades Blandas</h2>
+<span class="me-label">Competencias</span>
+<h2 class="me-section-title">Habilidades Blandas</h2>
   <p>
-    Además del conocimiento técnico, valoro y desarrollo habilidades que me permiten integrarme y aportar valor en equipos de trabajo diversos, adaptarme a cambios tecnológicos y mantener una comunicación clara y efectiva con colegas, clientes o proveedores. 
+    Además del conocimiento técnico, valoro y desarrollo habilidades que me permiten integrarme y aportar valor en equipos de trabajo diversos, adaptarme a cambios tecnológicos y mantener una comunicación clara y efectiva con colegas, clientes o proveedores.
     Estas competencias complementan y potencian mi perfil profesional.
   </p>
 
 {% include 'soft_skills.html' %}
-  <h2 id="wyd">¿Qué estoy haciendo hoy en día?</h2>
+
+  <span class="me-label">Hoy</span>
+  <h2 id="wyd" class="me-section-title">¿Qué estoy haciendo hoy en día?</h2>
     <p>
       Actualmente estoy enfocado en fortalecer mis competencias en administración Linux, contenedores y automatización en la nube. Estoy llevando adelante proyectos personales de infraestructura como código, despliegue continuo y seguridad en servidores. Paralelamente, me encuentro rediseñando mi perfil profesional para orientarlo plenamente a roles de tipo DevOps, donde pueda integrar mi experiencia en redes con prácticas modernas de infraestructura y automatización.
       Hoy día me encuentro en la búsqueda de nuevos desafíos profesionales que me permitan seguir creciendo y aportar valor a un equipo.
-    </p> <a href=""> → ver mas..</a>
+    </p>
 
-  <h2>Contacto</h2>
+  <span class="me-label">Contacto</span>
+  <h2 class="me-section-title">Contacto</h2>
   <p>
     Estoy abierto a nuevas oportunidades y colaboraciones en proyectos interesantes.
     Si estás interesado en conocer más sobre mi perfil profesional o en discutir posibles oportunidades de colaboración, no dudes en contactarme.
   </p>
-  <p>
-    </p>
 
   <form id="contact-form" method="post" action="/api/contact/" data-controller="contact-form" class="ds-form">
   {% csrf_token %}
@@ -221,8 +251,8 @@
       </label>
       <div class="ds-form-entry__body">
         <textarea id="message-input" name="comments" data-action="
-            keydown.meta+enter-&gt;contact-form#requestSubmit
-            keydown.ctrl+enter-&gt;contact-form#requestSubmit
+            keydown.meta+enter->contact-form#requestSubmit
+            keydown.ctrl+enter->contact-form#requestSubmit
           " class="ds-textarea"></textarea>
       </div>
     </div>
@@ -232,9 +262,6 @@
       </button>
     </div>
   </form>
-  {% comment %} <p>
-    Gracias por visitar mi perfil profesional. Si tienes alguna pregunta o comentario, no dudes en contactarme.
-    </p> {% endcomment %}
   <p>
     <strong>¡Saludos!</strong>
   </p>

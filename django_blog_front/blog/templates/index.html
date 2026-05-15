@@ -1,28 +1,63 @@
 {% extends "base-blog.html" %}
 {% load static %}
 
-{% block header %}
-  {% comment %} {% include "includes/header-blog.html" with title="Sobre mí" created_at="" text_user_field="Publicado por " user="Esteban Martins" bg_image="assets/img/blog-bg-hero.png" description="Conoce más sobre mi experiencia y habilidades." %} {% endcomment %}
+{% block header %}{% endblock %}
+
+{% block styles %}
+<style>
+/* ── Blog landing ─────────────────────────────────────── */
+.bl-hero {
+  border-left: 3px solid var(--primary);
+  padding-left: 1.25rem;
+  margin: 0 0 2.5rem;
+}
+
+.bl-hero__title {
+  font-size: 1.6rem;
+  font-weight: 700;
+  line-height: 1.2;
+  margin: 0 0 0.4rem;
+}
+
+.bl-hero__sub {
+  font-size: 0.92rem;
+  color: var(--on-background-lighter);
+  margin: 0;
+  line-height: 1.6;
+}
+
+.bl-label {
+  display: block;
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--on-background-lighter);
+  font-weight: 700;
+  margin: 0 0 1.25rem;
+}
+
+.bl-posts-header {
+  border-top: 1px solid var(--border-lightest);
+  padding-top: 1.5rem;
+  margin-bottom: 0;
+}
+</style>
 {% endblock %}
 
 {% block content %}
-<section class="m-post-header">
-  <h1 class="m-post-header__title" id="hero">Esteban Martins</h1>
-  <p>
-    Ingeniero de redes e infraestructura con más de 15 años de experiencia en entornos corporativos.
-    Hoy orientado a DevOps, contenedores y automatización en la nube.
-  </p>
-  <p>
-    Aquí publico lo que aprendo, los proyectos en los que trabajo y reflexiones sobre infraestructura y operaciones.
-  </p>
-  <p>
-    <a href="{% url 'me' %}">Mi perfil profesional</a> ·
-    <a href="{% url 'projects' %}">Proyectos</a> ·
-    <a href="{% url 'contact' %}">Contacto</a>
+
+<section class="bl-hero">
+  <h1 class="bl-hero__title">Blog</h1>
+  <p class="bl-hero__sub">
+    Notas técnicas sobre infraestructura, automatización y el camino hacia DevOps.
+    Escritas por Esteban Martins.
   </p>
 </section>
-<hr>
-<h2>Últimos posts</h2>
+
+<div class="bl-posts-header">
+  <span class="bl-label">Publicaciones</span>
+</div>
+
 <div id="posts-content"
     hx-get="{% url 'posts_fragment' %}"
     hx-trigger="load"
@@ -30,7 +65,6 @@
     hx-swap="innerHTML">
 <div class="spinner">⏳ Cargando posts...</div>
 </div>
-<a type="button" class="btn" href="{% url 'create_post' %}" >Nuevo Post</a>
 
 <script>
 document.addEventListener("DOMContentLoaded", function () {
