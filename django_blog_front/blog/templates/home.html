@@ -5,31 +5,62 @@
 
 {% block styles %}
 <style>
-/* ── Homepage layout ─────────────────────────────────── */
+/* ── Shared ────────────────────────────────────────────── */
+.hp-section {
+  margin-bottom: 2.75rem;
+}
+
+.hp-label {
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--on-background-lighter);
+  font-weight: 700;
+  margin: 0 0 1rem;
+}
+
+/* ── Hero ──────────────────────────────────────────────── */
 .hp-hero {
-  padding: 2.5rem 0 2rem;
-  border-bottom: 1px solid var(--border-lighter);
-  margin-bottom: 2rem;
+  border-left: 3px solid var(--primary);
+  padding-left: 1.25rem;
+  margin: 0 0 3rem;
 }
 
 .hp-hero__name {
-  font-size: 2.2rem;
+  font-size: 2.6rem;
   font-weight: 700;
-  margin: 0 0 0.35rem;
-  line-height: 1.15;
+  line-height: 1.1;
+  margin: 0 0 0.25rem;
 }
 
 .hp-hero__role {
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   color: var(--on-background-lighter);
+  margin: 0 0 0.1rem;
+}
+
+.hp-hero__arc {
+  font-size: 0.9rem;
+  color: var(--primary);
+  font-weight: 700;
+  margin: 0 0 1rem;
+}
+
+.hp-status {
+  display: inline-block;
+  font-size: 0.76rem;
+  color: var(--on-background-lighter);
+  border: 1px solid var(--border-lighter);
+  border-radius: 2px;
+  padding: 0.2rem 0.55rem;
   margin: 0 0 1.25rem;
-  letter-spacing: 0.02em;
+  vertical-align: top;
 }
 
 .hp-hero__summary {
-  max-width: 54ch;
-  margin: 0 0 1.5rem;
+  max-width: 52ch;
   line-height: 1.7;
+  margin: 0 0 1.5rem;
 }
 
 .hp-nav {
@@ -42,79 +73,156 @@
   font-size: 0.9rem;
 }
 
-/* ── Skill grid ──────────────────────────────────────── */
-.hp-skills {
-  margin-bottom: 2rem;
+.hp-nav__primary a {
+  font-weight: 700;
 }
 
-.hp-section-label {
-  font-size: 0.68rem;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
+/* ── Experience track ──────────────────────────────────── */
+.hp-track {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+
+.hp-track__row {
+  display: grid;
+  grid-template-columns: 12.5rem 1fr 5.5rem;
+  align-items: center;
+  gap: 0.8rem;
+  font-size: 0.82rem;
+}
+
+.hp-track__label {
+  font-weight: 600;
+  color: var(--on-background);
+}
+
+.hp-track__bar {
+  height: 4px;
+  background: var(--border-lightest);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.hp-track__fill {
+  height: 100%;
+  border-radius: 2px;
+}
+
+.hp-track__fill--networking {
+  width: 90%;
+  background: var(--on-background-lighter);
+}
+
+.hp-track__fill--devops {
+  width: 27%;
+  background: var(--primary);
+}
+
+.hp-track__years {
+  font-size: 0.76rem;
   color: var(--on-background-lighter);
-  margin: 0 0 0.8rem;
+  text-align: right;
 }
 
+/* ── Skill cards ───────────────────────────────────────── */
 .hp-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 0.55rem;
+  gap: 0.6rem;
 }
 
 .hp-card {
   background: var(--surface-lighter);
   border: 1px solid var(--border-lightest);
   border-radius: 4px;
-  padding: 0.7rem 0.9rem;
+  padding: 0.75rem 0.9rem;
+}
+
+.hp-card--primary {
+  border-left: 2px solid var(--primary);
 }
 
 .hp-card__area {
   display: block;
-  font-weight: 600;
+  font-weight: 700;
   font-size: 0.85rem;
-  margin-bottom: 0.25rem;
+  margin-bottom: 0.3rem;
 }
 
 .hp-card__tags {
   font-size: 0.78rem;
   color: var(--on-background-lighter);
-  line-height: 1.45;
+  line-height: 1.5;
 }
 
-/* ── Site section ────────────────────────────────────── */
-.hp-site {
-  border-top: 1px solid var(--border-lightest);
-  padding-top: 1.75rem;
+/* ── Site section ──────────────────────────────────────── */
+.hp-site p {
+  font-size: 0.95rem;
+  line-height: 1.65;
+  margin: 0 0 0.65rem;
 }
 
-/* ── Responsive ──────────────────────────────────────── */
-@media (max-width: 520px) {
-  .hp-hero__name { font-size: 1.75rem; }
-  .hp-grid { grid-template-columns: 1fr; }
+.hp-site p:last-child {
+  margin-bottom: 0;
+}
+
+/* ── Responsive ────────────────────────────────────────── */
+@media (max-width: 640px) {
+  .hp-hero__name  { font-size: 2rem; }
+  .hp-grid        { grid-template-columns: 1fr; }
+
+  .hp-track__row  {
+    grid-template-columns: 1fr auto;
+  }
+  .hp-track__bar  { display: none; }
 }
 </style>
 {% endblock %}
 
 {% block content %}
+
 <section class="hp-hero">
   <h1 class="hp-hero__name">Esteban Martins</h1>
-  <p class="hp-hero__role">Network &amp; Infrastructure Engineer · DevOps · desde 2008</p>
+  <p class="hp-hero__role">Network &amp; Infrastructure Engineer</p>
+  <p class="hp-hero__arc">→ DevOps · Cloud · IaC</p>
+  <p class="hp-status">Disponible para nuevas oportunidades · Buenos Aires / remoto</p>
   <p class="hp-hero__summary">
     Más de 15 años diseñando y operando redes e infraestructura crítica en entornos corporativos.
-    Hoy orientado a DevOps, contenedores y automatización en la nube.
+    Hoy construyendo el puente hacia DevOps: contenedores, IaC y automatización en la nube.
   </p>
   <ul class="hp-nav">
-    <li><a href="{% url 'me' %}">Perfil profesional</a></li>
+    <li class="hp-nav__primary"><a href="{% url 'me' %}">Perfil completo →</a></li>
     <li><a href="{% url 'projects' %}">Proyectos</a></li>
     <li><a href="{% url 'blog' %}">Blog</a></li>
     <li><a href="{% url 'contact' %}">Contacto</a></li>
   </ul>
 </section>
 
-<div class="hp-skills">
-  <p class="hp-section-label">Áreas técnicas</p>
+<div class="hp-section">
+  <p class="hp-label">Trayectoria</p>
+  <div class="hp-track">
+    <div class="hp-track__row">
+      <span class="hp-track__label">Redes &amp; Infraestructura</span>
+      <div class="hp-track__bar">
+        <div class="hp-track__fill hp-track__fill--networking"></div>
+      </div>
+      <span class="hp-track__years">2008 — hoy</span>
+    </div>
+    <div class="hp-track__row">
+      <span class="hp-track__label">DevOps · Cloud · IaC</span>
+      <div class="hp-track__bar">
+        <div class="hp-track__fill hp-track__fill--devops"></div>
+      </div>
+      <span class="hp-track__years">2022 — hoy</span>
+    </div>
+  </div>
+</div>
+
+<div class="hp-section">
+  <p class="hp-label">Áreas técnicas</p>
   <div class="hp-grid">
-    <div class="hp-card">
+    <div class="hp-card hp-card--primary">
       <span class="hp-card__area">Redes e infraestructura</span>
       <span class="hp-card__tags">BGP · SD-WAN · VLAN · VPN · Wi-Fi corporativo · multivendor</span>
     </div>
@@ -133,13 +241,17 @@
   </div>
 </div>
 
-<section class="hp-site">
-  <p class="hp-section-label">Este sitio</p>
+<div class="hp-site hp-section">
+  <p class="hp-label">Este sitio</p>
   <p>
     Documento lo que construyo, las decisiones técnicas detrás de cada proyecto y lo que aprendo en el camino.
     No es un blog comunitario — es una bitácora profesional.
-    <a href="{% url 'Post' 'este-blog' %}">→ Por qué existe este sitio</a>
   </p>
-  <p><a href="{% url 'blog' %}">Ver publicaciones →</a></p>
-</section>
+  <p>
+    <a href="{% url 'blog' %}">Ver publicaciones →</a>
+    &nbsp;·&nbsp;
+    <a href="{% url 'Post' 'este-blog' %}">Por qué existe este sitio</a>
+  </p>
+</div>
+
 {% endblock %}
