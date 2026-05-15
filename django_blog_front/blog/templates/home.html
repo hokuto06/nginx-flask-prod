@@ -1,36 +1,145 @@
 {% extends "base-blog.html" %}
 {% load static %}
 
-{% block header %}
+{% block header %}{% endblock %}
 
-{% comment %} {% include "includes/header-blog.html" %} {% endcomment %}
+{% block styles %}
+<style>
+/* ── Homepage layout ─────────────────────────────────── */
+.hp-hero {
+  padding: 2.5rem 0 2rem;
+  border-bottom: 1px solid var(--border-lighter);
+  margin-bottom: 2rem;
+}
 
+.hp-hero__name {
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin: 0 0 0.35rem;
+  line-height: 1.15;
+}
+
+.hp-hero__role {
+  font-size: 0.9rem;
+  color: var(--on-background-lighter);
+  margin: 0 0 1.25rem;
+  letter-spacing: 0.02em;
+}
+
+.hp-hero__summary {
+  max-width: 54ch;
+  margin: 0 0 1.5rem;
+  line-height: 1.7;
+}
+
+.hp-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 1.5rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+/* ── Skill grid ──────────────────────────────────────── */
+.hp-skills {
+  margin-bottom: 2rem;
+}
+
+.hp-section-label {
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--on-background-lighter);
+  margin: 0 0 0.8rem;
+}
+
+.hp-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.55rem;
+}
+
+.hp-card {
+  background: var(--surface-lighter);
+  border: 1px solid var(--border-lightest);
+  border-radius: 4px;
+  padding: 0.7rem 0.9rem;
+}
+
+.hp-card__area {
+  display: block;
+  font-weight: 600;
+  font-size: 0.85rem;
+  margin-bottom: 0.25rem;
+}
+
+.hp-card__tags {
+  font-size: 0.78rem;
+  color: var(--on-background-lighter);
+  line-height: 1.45;
+}
+
+/* ── Site section ────────────────────────────────────── */
+.hp-site {
+  border-top: 1px solid var(--border-lightest);
+  padding-top: 1.75rem;
+}
+
+/* ── Responsive ──────────────────────────────────────── */
+@media (max-width: 520px) {
+  .hp-hero__name { font-size: 1.75rem; }
+  .hp-grid { grid-template-columns: 1fr; }
+}
+</style>
 {% endblock %}
 
-
 {% block content %}
-<!-- hello -->
-<h1>Hola, soy Esteban!</h1>
-<p>Soy un profesional de IT y me he desarrollado toda mi carrera en el área de infraestructura.</p>
-<p>Desde 2008, trabajo administrando redes, diseñando soluciones y optimizando entornos técnicos.</p>
+<section class="hp-hero">
+  <h1 class="hp-hero__name">Esteban Martins</h1>
+  <p class="hp-hero__role">Network &amp; Infrastructure Engineer · DevOps · desde 2008</p>
+  <p class="hp-hero__summary">
+    Más de 15 años diseñando y operando redes e infraestructura crítica en entornos corporativos.
+    Hoy orientado a DevOps, contenedores y automatización en la nube.
+  </p>
+  <ul class="hp-nav">
+    <li><a href="{% url 'me' %}">Perfil profesional</a></li>
+    <li><a href="{% url 'projects' %}">Proyectos</a></li>
+    <li><a href="{% url 'blog' %}">Blog</a></li>
+    <li><a href="{% url 'contact' %}">Contacto</a></li>
+  </ul>
+</section>
 
-<!-- about this page -->
-<h2 id="hero" class="post-title">¿Que vas a encontrar acá?</h2>
-<p>
-Este sitio es un espacio personal donde documento mi recorrido profesional y te muestro cómo trabajo.
-Podés explorar mi <a href="{% url 'me' %}">portfolio</a> con proyectos en los que participé, y leer publicaciones donde profundizo en aspectos técnicos, decisiones tomadas y aprendizajes adquiridos.
-</p>
-<p>
-Cada sección está pensada para que conozcas mi perfil más allá del CV: cómo pienso, cómo encaro los desafíos y cómo incorporo nuevas herramientas.
-</p>
-<blockquote>
-    Este blog no tiene fines comunitarios, es simplemente una bitácora personal-profesional. <a href="{% url 'Post' 'este-blog' %}">→ Leer más sobre "Este blog"</a>
-</blockquote>
-<!-- scope -->
-<h2 id="project" class="post-title">¿Cual es el objetivo de este sitio?</h2>
-<p>
-    Una de las habilidades más difíciles de demostrar es la capacidad de aprender nuevas tecnologías, adaptarse y aplicar herramientas en distintos contextos... a menos que cuentes con un buen portafolio.
-    Otra, igual de valiosa, es la de organizar y documentar información de forma clara.
-    Este proyecto busca reflejar ambas capacidades, mientras registro mis aprendizajes y prácticas actuales.
-</p>
+<div class="hp-skills">
+  <p class="hp-section-label">Áreas técnicas</p>
+  <div class="hp-grid">
+    <div class="hp-card">
+      <span class="hp-card__area">Redes e infraestructura</span>
+      <span class="hp-card__tags">BGP · SD-WAN · VLAN · VPN · Wi-Fi corporativo · multivendor</span>
+    </div>
+    <div class="hp-card">
+      <span class="hp-card__area">DevOps &amp; contenedores</span>
+      <span class="hp-card__tags">Docker · Terraform · GitHub Actions · Nginx</span>
+    </div>
+    <div class="hp-card">
+      <span class="hp-card__area">Cloud AWS</span>
+      <span class="hp-card__tags">EC2 · S3 · CloudFront · Route 53 · SES · Lambda</span>
+    </div>
+    <div class="hp-card">
+      <span class="hp-card__area">Scripting &amp; automatización</span>
+      <span class="hp-card__tags">Python · Bash · APIs REST · Wireless controllers</span>
+    </div>
+  </div>
+</div>
+
+<section class="hp-site">
+  <p class="hp-section-label">Este sitio</p>
+  <p>
+    Documento lo que construyo, las decisiones técnicas detrás de cada proyecto y lo que aprendo en el camino.
+    No es un blog comunitario — es una bitácora profesional.
+    <a href="{% url 'Post' 'este-blog' %}">→ Por qué existe este sitio</a>
+  </p>
+  <p><a href="{% url 'blog' %}">Ver publicaciones →</a></p>
+</section>
 {% endblock %}
