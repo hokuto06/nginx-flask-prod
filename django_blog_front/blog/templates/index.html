@@ -6,10 +6,23 @@
 {% endblock %}
 
 {% block content %}
-<h1 id="hero">Ultimos posts de Esteban Martins</h1>
-<blockquote>
-Esta es una sección dedicada a exhibir algunos de mis posts recientes. Aquí vas a encontrar ejemplos de artículos y reflexiones sobre temas que me apasionan, como la programación, la tecnología y el desarrollo personal.
-</blockquote>
+<section class="m-post-header">
+  <h1 class="m-post-header__title" id="hero">Esteban Martins</h1>
+  <p>
+    Ingeniero de redes e infraestructura con más de 15 años de experiencia en entornos corporativos.
+    Hoy orientado a DevOps, contenedores y automatización en la nube.
+  </p>
+  <p>
+    Aquí publico lo que aprendo, los proyectos en los que trabajo y reflexiones sobre infraestructura y operaciones.
+  </p>
+  <p>
+    <a href="{% url 'me' %}">Mi perfil profesional</a> ·
+    <a href="{% url 'projects' %}">Proyectos</a> ·
+    <a href="{% url 'contact' %}">Contacto</a>
+  </p>
+</section>
+<hr>
+<h2>Últimos posts</h2>
 <div id="posts-content"
     hx-get="{% url 'posts_fragment' %}"
     hx-trigger="load"
