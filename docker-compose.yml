@@ -57,6 +57,9 @@ services:
       - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
       - ./nginx/frontend-static:/usr/share/nginx/frontend-static
       - ./nginx/static-root:/usr/share/nginx/html:ro
+      # ./letsencrypt is the working copy written by certbot (see certbot service below).
+      # The host /etc/letsencrypt:ro mount is superseded by the local bind mount below
+      # and can be removed once all certs are managed via ./letsencrypt.
       - /etc/letsencrypt:/etc/letsencrypt:ro
       - ./letsencrypt:/etc/letsencrypt
       - ./certbot/www:/var/www/certbot

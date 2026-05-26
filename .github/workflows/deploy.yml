@@ -1,4 +1,14 @@
 name: Deploy to EC2
+# Triggered on every push to main. Behavior is controlled by commit message tags:
+#
+#   [restart]  →  docker compose down && docker compose up -d
+#   [rebuild]  →  docker compose up -d --build  (rebuilds images)
+#   (ninguna)  →  git pull only, containers untouched
+#
+# Required repository secrets (Settings → Secrets → Actions):
+#   SSH_PRIVATE_KEY  — ed25519 private key with access to EC2
+#   EC2_HOST         — server IP or hostname
+#   EC2_USER         — SSH user (typically "ubuntu")
 
 on:
   push:
