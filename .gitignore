@@ -6,6 +6,10 @@ __pycache__/
 *.key
 *.crt
 *.db
+*.sqlite
+*.sqlite3
+venv/
+*/venv/
 .vscode/
 .idea/
 .docker/
